@@ -873,39 +873,41 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP: shipMovingUp = true; 
-							leftBarrelRollInitialized = false;
-							rightBarrelRollInitialized = false;
-							break;
-		case KeyEvent.VK_DOWN: shipMovingDown = true; 
-								leftBarrelRollInitialized = false;
-								rightBarrelRollInitialized = false;
-								break;
-		case KeyEvent.VK_LEFT: shipMovingLeft = true;
-								rightBarrelRollInitialized = false;
-								if (!leftBarrelRollInitialized) {
-									leftBarrelRollInitialized = true;
-								} else if (leftBarrelRollInitialized) {
-									doABarrelRoll.play();
-									performLeftBarrelRoll = true;
-									leftBarrelRollInitialized = false;
-									rightBarrelRollInitialized = false;
-								}
-								break;
-		case KeyEvent.VK_RIGHT: shipMovingRight = true; 
-								leftBarrelRollInitialized = false;
-								if (!rightBarrelRollInitialized) {
-									rightBarrelRollInitialized = true;
-								} else if (rightBarrelRollInitialized){
-									doABarrelRoll.play();
-									performRightBarrelRoll = true;
-									leftBarrelRollInitialized = false;
-									rightBarrelRollInitialized = false;
-								}
-		break;
-		case KeyEvent.VK_SHIFT: shipMovementX = 0;
-		shipMovementY = 0; break;
+		if (!lifeLost) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_UP: shipMovingUp = true; 
+			leftBarrelRollInitialized = false;
+			rightBarrelRollInitialized = false;
+			break;
+			case KeyEvent.VK_DOWN: shipMovingDown = true; 
+			leftBarrelRollInitialized = false;
+			rightBarrelRollInitialized = false;
+			break;
+			case KeyEvent.VK_LEFT: shipMovingLeft = true;
+			rightBarrelRollInitialized = false;
+			if (!leftBarrelRollInitialized) {
+				leftBarrelRollInitialized = true;
+			} else if (leftBarrelRollInitialized) {
+				doABarrelRoll.play();
+				performLeftBarrelRoll = true;
+				leftBarrelRollInitialized = false;
+				rightBarrelRollInitialized = false;
+			}
+			break;
+			case KeyEvent.VK_RIGHT: shipMovingRight = true; 
+			leftBarrelRollInitialized = false;
+			if (!rightBarrelRollInitialized) {
+				rightBarrelRollInitialized = true;
+			} else if (rightBarrelRollInitialized){
+				doABarrelRoll.play();
+				performRightBarrelRoll = true;
+				leftBarrelRollInitialized = false;
+				rightBarrelRollInitialized = false;
+			}
+			break;
+			case KeyEvent.VK_SHIFT: shipMovementX = 0;
+			shipMovementY = 0; break;
+			}
 		}
 	}
 
