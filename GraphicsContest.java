@@ -890,10 +890,8 @@ public class GraphicsContest extends GraphicsProgram {
 		case KeyEvent.VK_UP: shipMovingUp = false; break;
 		case KeyEvent.VK_DOWN: shipMovingDown = false; break;
 		case KeyEvent.VK_LEFT: shipMovingLeft = false;
-								leftBarrelRollInitialized = false;
 								break;
 		case KeyEvent.VK_RIGHT: shipMovingRight = false;
-								rightBarrelRollInitialized = false;
 								break;
 		}
 	}
