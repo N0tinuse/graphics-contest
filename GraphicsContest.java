@@ -159,7 +159,6 @@ public class GraphicsContest extends GraphicsProgram {
 		bossHealthLabel.setColor(Color.RED);
 		bossHealthLabel.setFont("Sans Serif-36");
 		bossHealthLabel.setLocation(getWidth() / 2 - bossHealthLabel.getWidth(), bossHealthLabel.getAscent());
-		add(bossHealthLabel);
 		bossHealthBarOutside = new GRect(getWidth() / 2, 0, 300, 50);
 		bossHealthBarOutside.setColor(Color.BLUE);
 		bossHealthBarInside = new GRect(getWidth() / 2 + 1, 1, 298, 48);
@@ -168,6 +167,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		add(bossHealthLabel);
 		add(bossHealthBarOutside);
 		add(bossHealthBarInside);
 		for (int j = 0; j < lives; j++) {
@@ -297,6 +297,10 @@ public class GraphicsContest extends GraphicsProgram {
 							}
 						}
 						processDeath();
+						add(boss);
+						add(bossHealthLabel);
+						add(bossHealthBarOutside);
+						add(bossHealthBarInside);
 					}
 					if (enemyBullets[i].getWidth() > 60) {
 						remove(enemyBullets[i]);
