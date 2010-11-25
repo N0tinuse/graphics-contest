@@ -90,6 +90,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip truePain = MediaTools.loadAudioClip("truepain.wav");
 	AudioClip foolish = MediaTools.loadAudioClip("foolish.wav");
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
+	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -681,6 +682,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)480;
 		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)480;
 		add(newBullet);
+		enemyLaser.play();
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
 		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
@@ -695,6 +697,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)480;
 		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)480;
 		add(newBullet);
+		enemyLaser.play();
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
 		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
