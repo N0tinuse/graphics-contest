@@ -189,6 +189,7 @@ public class GraphicsContest extends GraphicsProgram {
 							remove(ship);
 							pause(2000);
 							ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
+							add(ship);
 							score -= 500;
 						}
 						if (enemyBullets[i].getWidth() > 60) {
