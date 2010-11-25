@@ -62,6 +62,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private GImage[] lifeLabels;
 	private GLabel livesLabel;
 	private boolean lifeLost = false;
+	private GLabel bossApproachLabel;
 
 	private int loopCounter;
 	private boolean bossPresent = false;
@@ -149,6 +150,8 @@ public class GraphicsContest extends GraphicsProgram {
 		for (int k = 0; k < enemyBullets.length; k++) {
 			if (enemyBullets[k] != null) {
 				enemyBullets[k].setLocation(2200, 900);
+				enemyXBulletVelocities[k] = 0;
+				enemyYBulletVelocities[k] = 0;
 			}
 		}
 		currentBossHealth = bossHealth[bossCounter];
@@ -286,26 +289,20 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getX() < getWidth() / 2) {
 					boss.setImage("arwingfacingright.png");
 					bossFacingLeft = false;
-				} 
-				if (!bossFacingLeft) {
-					if( boss.getX() > getWidth() / 2) {
-						boss.setImage("arwingfacingleft.png");
-						bossFacingLeft = true;
-					}
+				} else {
+					boss.setImage("arwingfacingleft.png");
+					bossFacingLeft = true;
 				}
 			}
 		}
 		if (bossCounter == 4) {
 			if (bossFacingLeft) {
-				if (boss.getX() < getWidth() / 2) {
+				if (boss.getX() < getWidth() / 2 ) {
 					boss.setImage("mehranfacingright.png");
 					bossFacingLeft = false;
-				} 
-				if (!bossFacingLeft) {
-					if( boss.getX() > getWidth() / 2) {
-						boss.setImage("mehranfacingleft.png");
-						bossFacingLeft = true;
-					}
+				} else {
+					boss.setImage("mehranfacingleft.png");
+					bossFacingLeft = true;
 				}
 			}
 		}
@@ -336,6 +333,13 @@ public class GraphicsContest extends GraphicsProgram {
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
 								enemyBullets[k].setLocation(2200, 900);
+								enemyXBulletVelocities[k] = 0;
+								enemyYBulletVelocities[k] = 0;
+							}
+						}
+						for (int k = 0; k < enemies.length; k++) {
+							if (enemies[k] != null) {
+								enemies[k].setLocation(2500, 900);
 							}
 						}
 						processDeath();
@@ -367,11 +371,14 @@ public class GraphicsContest extends GraphicsProgram {
 		for (int k = 0; k < enemyBullets.length; k++) {
 			if (enemyBullets[k] != null) {
 				enemyBullets[k].setLocation(2200, 900);
+				enemyXBulletVelocities[k] = 0;
+				enemyYBulletVelocities[k] = 0;
 			}
 		}
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -444,6 +451,13 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
 					enemies[i].setLocation(2500, 900);
+					for (int k = 0; k < enemyBullets.length; k++) {
+						if (enemyBullets[k] != null) {
+							enemyBullets[k].setLocation(2200, 900);
+							enemyXBulletVelocities[k] = 0;
+							enemyYBulletVelocities[k] = 0;
+						}
+					}
 					for (int k = 0; k < enemies.length; k++) {
 						if (enemies[k] != null) {
 							enemies[k].setLocation(2500, 900);
@@ -484,6 +498,11 @@ public class GraphicsContest extends GraphicsProgram {
 								enemyYBulletVelocities[k] = 0;
 							}
 						}
+						for (int k = 0; k < enemies.length; k++) {
+							if (enemies[k] != null) {
+								enemies[k].setLocation(2500, 900);
+							}
+						}
 						processDeath();
 					}
 					if (enemyBullets[i].getWidth() > 60) {
@@ -497,6 +516,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		loopCounter++;
+		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 	}
 
 	private void setUpGame() {
@@ -513,6 +533,11 @@ public class GraphicsContest extends GraphicsProgram {
 		livesLabel.setFont("Sans Serif-36");
 		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 180, livesLabel.getAscent());
 		add(livesLabel);
+		bossApproachLabel = new GLabel("DISTANCE TO ANOMALY: " + 72000, 0, 0);
+		bossApproachLabel.setColor(Color.RED);
+		bossApproachLabel.setFont("Sans Serif-36");
+		bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth(), bossApproachLabel.getAscent());
+		add(bossApproachLabel);
 		lifeLabels = new GImage[3];
 		for (int i = 0; i < lifeLabels.length; i++) {
 			lifeLabels[i] = new GImage("placeholder.jpg");
