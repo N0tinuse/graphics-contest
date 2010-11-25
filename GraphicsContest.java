@@ -79,8 +79,6 @@ public class GraphicsContest extends GraphicsProgram {
 	
 	private boolean leftBarrelRollInitialized = false;
 	private boolean rightBarrelRollInitialized = false;
-	private int leftBarrelRollCounter;
-	private int rightBarrelRollCounter;
 	private int barrelRollTimeCounter;
 	private boolean performLeftBarrelRoll = false;
 	private boolean performRightBarrelRoll = false;
@@ -149,20 +147,6 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void barrelRollChecker() {
-		if (leftBarrelRollInitialized) {
-			leftBarrelRollCounter++;
-			if (leftBarrelRollCounter > 100) {
-				leftBarrelRollCounter = 0;
-				leftBarrelRollInitialized = false;
-			}
-		}
-		if (rightBarrelRollInitialized) {
-			rightBarrelRollCounter++;
-			if (rightBarrelRollCounter > 100) {
-				rightBarrelRollCounter = 0;
-				rightBarrelRollInitialized = false;
-			}
-		}
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			barrelRollTimeCounter++;
 			if (barrelRollTimeCounter > 50) {
