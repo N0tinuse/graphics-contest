@@ -567,7 +567,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 		if (explosionCounter > 0) {
 			explosionCounter++;
-			if (explosionCounter > 50) {
+			if (explosionCounter > 40) {
 				enemyExplosion.setLocation(5000, 2000);
 				explosionCounter = 0;
 			}
@@ -627,8 +627,6 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void processDeath() {
-		explosionCounter = 0;
-		add(enemyExplosion);
 		for (int j = 0; j < lives; j++) {
 			remove(lifeLabels[j]);
 		}
@@ -637,6 +635,8 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		explosionCounter = 0;
+		add(enemyExplosion);
 		if (loopCounter >= 9000) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
@@ -647,8 +647,6 @@ public class GraphicsContest extends GraphicsProgram {
 		add(death);
 		explosion.play();
 		lifeLost = true;
-		score -= 500;
-		if (score < 0) score = 0;
 		pause(1500);
 		remove(death);
 		if (lives > -1) {
