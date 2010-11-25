@@ -632,7 +632,7 @@ public class GraphicsContest extends GraphicsProgram {
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
 		enemies[enemyCounter] = newEnemy;
 		remove(ship);
-		add(enemies[enemyCounter]);
+		add(newEnemy);
 		add(ship);
 		enemyCounter++;
 		enemiesPresent = true;
