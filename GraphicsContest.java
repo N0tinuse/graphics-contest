@@ -960,28 +960,28 @@ public class GraphicsContest extends GraphicsProgram {
 				newBullet.setColor(Color.GRAY);
 				newBullet.setFilled(true);
 				if (shipImageConstant == 0) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = 1.2;
 				} else if (shipImageConstant == 1) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = 1.05;
 				} else if (shipImageConstant == 2) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .9;
 				} else if (shipImageConstant == 3) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .75;
 				} else if (shipImageConstant == 4) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .6;
 				} else if (shipImageConstant == 5) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .45;
 				} else if (shipImageConstant == 6) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .3;
 				} else if (shipImageConstant == 7) {
-					newBullet.setLocation(ship.getX() + ship.getWidth(), ship.getY() + ship.getHeight() / 3);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 10, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = .15;
 				} else if (shipImageConstant == 8) {
 					newBullet.setLocation(ship.getX() + ship.getWidth() / 2 - 30, ship.getY() + ship.getHeight() / 2 - 30);
