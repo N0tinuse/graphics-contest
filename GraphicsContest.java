@@ -622,6 +622,7 @@ public class GraphicsContest extends GraphicsProgram {
 		remove(death);
 		pause(300);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
+		ship.setImage("Ship_08.png");
 		add(ship);
 		pause(300);
 		remove(ship);
