@@ -346,11 +346,12 @@ public class GraphicsContest extends GraphicsProgram {
 					if (bullets[i].getWidth() == 0) {
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
+						bulletVelocities[i] = 0;
 					}
 					if (bulletCollisionChecker(bullets[i]) instanceof GRect && 3 * bulletCollisionChecker(bullets[i]).getWidth() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
-						remove(bullets[i]);
+						bulletVelocities[i] = 0;
 						score += 50;
 					} 
 				}
@@ -373,7 +374,6 @@ public class GraphicsContest extends GraphicsProgram {
 					for (int k = 0; k < enemies.length; k++) {
 						if (enemies[k] != null) {
 							enemies[k].setLocation(2500, 900);
-							remove(enemies[k]);
 						}
 					}
 					processDeath();
@@ -406,7 +406,8 @@ public class GraphicsContest extends GraphicsProgram {
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
 								enemyBullets[k].setLocation(2200, 900);
-								remove(enemyBullets[k]);
+								enemyXBulletVelocities[k] = 0;
+								enemyYBulletVelocities[k] = 0;
 							}
 						}
 						processDeath();
@@ -414,6 +415,8 @@ public class GraphicsContest extends GraphicsProgram {
 					if (enemyBullets[i].getWidth() > 60) {
 						remove(enemyBullets[i]);
 						enemyBullets[i].setLocation(2200,1200);
+						enemyXBulletVelocities[i] = 0;
+						enemyYBulletVelocities[i] = 0;
 					}
 
 				}
