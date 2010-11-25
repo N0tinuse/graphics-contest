@@ -315,25 +315,27 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		if (bossCounter == 2) {
-			if (bossFacingLeft) {
-				if (boss.getX() < getWidth() / 2) {
-					boss.setImage("arwingfacingright.png");
-					bossFacingLeft = false;
-				} else {
-					boss.setImage("arwingfacingleft.png");
-					bossFacingLeft = true;
-				}
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() < getWidth() / 2  - boss.getWidth() / 2) {
+				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
+				if (boss.getX() > bossDestinationX) boss.setImage("arwingfacingleft.png");
+			}
+			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
+				boss.setImage("arwingfacingright.png");
+			} 
+			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
+				boss.setImage("arwingfacingleft.png");
 			}
 		}
 		if (bossCounter == 4) {
-			if (bossFacingLeft) {
-				if (boss.getX() < getWidth() / 2 ) {
-					boss.setImage("mehranfacingright.png");
-					bossFacingLeft = false;
-				} else {
-					boss.setImage("mehranfacingleft.png");
-					bossFacingLeft = true;
-				}
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() < getWidth() / 2  - boss.getWidth() / 2) {
+				if (boss.getX() < bossDestinationX) boss.setImage("mehranfacingright.png");
+				if (boss.getX() > bossDestinationX) boss.setImage("mehranfacingleft.png");
+			}
+			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
+				boss.setImage("mehranfacingright.png");
+			} 
+			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
+				boss.setImage("mehranfacingleft.png");
 			}
 		}
 		int bulletDeterminant = rgen.nextInt(5000);
