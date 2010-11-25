@@ -810,10 +810,10 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void moveShip() {
 		if (performLeftBarrelRoll) {
-			shipMovementX = -shipMovementValue * 3;
+			shipMovementX = -shipMovementValue * 2;
 			shipMovementY = 0;
 		} else if (performRightBarrelRoll) {
-			shipMovementX = shipMovementValue * 3;
+			shipMovementX = shipMovementValue * 2;
 			shipMovementY = 0;
 		} else if (shipMovingUp && shipMovingLeft) {
 			shipMovementX = -shipMovementValue;
