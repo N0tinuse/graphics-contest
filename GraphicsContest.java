@@ -14,6 +14,11 @@ import acm.util.*;
 
 /* GImage credits:
  * star background found at a1star.com
+ * arwing image from http://s14.zetaboards.com/Nintendo_Rp_and_more/topic/90827/1/
+ * millennium falcon image from http://www.scifiscoop.com/news/star-wars-limited-edition-only-500-of-these-millennium-falcons/
+ * tie fighter image from http://sourwineblog.blogspot.com/2010_06_01_archive.html
+ * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/
+ * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
  */
 
 public class GraphicsContest extends GraphicsProgram {
@@ -60,16 +65,26 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private int loopCounter;
 	private boolean bossPresent = false;
+	private GImage boss;
+	private int[] bossHealth;
+	private int bossCounter;
+	private GLabel bossHealthLabel;
+	private GRect bossHealthBarOutside;
+	private GRect bossHealthBarInside;
+	private double bossDestinationX;
+	private double bossDestinationY;
+	private int currentBossHealth;
 	
 	private int score;
 	private GLabel scoreLabel;
+	
 
 	public void init() {
 		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		gameArea = new GImage("starbackground.gif");
 		gameArea.setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		add(gameArea);
-		addMouseListeners();
+		/* addMouseListeners(); */
 
 	}
 
@@ -101,29 +116,7 @@ public class GraphicsContest extends GraphicsProgram {
 			moveShip();
 			checkforShipChange();
 			if (loopCounter == 12000) {
-				removeAll();
-				add(gameArea);
-				add(scoreLabel);
-				add(livesLabel);
-				for (int j = 0; j < lives; j++) {
-					add(lifeLabels[j]);
-				}
-				add(ship);
-				GLabel warning = new GLabel("WARNING!", 0, 0);
-				warning.setFont("Sans Serif-100");
-				warning.setColor(Color.RED);
-				warning.setLocation(getWidth() / 2 - warning.getWidth() / 2, getHeight() / 2 - warning.getAscent() / 2);
-				add(warning);
-				pause(500);
-				remove(warning);
-				pause(500);
-				add(warning);
-				pause(500);
-				remove(warning);
-				pause(500);
-				add(warning);
-				pause(500);
-				remove(warning);
+				initializeBoss();
 			}
 			if (!bossPresent) {
 				normalGameProcedure(); 
@@ -133,7 +126,6 @@ public class GraphicsContest extends GraphicsProgram {
 			scoreLabel.setLabel("Score: " + score);
 			remove(ship);
 			add(ship);
-			loopCounter++;
 			pause(5);
 		}
 		removeAll();
@@ -143,9 +135,197 @@ public class GraphicsContest extends GraphicsProgram {
 		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
 		add(gameOver);
 	}
+
+	private void initializeBoss() {
+		loopCounter = 0;
+		bossPresent = true;
+		removeAll();
+		currentBossHealth = bossHealth[bossCounter];
+		switch (bossCounter) {
+		case 0: boss.setImage("tiefighter.jpg");
+				break;
+		case 1: boss.setImage("millenniumfalcon.jpg");
+				break;
+		case 2: boss.setImage("arwing.jpg");
+				break;
+		case 3: boss.setImage("enterprise.jpg");
+				break;
+		case 4: boss.setImage("mehran.jpg");
+				break;
+		}
+		bossDestinationX = rgen.nextDouble(0, getWidth() - boss.getWidth());
+		bossDestinationY = rgen.nextDouble(0, getHeight() - boss.getHeight());
+		bossHealthLabel = new GLabel("BOSS: ", 0, 0);
+		bossHealthLabel.setColor(Color.RED);
+		bossHealthLabel.setFont("Sans Serif-36");
+		bossHealthLabel.setLocation(getWidth() / 2 - bossHealthLabel.getWidth(), bossHealthLabel.getAscent());
+		add(bossHealthLabel);
+		bossHealthBarOutside = new GRect(getWidth() / 2, 0, 300, 50);
+		bossHealthBarOutside.setColor(Color.BLUE);
+		bossHealthBarInside = new GRect(getWidth() / 2 + 1, 1, 298, 48);
+		bossHealthBarInside.setColor(Color.GREEN);
+		bossHealthBarInside.setFilled(true);
+		add(bossHealthBarOutside);
+		add(bossHealthBarInside);
+		add(gameArea);
+		add(scoreLabel);
+		add(livesLabel);
+		for (int j = 0; j < lives; j++) {
+			add(lifeLabels[j]);
+		}
+		add(ship);
+		GLabel warning = new GLabel("WARNING!", 0, 0);
+		warning.setFont("Sans Serif-100");
+		warning.setColor(Color.RED);
+		warning.setLocation(getWidth() / 2 - warning.getWidth() / 2, getHeight() / 2 - warning.getAscent() / 2);
+		add(warning);
+		pause(500);
+		remove(warning);
+		pause(500);
+		add(warning);
+		pause(500);
+		remove(warning);
+		pause(500);
+		add(warning);
+		pause(500);
+		remove(warning);
+		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
+		add(boss);
+	}
 	
 	private void bossProcedure() {
+		if (bulletsPresent) {
+			for (int i = 0; i < bullets.length; i++) {
+				if (bullets[i] == null) break;
+				if (bullets[i].getX() != 2000) {
+					bullets[i].move(bulletVelocities[i], 0);
+					bullets[i].setSize(bullets[i].getWidth() - 0.5, bullets[i].getHeight() - 0.5);
+					if (bullets[i].getWidth() == 0) {
+						remove(bullets[i]);
+						bullets[i].setLocation(2000,900);
+					}
+					if (bulletCollisionChecker(bullets[i]) == boss && bullets[i].getWidth() <= 20) {
+						bullets[i].setLocation(2000,900);
+						score += 20;
+						currentBossHealth -= 1;
+						bossHealthBarInside.setSize(bossHealthBarInside.getWidth() * currentBossHealth / bossHealth[bossCounter], bossHealthBarInside.getHeight());
+						if (bossHealthBarInside.getWidth() <= 2 * 298 / (double)3 && bossHealthBarInside.getWidth() > 298 / (double)3) bossHealthBarInside.setColor(Color.YELLOW);
+						if (bossHealthBarInside.getWidth() <= 298 / (double)3) bossHealthBarInside.setColor(Color.RED);
+					}
+					if (currentBossHealth == 0) {
+						levelUp();
+					}
+				}
+			}
+		}
+		if (boss.getX() > bossDestinationX) {
+			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
+				boss.move(-1, 0);
+			} else if (bossCounter == 1) {
+				boss.move(-1, 0);
+				if (boss.getX() > bossDestinationX) boss.move(-1, 0);
+			} else if (bossCounter == 2) {
+				boss.move(-1, 0);
+				if (boss.getX() > bossDestinationX) boss.move(-1, 0);
+				if (boss.getX() > bossDestinationX) boss.move(-1, 0);
+			} 
+		}
+		if (boss.getX() < bossDestinationX) {
+			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
+				boss.move(1, 0);
+			} else if (bossCounter == 1) {
+				boss.move(1, 0);
+				if (boss.getX() < bossDestinationX) boss.move(1, 0);
+			} else if (bossCounter == 2) {
+				boss.move(1, 0);
+				if (boss.getX() < bossDestinationX) boss.move(1, 0);
+				if (boss.getX() < bossDestinationX) boss.move(1, 0);
+			} 
+		}
+		if (boss.getY() > bossDestinationY) {
+			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
+				boss.move(0, -1);
+			} else if (bossCounter == 1) {
+				boss.move(0, -1);
+				if (boss.getY() > bossDestinationY) boss.move(0, -1);
+			} else if (bossCounter == 2) {
+				boss.move(0, -1);
+				if (boss.getY() > bossDestinationY) boss.move(0, -1);
+				if (boss.getY() > bossDestinationY) boss.move(0, -1);
+			} 
+		}
+		if (boss.getY() < bossDestinationY) {
+			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
+				boss.move(0, 1);
+			} else if (bossCounter == 1) {
+				boss.move(0, 1);
+				if (boss.getY() < bossDestinationY) boss.move(0, 1);
+			} else if (bossCounter == 2) {
+				boss.move(0, 1);
+				if (boss.getY() < bossDestinationY) boss.move(0, 1);
+				if (boss.getY() < bossDestinationY) boss.move(0, 1);
+			} 
+		}
+		int bulletDeterminant = rgen.nextInt(5000);
+		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
+			spawnBossBullet(boss, ship);
+		}
+		if (enemyBulletsPresent) {
+			for (int i = 0; i < enemyBullets.length; i++) {
+				if (enemyBullets[i] == null) break;
+				if (enemyBullets[i].getX() != 2200) {
+					enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
+					enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.2, enemyBullets[i].getHeight() + 0.2);
+					if (enemyBullets[i].getWidth() >= 16 && enemyBullets[i].getWidth() < 24) {
+						enemyBullets[i].setColor(Color.CYAN);
+					}
+					if (enemyBullets[i].getWidth() >= 24 && enemyBullets[i].getWidth() < 32) {
+						enemyBullets[i].setColor(Color.YELLOW);
+					}
+					if (enemyBullets[i].getWidth() >= 32 && enemyBullets[i].getWidth() < 40) {
+						enemyBullets[i].setColor(Color.ORANGE);
+					}
+					if (enemyBullets[i].getWidth() >= 40) {
+						enemyBullets[i].setColor(Color.RED);
+					}
+					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
+						for (int k = 0; k < enemyBullets.length; k++) {
+							if (enemyBullets[k] != null) {
+								enemyBullets[k].setLocation(2200, 900);
+							}
+						}
+						processDeath();
+					}
+					if (enemyBullets[i].getWidth() > 60) {
+						remove(enemyBullets[i]);
+						enemyBullets[i].setLocation(2200,1200);
+					}
+
+				}
+			}
+		}
 		
+	}
+
+	private void levelUp() {
+		removeAll();
+		add(gameArea);
+		add(scoreLabel);
+		add(livesLabel);
+		for (int j = 0; j < lives; j++) {
+			add(lifeLabels[j]);
+		}
+		add(ship);
+		bossPresent = false;
+		boss.setLocation(4000, 1500);
+		bossCounter++;
+		GLabel newLevel = new GLabel("LEVEL " + bossCounter+1, 0, 0);
+		newLevel.setFont("Sans Serif-100");
+		newLevel.setColor(Color.RED);
+		newLevel.setLocation(getWidth() / 2 - newLevel.getWidth() / 2, getHeight() / 2 - newLevel.getAscent() / 2);
+		add(newLevel);
+		pause(2000);
+		remove(newLevel);
 	}
 
 	private void normalGameProcedure() {
@@ -167,8 +347,8 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
-		int monsterDeterminant = rgen.nextInt(5000);
-		if (monsterDeterminant >= 4990) {
+		int enemyDeterminant = rgen.nextInt(5000);
+		if (enemyDeterminant >= 4990) {
 			spawnEnemy();
 		}
 		if (enemiesPresent) {
@@ -228,6 +408,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
+		loopCounter++;
 	}
 
 	private void setUpGame() {
@@ -263,6 +444,12 @@ public class GraphicsContest extends GraphicsProgram {
 		score = 0;
 		shipResetCounter = 0;
 		loopCounter = 0;
+		bossCounter = 0;
+		bossHealth[0] = 40;
+		bossHealth[1] = 60;
+		bossHealth[2] = 80;
+		bossHealth[3] = 150;
+		bossHealth[4] = 400;
 		lives = 3;
 	}
 
@@ -334,6 +521,19 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
+	private void spawnBossBullet(GImage boss, GImage ship) {
+		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
+		newBullet.setColor(Color.BLUE);
+		newBullet.setFilled(true);
+		enemyBullets[enemyBulletCounter] = newBullet;
+		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)480;
+		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)480;
+		add(newBullet);
+		enemyBulletCounter++;
+		enemyBulletsPresent = true;
+		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
+	} 
+	
 	private void spawnEnemyBullet(GRect enemy, GImage ship) {
 		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 5, enemy.getY() + enemy.getHeight() / 5, 3 * enemy.getWidth() / 5, 3 * enemy.getHeight() / 5);
 		newBullet.setColor(Color.BLUE);
