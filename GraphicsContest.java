@@ -252,6 +252,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 					}
 					if (bulletCollisionChecker(bullets[i]) == boss && bullets[i].getWidth() <= 20) {
+						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
 						score += 20;
 						currentBossHealth -= 1;
@@ -447,6 +448,7 @@ public class GraphicsContest extends GraphicsProgram {
 					}
 					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
+						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 						score += 50;
