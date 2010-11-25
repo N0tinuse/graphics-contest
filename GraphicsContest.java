@@ -851,9 +851,16 @@ public class GraphicsContest extends GraphicsProgram {
 
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP: shipMovingUp = true; break;
-		case KeyEvent.VK_DOWN: shipMovingDown = true; break;
+		case KeyEvent.VK_UP: shipMovingUp = true; 
+							leftBarrelRollInitialized = false;
+							rightBarrelRollInitialized = false;
+							break;
+		case KeyEvent.VK_DOWN: shipMovingDown = true; 
+								leftBarrelRollInitialized = false;
+								rightBarrelRollInitialized = false;
+								break;
 		case KeyEvent.VK_LEFT: shipMovingLeft = true;
+								rightBarrelRollInitialized = false;
 								if (!leftBarrelRollInitialized) {
 									leftBarrelRollInitialized = true;
 								} else if (leftBarrelRollInitialized) {
@@ -863,6 +870,7 @@ public class GraphicsContest extends GraphicsProgram {
 								}
 								break;
 		case KeyEvent.VK_RIGHT: shipMovingRight = true; 
+								leftBarrelRollInitialized = false;
 								if (!rightBarrelRollInitialized) {
 									rightBarrelRollInitialized = true;
 								} else if (rightBarrelRollInitialized){
