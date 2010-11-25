@@ -942,13 +942,13 @@ public class GraphicsContest extends GraphicsProgram {
 									break;
 			case KeyEvent.VK_W: if (ship.getHeight() > 50) {
 									double shipGfxRatio = ship.getWidth() / ship.getHeight();
-									ship.setSize(ship.getWidth() - shipGfxRatio, ship.getHeight() - 1);
-									ship.setLocation(ship.getX() + shipGfxRatio / (double)2, ship.getY() + 0.5);
+									ship.setSize(ship.getWidth() - shipGfxRatio * 5, ship.getHeight() - 5);
+									ship.setLocation(ship.getX() + 2.5 * shipGfxRatio, ship.getY() + 2.5);
 								}
 			case KeyEvent.VK_S: if (ship.getHeight() < 100) {
 								double shipGfxRatio = ship.getWidth() / ship.getHeight();
-								ship.setSize(ship.getWidth() + shipGfxRatio, ship.getHeight() + 1);
-								ship.setLocation(ship.getX() - shipGfxRatio / (double)2, ship.getY() - 0.5);
+								ship.setSize(ship.getWidth() + shipGfxRatio * 5, ship.getHeight() + 5);
+								ship.setLocation(ship.getX() - 2.5 * shipGfxRatio, ship.getY() - 2.5);
 								}
 			}
 		}
