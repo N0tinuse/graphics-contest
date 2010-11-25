@@ -139,7 +139,7 @@ public class GraphicsContest extends GraphicsProgram {
 					enemies[i].setLocation(enemies[i].getX() - 0.05, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.1, enemies[i].getHeight() + 0.1);
 					int bulletDeterminant = rgen.nextInt(5000);
-					if (bulletDeterminant >= 4990) {
+					if (bulletDeterminant >= 4980 && enemies[i].getWidth() < 50) {
 						spawnEnemyBullet(enemies[i], ship);
 					}
 					if (enemies[i].getWidth() >= 100) {
