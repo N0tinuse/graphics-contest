@@ -608,10 +608,10 @@ public class GraphicsContest extends GraphicsProgram {
 		GImage newEnemy = new GImage("placeholder.jpg");
 		switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
-				newEnemy.setSize(1.41, 1);
+				/* newEnemy.setSize(1.41, 1); */
 				break;
 		case 1: newEnemy.setImage("enemy02.png");
-				newEnemy.setSize(1.55, 1);
+				/* newEnemy.setSize(1.55, 1); */
 				break;
 		case 2: newEnemy.setImage("enemy03.png");
 				newEnemy.setSize(1.01, 1);
