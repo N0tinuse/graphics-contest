@@ -61,6 +61,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private double[] enemyYBulletVelocities;
 	private int enemyBulletCounter;
 	private boolean enemyBulletsPresent = false;
+	private GImage enemyExplosion = new GImage ("explosion.gif");
 	
 	private int lives;
 	private GImage[] lifeLabels;
@@ -147,6 +148,7 @@ public class GraphicsContest extends GraphicsProgram {
 			remove(ship);
 			add(ship);
 			pause(5);
+			enemyExplosion.setLocation(5000, 2000);
 		}
 		removeAll();
 		GLabel gameOver = new GLabel("Game Over", 0, 0);
@@ -446,7 +448,9 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 					}
-					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
+					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows  && bulletCollisionChecker(bullets[i]) != enemyExplosion && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
+						enemyExplosion.setSize(bulletCollisionChecker(bullets[i]).getWidth(), 200 * bulletCollisionChecker(bullets[i]).getWidth() / (double)142);
+						enemyExplosion.setLocation((bulletCollisionChecker(bullets[i]).getX() + bulletCollisionChecker(bullets[i]).getWidth() / 2 - enemyExplosion.getWidth() / 2), bulletCollisionChecker(bullets[i]).getY() + bulletCollisionChecker(bullets[i]).getHeight() / 2 - enemyExplosion.getHeight() / 2);
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
@@ -576,6 +580,8 @@ public class GraphicsContest extends GraphicsProgram {
 		add(livesLabel);
 		barrelRollArrows.setLocation(5000, 2000);
 		add(barrelRollArrows);
+		enemyExplosion.setLocation(5000, 2000);
+		add(enemyExplosion);
 		bossApproachLabel = new GLabel("DISTANCE TO ANOMALY: " + 72000, 0, 0);
 		bossApproachLabel.setColor(Color.RED);
 		bossApproachLabel.setFont("Sans Serif-36");
