@@ -771,7 +771,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		}
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
-		if (getElementAt (newEnemy.getX(), newEnemy.getY()) == null || (getElementAt (newEnemy.getX(), newEnemy.getY()) == ship)) {
+		if (getElementAt (newEnemy.getX(), newEnemy.getY()) != gameArea && getElementAt (newEnemy.getX(), newEnemy.getY()) != ship) {
 			enemies[enemyCounter] = (newEnemy);
 			remove(ship);
 			add(enemies[enemyCounter]);
