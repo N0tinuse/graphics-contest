@@ -142,7 +142,7 @@ public class GraphicsContest extends GraphicsProgram {
 		removeAll();
 		currentBossHealth = bossHealth[bossCounter];
 		switch (bossCounter) {
-		case 0: boss.setImage("tiefighter.jpg");
+		case 0: boss = new GImage("tiefighter.jpg");
 				break;
 		case 1: boss.setImage("millenniumfalcon.jpg");
 				break;
