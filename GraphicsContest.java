@@ -122,7 +122,8 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		shipResetCounter = 0;
-		while(true) {
+		lives = 3;
+		while(lives != -1) {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
@@ -183,6 +184,11 @@ public class GraphicsContest extends GraphicsProgram {
 						}
 						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setLocation(3500,900);
+							lives--;
+							remove(lifeLabels[lives]);
+							remove(ship);
+							pause(2000);
+							ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 							score -= 500;
 						}
 						if (enemyBullets[i].getWidth() > 60) {
