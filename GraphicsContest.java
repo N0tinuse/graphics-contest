@@ -81,7 +81,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	public void init() {
 		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
-		gameArea = new GImage("starbackground.gif");
+		gameArea = new GImage("spacebackgroundmoving.gif");
 		gameArea.setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		add(gameArea);
 		/* addMouseListeners(); */
