@@ -387,7 +387,9 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		barrelRollChecker();
 		if (currentBossHealth == 0) {
-			levelUp();
+			if (bossCounter == 4) {
+				gameWin();
+			} else levelUp();
 		}
 	}
 
@@ -405,6 +407,11 @@ public class GraphicsContest extends GraphicsProgram {
 				enemyYBulletVelocities[k] = 0;
 			}
 		}
+		GImage bossExplosion = new GImage("explosion.gif");
+		bossExplosion.setSize(boss.getWidth(), 200 * boss.getWidth() / (double)142);
+		bossExplosion.setLocation(boss.getX() + boss.getWidth() / 2 - bossExplosion.getWidth() / 2, boss.getY() + boss.getHeight() / 2 - bossExplosion.getHeight() / 2);
+		add(bossExplosion);
+		explosion.play();
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
@@ -421,6 +428,7 @@ public class GraphicsContest extends GraphicsProgram {
 		newLevel.setLocation(getWidth() / 2 - newLevel.getWidth() / 2, getHeight() / 2 - newLevel.getAscent() / 2);
 		add(newLevel);
 		pause(2000);
+		remove(bossExplosion);
 		remove(newLevel);
 	}
 
@@ -613,8 +621,8 @@ public class GraphicsContest extends GraphicsProgram {
 			add(lifeLabels[j]);
 		}
 		GImage death = new GImage("explosion.gif");
-		death.setLocation(ship.getX() - ship.getWidth() / 2,ship.getY() - ship.getHeight() / 2);
 		death.setSize(ship.getWidth(), 200 * ship.getWidth() / (double)142);
+		death.setLocation(ship.getX() + ship.getWidth() / 2  - death.getWidth() / 2, ship.getY() + ship.getHeight() / 2 - death.getHeight() / 2);
 		add(death);
 		explosion.play();
 		lifeLost = true;
@@ -993,6 +1001,16 @@ public class GraphicsContest extends GraphicsProgram {
 				bulletsPresent = true;
 			}
 		}
+	}
+	
+	private void gameWin() {
+		removeAll();
+		add(gameArea);
+		addHighScoreTable();
+	}
+	
+	private void addHighScoreTable() {
+		removeAll();
 	}
 
 	/* private void makeInitialLabels() {
