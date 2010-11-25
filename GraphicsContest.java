@@ -82,6 +82,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private int barrelRollTimeCounter;
 	private boolean performLeftBarrelRoll = false;
 	private boolean performRightBarrelRoll = false;
+	private GImage barrelRollArrows = new GImage("barrelrollarrows.png");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -155,6 +156,7 @@ public class GraphicsContest extends GraphicsProgram {
 				leftBarrelRollInitialized = false;
 				rightBarrelRollInitialized = false;
 				barrelRollTimeCounter = 0;
+				remove(barrelRollArrows);
 			}
 		}
 		
@@ -430,7 +432,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 					}
-					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
+					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
@@ -557,6 +559,8 @@ public class GraphicsContest extends GraphicsProgram {
 		livesLabel.setFont("Sans Serif-36");
 		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 180, livesLabel.getAscent());
 		add(livesLabel);
+		barrelRollArrows.setLocation(5000, 2000);
+		add(barrelRollArrows);
 		bossApproachLabel = new GLabel("DISTANCE TO ANOMALY: " + 72000, 0, 0);
 		bossApproachLabel.setColor(Color.RED);
 		bossApproachLabel.setFont("Sans Serif-36");
@@ -753,6 +757,9 @@ public class GraphicsContest extends GraphicsProgram {
 		if (ship.getX() < 8 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter++;
 		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
+			remove(barrelRollArrows);
+			barrelRollArrows.setLocation(ship.getX() + ship.getWidth() / 2 - 133, ship.getY() + ship.getHeight() / 2 - 134.5);
+			add(barrelRollArrows);
 			ship.setImage("barrelroll.png");
 		} else if (ship.getX() < (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_00flipped.png"); 
