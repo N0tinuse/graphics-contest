@@ -20,6 +20,8 @@ import acm.util.*;
  * tie fighter image from http://sourwineblog.blogspot.com/2010_06_01_archive.html
  * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/
  * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
+ * explosion gif from http://webtools.gieskes.nl/?info=explode-a-myspace-page.html
+ * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm
  */
 
 public class GraphicsContest extends GraphicsProgram {
@@ -142,8 +144,6 @@ public class GraphicsContest extends GraphicsProgram {
 			scoreLabel.setLabel("Score: " + score);
 			remove(ship);
 			add(ship);
-			
-			
 			pause(5);
 		}
 		removeAll();
@@ -314,22 +314,22 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		if (bossCounter == 2) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 4 && boss.getX() > getWidth() / 2  - boss.getWidth() / 4) {
 				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("arwingfacingleft.png");
-			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 2) {
+			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 4) {
 				boss.setImage("arwingfacingright.png");
-			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 2){
+			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 4){
 				boss.setImage("arwingfacingleft.png");
 			}
 		}
 		if (bossCounter == 4) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 4 && boss.getX() > getWidth() / 2  - boss.getWidth() / 4) {
 				if (boss.getX() < bossDestinationX) boss.setImage("mehranfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("mehranfacingleft.png");
-			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 2) {
+			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 4) {
 				boss.setImage("mehranfacingright.png");
-			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 2){
+			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 4){
 				boss.setImage("mehranfacingleft.png");
 			}
 		}
@@ -610,10 +610,9 @@ public class GraphicsContest extends GraphicsProgram {
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
-		GLabel death = new GLabel("You died!", 0, 0);
-		death.setColor(Color.RED);
-		death.setFont("Sans Serif-100");
-		death.setLocation(getWidth() / 2 - death.getWidth() / 2, getHeight() / 2 - death.getAscent() / 2);
+		GImage death = new GImage("explosion.gif");
+		death.setLocation(ship.getX() - ship.getWidth() / 2,ship.getY() - ship.getHeight() / 2);
+		death.setSize(ship.getWidth(), ship.getHeight());
 		add(death);
 		lifeLost = true;
 		pause(2000);
