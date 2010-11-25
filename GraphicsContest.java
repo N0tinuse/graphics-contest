@@ -50,15 +50,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private int enemyCounter;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	private GImage[] enemies;
-	private GImage enemy1 = new GImage("enemy01.png");
-	private GImage enemy2 = new GImage("enemy02.png");
-	private GImage enemy3 = new GImage("enemy03.png");
-	private GImage enemy4 = new GImage("enemy04.png");
-	private GImage enemy5 = new GImage("enemy05.png");
-	private GImage enemy6 = new GImage("enemy06.png");
-	private GImage enemy7 = new GImage("enemy07.png");
 	private boolean enemiesPresent = false;
-	private static final int ENEMY_INITIAL_SIZE = 1;
 	private GOval[] enemyBullets;
 	private double[] enemyXBulletVelocities;
 	private double[] enemyYBulletVelocities;
@@ -376,7 +368,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 					}
-					if ((bulletCollisionChecker(bullets[i]) == enemy1 || bulletCollisionChecker(bullets[i]) == enemy2 || bulletCollisionChecker(bullets[i]) == enemy3 || bulletCollisionChecker(bullets[i]) == enemy4 || bulletCollisionChecker(bullets[i]) == enemy5 || bulletCollisionChecker(bullets[i]) == enemy6 || bulletCollisionChecker(bullets[i]) == enemy7) && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
+					if ((bulletCollisionChecker(bullets[i]).equals("enemy01.png") || bulletCollisionChecker(bullets[i]).equals("enemy02.png") || bulletCollisionChecker(bullets[i]).equals("enemy03.png") || bulletCollisionChecker(bullets[i]).equals("enemy04.png") || bulletCollisionChecker(bullets[i]).equals("enemy05.png") || bulletCollisionChecker(bullets[i]).equals("enemy06.png") || bulletCollisionChecker(bullets[i]).equals("enemy07.png")) && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
@@ -392,25 +384,25 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
-				if (enemies[i] == enemy1) {
+				if (enemies[i].equals("enemy01.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy2) {
+				} else if (enemies[i].equals("enemy02.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0775, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.155, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy3) {
+				} else if (enemies[i].equals("enemy03.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0505, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.101, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy4) {
+				} else if (enemies[i].equals("enemy04.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.049, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.098, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy5) {
+				} else if (enemies[i].equals("enemy05.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.152, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.314, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy6) {
+				} else if (enemies[i].equals("enemy06.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i] == enemy7) {
+				} else if (enemies[i].equals("enemy07.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				}
