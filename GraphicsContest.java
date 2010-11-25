@@ -488,14 +488,14 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
-		if (getElementAt (enemyBullet.getX(), enemyBullet.getY()) != null) {
-			return (getElementAt (enemyBullet.getX(), enemyBullet.getY()));
-		} else if (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
-			return (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()));
-		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()) != null) {
-			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()));
-		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
-			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()));
+		if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()));
+		} else if (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight() / 2) != null) {
+			return (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight() / 2));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY() + enemyBullet.getHeight()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY() + enemyBullet.getHeight()));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight() / 2) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight() / 2));
 		} else {
 			return null;
 		}
