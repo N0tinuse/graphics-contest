@@ -903,8 +903,12 @@ public class GraphicsContest extends GraphicsProgram {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: shipMovingUp = false; break;
 		case KeyEvent.VK_DOWN: shipMovingDown = false; break;
-		case KeyEvent.VK_LEFT: shipMovingLeft = false; break;
-		case KeyEvent.VK_RIGHT: shipMovingRight = false; break;
+		case KeyEvent.VK_LEFT: shipMovingLeft = false;
+								leftBarrelRollInitialized = false;
+								break;
+		case KeyEvent.VK_RIGHT: shipMovingRight = false;
+								rightBarrelRollInitialized = false;
+								break;
 		}
 	}
 
