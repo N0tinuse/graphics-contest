@@ -184,7 +184,12 @@ public class GraphicsContest extends GraphicsProgram {
 							enemyBullets[i].setColor(Color.RED);
 						}
 						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
-							enemyBullets[i].setLocation(3500,900);
+							enemyBullets[i].setLocation(2200,900);
+							for (int k = 0; k < enemyBullets.length; k++) {
+								if (enemyBullets[k] != null) {
+									enemyBullets[k].setLocation(2200, 900);
+								}
+							}
 							for (int j = 0; j < lives; j++) {
 								remove(lifeLabels[j]);
 							}
