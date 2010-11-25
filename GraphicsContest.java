@@ -76,7 +76,6 @@ public class GraphicsContest extends GraphicsProgram {
 	private double bossDestinationX;
 	private double bossDestinationY;
 	private int currentBossHealth;
-	private boolean bossFacingLeft = true;
 	
 	private boolean leftBarrelRollInitialized = false;
 	private boolean rightBarrelRollInitialized = false;
@@ -193,12 +192,10 @@ public class GraphicsContest extends GraphicsProgram {
 		case 1: boss.setImage("millenniumfalcon.png");
 				break;
 		case 2: boss.setImage("arwingfacingleft.png");
-				bossFacingLeft = true;
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
 		case 4: boss.setImage("mehranfacingleft.png");
-				bossFacingLeft = true;
 				break;
 		}
 		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
@@ -320,11 +317,9 @@ public class GraphicsContest extends GraphicsProgram {
 			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("arwingfacingleft.png");
-			}
-			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
+			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 2) {
 				boss.setImage("arwingfacingright.png");
-			}
-			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
+			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 2){
 				boss.setImage("arwingfacingleft.png");
 			}
 		}
@@ -332,11 +327,9 @@ public class GraphicsContest extends GraphicsProgram {
 			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("mehranfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("mehranfacingleft.png");
-			} 
-			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
+			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 2) {
 				boss.setImage("mehranfacingright.png");
-			}
-			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
+			} else if (boss.getX() >= getWidth() / 2 + boss.getWidth() / 2){
 				boss.setImage("mehranfacingleft.png");
 			}
 		}
