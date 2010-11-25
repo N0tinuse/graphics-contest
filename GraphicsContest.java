@@ -213,7 +213,12 @@ public class GraphicsContest extends GraphicsProgram {
 			add(ship);
 			pause(5);
 		}
-
+		removeAll();
+		GLabel gameOver = new GLabel("Game Over", 0, 0);
+		gameOver.setFont("Sans Serif-100");
+		gameOver.setColor(Color.RED);
+		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
+		add(gameOver);
 	}
 
 	private void processDeath() {
