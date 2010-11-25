@@ -99,7 +99,7 @@ public class GraphicsContest extends GraphicsProgram {
 		GLabel livesLabel = new GLabel("Lives: ", 0, 0);
 		livesLabel.setColor(Color.WHITE);
 		livesLabel.setFont("Sans Serif-36");
-		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 36, livesLabel.getAscent());
+		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 180, livesLabel.getAscent());
 		add(livesLabel);
 		bulletCounter = 0;
 		bullets = new GOval[100];
