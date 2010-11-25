@@ -378,6 +378,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: 72000");
 		add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
@@ -536,7 +537,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bossApproachLabel = new GLabel("DISTANCE TO ANOMALY: " + 72000, 0, 0);
 		bossApproachLabel.setColor(Color.RED);
 		bossApproachLabel.setFont("Sans Serif-36");
-		bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth(), bossApproachLabel.getAscent());
+		bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getAscent());
 		add(bossApproachLabel);
 		lifeLabels = new GImage[3];
 		for (int i = 0; i < lifeLabels.length; i++) {
@@ -576,6 +577,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
