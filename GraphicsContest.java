@@ -77,6 +77,13 @@ public class GraphicsContest extends GraphicsProgram {
 	private int currentBossHealth;
 	private boolean bossFacingLeft = true;
 	
+	private boolean leftBarrelRollInitialized = false;
+	private boolean rightBarrelRollInitialized = false;
+	private int leftBarrelRollCounter;
+	private int rightBarrelRollCounter;
+	private boolean performLeftBarrelRoll = false;
+	private boolean performRightBarrelRoll = false;
+	
 	private int score;
 	private GLabel scoreLabel;
 	
@@ -128,6 +135,20 @@ public class GraphicsContest extends GraphicsProgram {
 			scoreLabel.setLabel("Score: " + score);
 			remove(ship);
 			add(ship);
+			if (leftBarrelRollInitialized) {
+				leftBarrelRollCounter++;
+			}
+			if (rightBarrelRollInitialized) {
+				rightBarrelRollCounter++;
+			}
+			if (leftBarrelRollCounter > 100) {
+				leftBarrelRollCounter = 0;
+				leftBarrelRollInitialized = false;
+			}
+			if (rightBarrelRollCounter > 100) {
+				rightBarrelRollCounter = 0;
+				rightBarrelRollInitialized = false;
+			}
 			pause(5);
 		}
 		removeAll();
@@ -395,7 +416,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (loopCounter == 10000) add(bossApproachLabel);
+		if (loopCounter == 9000) add(bossApproachLabel);
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
@@ -575,7 +596,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
-		if (loopCounter >= 10000) add(bossApproachLabel);
+		if (loopCounter >= 9000) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -651,6 +672,7 @@ public class GraphicsContest extends GraphicsProgram {
 	
 	private void spawnEnemyBullet(GImage enemy, GImage ship) {
 		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight() / 2, 3 * enemy.getHeight() / 5, 3 * enemy.getHeight() / 5);
+		newBullet.setLocation(enemy.getX() + enemy.getWidth() / 2 - newBullet.getWidth() / 2, enemy.getY() + enemy.getHeight() / 2 - newBullet.getHeight() / 2);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
@@ -727,7 +749,9 @@ public class GraphicsContest extends GraphicsProgram {
 	private void checkforShipChange() {
 		if (ship.getX() < 8 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter++;
 		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
-		if (ship.getX() < (getWidth() - 236) / (double)17) {
+		if (performLeftBarrelRoll || performRightBarrelRoll) {
+			ship.setImage("barrelroll.png");
+		} else if (ship.getX() < (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_00flipped.png"); 
 			shipImageConstant = 0;
 		} else if (ship.getX() < 2 * (getWidth() - 236) / (double)17 && ship.getX() > (getWidth() - 236) / (double)17 || shipResetCounter < -70 && shipResetCounter >= -80) {
@@ -782,7 +806,13 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void moveShip() {
-		if (shipMovingUp && shipMovingLeft) {
+		if (performLeftBarrelRoll) {
+			shipMovementX = -shipMovementValue * 3;
+			shipMovementY = 0;
+		} else if (performRightBarrelRoll) {
+			shipMovementX = shipMovementValue * 3;
+			shipMovementY = 0;
+		} else if (shipMovingUp && shipMovingLeft) {
 			shipMovementX = -shipMovementValue;
 			shipMovementY = -shipMovementValue;
 		} else if (shipMovingUp && shipMovingRight) {
@@ -902,6 +932,22 @@ public class GraphicsContest extends GraphicsProgram {
 				if (bulletCounter == 100) bulletCounter = 0;
 				bulletsPresent = true;
 			}
+		}
+		if (e.getKeyChar() == KeyEvent.VK_LEFT && !leftBarrelRollInitialized) {
+			leftBarrelRollInitialized = true;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_RIGHT && !rightBarrelRollInitialized) {
+			rightBarrelRollInitialized = true;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_LEFT && leftBarrelRollInitialized) {
+			performLeftBarrelRoll = true;
+			leftBarrelRollInitialized = false;
+			rightBarrelRollInitialized = false;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_LEFT && rightBarrelRollInitialized){
+			performRightBarrelRoll = true;
+			leftBarrelRollInitialized = false;
+			rightBarrelRollInitialized = false;
 		}
 	}
 
