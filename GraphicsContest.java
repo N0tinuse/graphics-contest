@@ -21,6 +21,7 @@ import acm.util.*;
  * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/
  * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
  * explosion gif from http://djsmileyface.info/Photos.html
+ * explosion sound from http://soundbible.com/456-Explosion-2.html
  * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm
  */
 
@@ -92,6 +93,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip foolish = MediaTools.loadAudioClip("foolish.wav");
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
+	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -614,8 +616,9 @@ public class GraphicsContest extends GraphicsProgram {
 		death.setLocation(ship.getX() - ship.getWidth() / 2,ship.getY() - ship.getHeight() / 2);
 		death.setSize(ship.getWidth(), 200 * ship.getWidth() / (double)142);
 		add(death);
+		explosion.play();
 		lifeLost = true;
-		pause(2000);
+		pause(3000);
 		lifeLost = false;
 		remove(death);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
