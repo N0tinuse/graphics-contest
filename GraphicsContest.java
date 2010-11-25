@@ -620,9 +620,9 @@ public class GraphicsContest extends GraphicsProgram {
 		lifeLost = true;
 		score -= 500;
 		if (score < 0) score = 0;
-		if (lives > -1) {
 		pause(1500);
 		remove(death);
+		if (lives > -1) {
 		pause(300);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 		ship.setImage("Ship_08.png");
