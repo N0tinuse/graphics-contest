@@ -605,8 +605,8 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnEnemy() {
 		int enemyDeterminant = rgen.nextInt(7);
-		GImage newEnemy = new GImage("placeholder.jpg");
-		switch(enemyDeterminant) {
+		GImage newEnemy = new GImage("enemy01.png");
+		/* switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
 				newEnemy.setSize(1.41, 1);
 				break;
@@ -628,7 +628,7 @@ public class GraphicsContest extends GraphicsProgram {
 		case 6: newEnemy.setImage("enemy07.png");
 				newEnemy.setSize(.77, 1);
 				break;
-		}
+		} */
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
 		enemies[enemyCounter] = newEnemy;
 		remove(ship);
