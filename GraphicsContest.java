@@ -316,7 +316,7 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		if (bossCounter == 2) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 4 && boss.getX() > getWidth() / 2  - boss.getWidth() / 4) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("arwingfacingleft.png");
 			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 4) {
@@ -326,7 +326,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		if (bossCounter == 4) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 4 && boss.getX() > getWidth() / 2  - boss.getWidth() / 4) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("mehranfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("mehranfacingleft.png");
 			} else if (boss.getX() <= getWidth() / 2 - boss.getWidth() / 4) {
@@ -335,8 +335,8 @@ public class GraphicsContest extends GraphicsProgram {
 				boss.setImage("mehranfacingleft.png");
 			}
 		}
-		int bulletDeterminant = rgen.nextInt(5000);
-		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
+		int bulletDeterminant = rgen.nextInt(500);
+		if (bulletDeterminant >= 500 - 2 * (bossCounter+1)) {
 			spawnBossBullet(boss, ship);
 		}
 		if (enemyBulletsPresent) {
@@ -454,8 +454,8 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
-		int enemyDeterminant = rgen.nextInt(5000);
-		if (enemyDeterminant >= 4990 - 10 * bossCounter) {
+		int enemyDeterminant = rgen.nextInt(500);
+		if (enemyDeterminant >= 499 - 1 * bossCounter) {
 			spawnEnemy();
 		}
 		if (enemiesPresent) {
@@ -483,8 +483,8 @@ public class GraphicsContest extends GraphicsProgram {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				} 
-				int bulletDeterminant = rgen.nextInt(5000);
-				if (bulletDeterminant >= 4970 - 10 * bossCounter && enemies[i].getHeight() < 20) {
+				int bulletDeterminant = rgen.nextInt(500);
+				if (bulletDeterminant >= 497 - 1 * bossCounter && enemies[i].getHeight() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
