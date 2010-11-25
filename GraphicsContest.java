@@ -468,7 +468,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void setUpGame() {
-		ship = new GImage("Ship_08.png");
+		ship = new GImage("enemy01.png");
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - 3 * ship.getHeight() / 7);
 		add(ship);
 		scoreLabel = new GLabel ("Score: " + score, 0, 0);
@@ -608,10 +608,10 @@ public class GraphicsContest extends GraphicsProgram {
 		GImage newEnemy = new GImage("placeholder.jpg");
 		switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
-				/* newEnemy.setSize(1.41, 1); */
+				newEnemy.setSize(1.41, 1);
 				break;
 		case 1: newEnemy.setImage("enemy02.png");
-				/* newEnemy.setSize(1.55, 1); */
+				newEnemy.setSize(1.55, 1);
 				break;
 		case 2: newEnemy.setImage("enemy03.png");
 				newEnemy.setSize(1.01, 1);
@@ -633,7 +633,6 @@ public class GraphicsContest extends GraphicsProgram {
 		enemies[enemyCounter] = newEnemy;
 		remove(ship);
 		add(enemies[enemyCounter]);
-		enemies[enemyCounter].sendToFront();
 		add(ship);
 		enemyCounter++;
 		enemiesPresent = true;
