@@ -52,6 +52,9 @@ public class GraphicsContest extends GraphicsProgram {
 	private double[] enemyYBulletVelocities;
 	private int enemyBulletCounter;
 	private boolean enemyBulletsPresent = false;
+	
+	private int lives;
+	private GImage[] lifeLabels;
 
 
 	private int score;
@@ -101,6 +104,13 @@ public class GraphicsContest extends GraphicsProgram {
 		livesLabel.setFont("Sans Serif-36");
 		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 180, livesLabel.getAscent());
 		add(livesLabel);
+		lifeLabels = new GImage[3];
+		for (int i = 0; i < lifeLabels.length; i++) {
+			lifeLabels[i].setImage("placeholder.jpg");
+			lifeLabels[i].setLocation(getWidth() - 180 + i * 60, 0);
+			lifeLabels[i].setSize(60, 60);
+			add(lifeLabels[i]);
+		}
 		bulletCounter = 0;
 		bullets = new GOval[100];
 		bulletVelocities = new double[100];
