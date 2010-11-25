@@ -874,14 +874,28 @@ public class GraphicsContest extends GraphicsProgram {
 								break;
 		case KeyEvent.VK_LEFT: shipMovingLeft = true;
 								rightBarrelRollInitialized = false;
-								
+								if (!leftBarrelRollInitialized) {
+									leftBarrelRollInitialized = true;
+								} else if (leftBarrelRollInitialized) {
+									doABarrelRoll.play();
+									performLeftBarrelRoll = true;
+									leftBarrelRollInitialized = false;
+									rightBarrelRollInitialized = false;
+								}
 								break;
 		case KeyEvent.VK_RIGHT: shipMovingRight = true; 
 								leftBarrelRollInitialized = false;
-								break;
+								if (!rightBarrelRollInitialized) {
+									rightBarrelRollInitialized = true;
+								} else if (rightBarrelRollInitialized){
+									doABarrelRoll.play();
+									performRightBarrelRoll = true;
+									leftBarrelRollInitialized = false;
+									rightBarrelRollInitialized = false;
+								}
+		break;
 		case KeyEvent.VK_SHIFT: shipMovementX = 0;
-								shipMovementY = 0; 
-								break;
+		shipMovementY = 0; break;
 		}
 	}
 
@@ -889,10 +903,8 @@ public class GraphicsContest extends GraphicsProgram {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: shipMovingUp = false; break;
 		case KeyEvent.VK_DOWN: shipMovingDown = false; break;
-		case KeyEvent.VK_LEFT: shipMovingLeft = false;
-								break;
-		case KeyEvent.VK_RIGHT: shipMovingRight = false;
-								break;
+		case KeyEvent.VK_LEFT: shipMovingLeft = false; break;
+		case KeyEvent.VK_RIGHT: shipMovingRight = false; break;
 		}
 	}
 
@@ -961,26 +973,6 @@ public class GraphicsContest extends GraphicsProgram {
 				bulletCounter++;
 				if (bulletCounter == 100) bulletCounter = 0;
 				bulletsPresent = true;
-			}
-		}
-		if (e.getKeyChar() == KeyEvent.VK_LEFT) {
-			if (!leftBarrelRollInitialized) {
-				leftBarrelRollInitialized = true;
-			} else if (leftBarrelRollInitialized) {
-				doABarrelRoll.play();
-				performLeftBarrelRoll = true;
-				leftBarrelRollInitialized = false;
-				rightBarrelRollInitialized = false;
-			}
-		}
-		if (e.getKeyChar() == KeyEvent.VK_RIGHT) {
-			if (!rightBarrelRollInitialized) {
-				rightBarrelRollInitialized = true;
-			} else if (rightBarrelRollInitialized){
-				doABarrelRoll.play();
-				performRightBarrelRoll = true;
-				leftBarrelRollInitialized = false;
-				rightBarrelRollInitialized = false;
 			}
 		}
 	}
