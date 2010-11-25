@@ -154,7 +154,7 @@ public class GraphicsContest extends GraphicsProgram {
 					if (enemyBullets[i].getX() != 2200) {
 						enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
 						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.5, enemyBullets[i].getHeight() + 0.5);
-						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 60) {
+						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setLocation(3500,900);
 							score -= 500;
 						}
