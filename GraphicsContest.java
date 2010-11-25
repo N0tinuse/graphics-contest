@@ -169,6 +169,8 @@ public class GraphicsContest extends GraphicsProgram {
 		if (barrelRollTimeCounter > 50) {
 			performLeftBarrelRoll = false;
 			performRightBarrelRoll = false;
+			leftBarrelRollInitialized = false;
+			rightBarrelRollInitialized = false;
 		}
 	}
 
