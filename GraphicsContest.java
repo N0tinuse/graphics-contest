@@ -287,10 +287,11 @@ public class GraphicsContest extends GraphicsProgram {
 					boss.setImage("arwingfacingright.png");
 					bossFacingLeft = false;
 				} 
-			if (!bossFacingLeft) {
-				if( boss.getX() > getWidth() / 2) {
-					boss.setImage("arwingfacingleft.png");
-					bossFacingLeft = true;
+				if (!bossFacingLeft) {
+					if( boss.getX() > getWidth() / 2) {
+						boss.setImage("arwingfacingleft.png");
+						bossFacingLeft = true;
+					}
 				}
 			}
 		}
@@ -300,13 +301,14 @@ public class GraphicsContest extends GraphicsProgram {
 					boss.setImage("mehranfacingright.png");
 					bossFacingLeft = false;
 				} 
-			if (!bossFacingLeft) {
-				if( boss.getX() > getWidth() / 2) {
-					boss.setImage("mehranfacingleft.png");
-					bossFacingLeft = true;
+				if (!bossFacingLeft) {
+					if( boss.getX() > getWidth() / 2) {
+						boss.setImage("mehranfacingleft.png");
+						bossFacingLeft = true;
+					}
 				}
 			}
-		}
+		]
 		int bulletDeterminant = rgen.nextInt(5000);
 		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
 			spawnBossBullet(boss, ship);
