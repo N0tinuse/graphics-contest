@@ -417,6 +417,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		add(enemyExplosion);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -627,6 +628,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void processDeath() {
 		explosionCounter = 0;
+		add(enemyExplosion);
 		for (int j = 0; j < lives; j++) {
 			remove(lifeLabels[j]);
 		}
