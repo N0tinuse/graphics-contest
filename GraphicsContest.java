@@ -357,7 +357,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (bulletsPrese nt) {
+		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
 				if (bullets[i].getX() != 2000) {
