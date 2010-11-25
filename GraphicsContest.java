@@ -949,7 +949,7 @@ public class GraphicsContest extends GraphicsProgram {
 								double shipGfxRatio = ship.getWidth() / ship.getHeight();
 								ship.setSize(ship.getWidth() + shipGfxRatio, ship.getHeight() + 1);
 								ship.setLocation(ship.getX() - shipGfxRatio / (double)2, ship.getY() - 0.5);
-			}
+								}
 			}
 		}
 	}
