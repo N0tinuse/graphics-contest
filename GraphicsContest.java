@@ -350,6 +350,7 @@ public class GraphicsContest extends GraphicsProgram {
 					if (bulletCollisionChecker(bullets[i]) instanceof GRect && 3 * bulletCollisionChecker(bullets[i]).getWidth() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
+						remove(bullets[i]);
 						score += 50;
 					} 
 				}
@@ -372,6 +373,7 @@ public class GraphicsContest extends GraphicsProgram {
 					for (int k = 0; k < enemies.length; k++) {
 						if (enemies[k] != null) {
 							enemies[k].setLocation(2500, 900);
+							remove(enemies[k]);
 						}
 					}
 					processDeath();
@@ -404,6 +406,7 @@ public class GraphicsContest extends GraphicsProgram {
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
 								enemyBullets[k].setLocation(2200, 900);
+								remove(enemyBullets[k]);
 							}
 						}
 						processDeath();
