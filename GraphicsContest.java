@@ -424,6 +424,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bossPresent = false;
 		boss.setLocation(4000, 1500);
 		bossCounter++;
+		explosionCounter = 0;
 		GLabel newLevel = new GLabel("LEVEL " + (bossCounter+1), 0, 0);
 		newLevel.setFont("Sans Serif-100");
 		newLevel.setColor(Color.RED);
@@ -451,8 +452,8 @@ public class GraphicsContest extends GraphicsProgram {
 					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows  && bulletCollisionChecker(bullets[i]) != enemyExplosion && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						enemyExplosion.setSize(bulletCollisionChecker(bullets[i]).getWidth(), 200 * bulletCollisionChecker(bullets[i]).getWidth() / (double)142);
 						enemyExplosion.setLocation((bulletCollisionChecker(bullets[i]).getX() + bulletCollisionChecker(bullets[i]).getWidth() / 2 - enemyExplosion.getWidth() / 2), bulletCollisionChecker(bullets[i]).getY() + bulletCollisionChecker(bullets[i]).getHeight() / 2 - enemyExplosion.getHeight() / 2);
-						explosionCounter = 1;
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
+						explosionCounter = 1;
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
@@ -625,6 +626,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void processDeath() {
+		explosionCounter = 0;
 		for (int j = 0; j < lives; j++) {
 			remove(lifeLabels[j]);
 		}
@@ -648,7 +650,6 @@ public class GraphicsContest extends GraphicsProgram {
 		pause(1500);
 		remove(death);
 		if (lives > -1) {
-		explosionCounter = 0;
 		pause(300);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 		ship.setImage("Ship_08.png");
