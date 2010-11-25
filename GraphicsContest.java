@@ -613,7 +613,6 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
 		score = 0;
-		shipResetCounter = 0;
 		loopCounter = 0;
 		bossCounter = 0;
 		explosionCounter = 0;
