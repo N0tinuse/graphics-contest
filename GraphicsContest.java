@@ -160,6 +160,15 @@ public class GraphicsContest extends GraphicsProgram {
 					if (bulletDeterminant >= 4970 && enemies[i].getWidth() < 20) {
 						spawnEnemyBullet(enemies[i], ship);
 					}
+					if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
+						enemies[i].setLocation(2500,900);
+						for (int k = 0; k < enemies.length; k++) {
+							if (enemies[k] != null) {
+								enemies[k].setLocation(2500, 900);
+							}
+						}
+						processDeath();
+					}
 					if (enemies[i].getWidth() >= 100) {
 						enemies[i].setLocation(2500,1500);
 						remove(enemies[i]);
@@ -191,29 +200,7 @@ public class GraphicsContest extends GraphicsProgram {
 									enemyBullets[k].setLocation(2200, 900);
 								}
 							}
-							for (int j = 0; j < lives; j++) {
-								remove(lifeLabels[j]);
-							}
-							lives--;
-							removeAll();
-							add(gameArea);
-							add(scoreLabel);
-							add(livesLabel);
-							for (int j = 0; j < lives; j++) {
-								add(lifeLabels[j]);
-							}
-							GLabel death = new GLabel("You died!", 0, 0);
-							death.setColor(Color.RED);
-							death.setFont("Sans Serif-100");
-							death.setLocation(getWidth() / 2 - death.getWidth() / 2, getHeight() / 2 - death.getAscent() / 2);
-							add(death);
-							lifeLost = true;
-							pause(2000);
-							lifeLost = false;
-							remove(death);
-							ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
-							add(ship);
-							score -= 500;
+							processDeath();
 						}
 						if (enemyBullets[i].getWidth() > 60) {
 							remove(enemyBullets[i]);
@@ -230,6 +217,32 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 
 	}
+
+	private void processDeath() {
+		for (int j = 0; j < lives; j++) {
+			remove(lifeLabels[j]);
+		}
+		lives--;
+		removeAll();
+		add(gameArea);
+		add(scoreLabel);
+		add(livesLabel);
+		for (int j = 0; j < lives; j++) {
+			add(lifeLabels[j]);
+		}
+		GLabel death = new GLabel("You died!", 0, 0);
+		death.setColor(Color.RED);
+		death.setFont("Sans Serif-100");
+		death.setLocation(getWidth() / 2 - death.getWidth() / 2, getHeight() / 2 - death.getAscent() / 2);
+		add(death);
+		lifeLost = true;
+		pause(2000);
+		lifeLost = false;
+		remove(death);
+		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
+		add(ship);
+		score -= 500;
+	}
 	
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
 		if (getElementAt (enemyBullet.getX(), enemyBullet.getY()) != null) {
@@ -240,6 +253,20 @@ public class GraphicsContest extends GraphicsProgram {
 			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()));
 		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
 			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()));
+		} else {
+			return null;
+		}
+	}
+	
+	private GObject enemyCollisionChecker(GRect enemy) {
+		if (getElementAt (enemy.getX(), enemy.getY()) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY()));
+		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()));
 		} else {
 			return null;
 		}
