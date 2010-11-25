@@ -158,8 +158,14 @@ public class GraphicsContest extends GraphicsProgram {
 					if (enemyBullets[i].getX() != 2200) {
 						enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
 						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.2, enemyBullets[i].getHeight() + 0.2);
-						if (enemyBullets[i].getWidth() >= 20 && enemyBullets[i].getWidth() < 40) {
+						if (enemyBullets[i].getWidth() >= 16 && enemyBullets[i].getWidth() < 24) {
+							enemyBullets[i].setColor(Color.CYAN);
+						}
+						if (enemyBullets[i].getWidth() >= 24 && enemyBullets[i].getWidth() < 32) {
 							enemyBullets[i].setColor(Color.YELLOW);
+						}
+						if (enemyBullets[i].getWidth() >= 32 && enemyBullets[i].getWidth() < 40) {
+							enemyBullets[i].setColor(Color.ORANGE);
 						}
 						if (enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setColor(Color.RED);
@@ -212,7 +218,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnEnemyBullet(GRect enemy, GImage ship) {
 		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 5, enemy.getY() + enemy.getHeight() / 5, 3 * enemy.getWidth() / 5, 3 * enemy.getHeight() / 5);
-		newBullet.setColor(Color.MAGENTA);
+		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)480;
@@ -225,7 +231,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnEnemy() {
 		GRect newEnemy = new GRect(800, 800, ENEMY_INITIAL_SIZE, ENEMY_INITIAL_SIZE);
-		newEnemy.setColor(Color.GREEN);
+		newEnemy.setColor(Color.PINK);
 		newEnemy.setFilled(true);
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
 		enemies[enemyCounter] = newEnemy;
@@ -371,7 +377,7 @@ public class GraphicsContest extends GraphicsProgram {
 	public void keyTyped(KeyEvent e) {
 		switch (e.getKeyChar()) {
 		case KeyEvent.VK_SPACE: GOval newBullet = new GOval (800, 800, BULLET_INITIAL_SIZE, BULLET_INITIAL_SIZE);
-		newBullet.setColor(Color.BLUE);
+		newBullet.setColor(Color.GRAY);
 		newBullet.setFilled(true);
 		if (shipImageConstant == 0) {
 			newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
