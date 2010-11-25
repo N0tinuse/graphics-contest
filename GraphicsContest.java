@@ -291,6 +291,7 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyBullets[i].setColor(Color.RED);
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
+						enemyBullets[i].setLocation(2200, 900);
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
 								enemyBullets[k].setLocation(2200, 900);
@@ -371,6 +372,7 @@ public class GraphicsContest extends GraphicsProgram {
 					spawnEnemyBullet(enemies[i], ship);
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
+					enemies[i].setLocation(2500, 900);
 					for (int k = 0; k < enemies.length; k++) {
 						if (enemies[k] != null) {
 							enemies[k].setLocation(2500, 900);
@@ -403,6 +405,7 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyBullets[i].setColor(Color.RED);
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
+						enemyBullets[i].setLocation(2200, 900);
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
 								enemyBullets[k].setLocation(2200, 900);
