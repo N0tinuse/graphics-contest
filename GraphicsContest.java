@@ -81,6 +81,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private boolean rightBarrelRollInitialized = false;
 	private int leftBarrelRollCounter;
 	private int rightBarrelRollCounter;
+	private int barrelRollTimeCounter;
 	private boolean performLeftBarrelRoll = false;
 	private boolean performRightBarrelRoll = false;
 	
@@ -135,20 +136,8 @@ public class GraphicsContest extends GraphicsProgram {
 			scoreLabel.setLabel("Score: " + score);
 			remove(ship);
 			add(ship);
-			if (leftBarrelRollInitialized) {
-				leftBarrelRollCounter++;
-			}
-			if (rightBarrelRollInitialized) {
-				rightBarrelRollCounter++;
-			}
-			if (leftBarrelRollCounter > 100) {
-				leftBarrelRollCounter = 0;
-				leftBarrelRollInitialized = false;
-			}
-			if (rightBarrelRollCounter > 100) {
-				rightBarrelRollCounter = 0;
-				rightBarrelRollInitialized = false;
-			}
+			
+			
 			pause(5);
 		}
 		removeAll();
@@ -157,6 +146,30 @@ public class GraphicsContest extends GraphicsProgram {
 		gameOver.setColor(Color.RED);
 		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
 		add(gameOver);
+	}
+
+	private void barrelRollChecker() {
+		if (leftBarrelRollInitialized) {
+			leftBarrelRollCounter++;
+		}
+		if (rightBarrelRollInitialized) {
+			rightBarrelRollCounter++;
+		}
+		if (leftBarrelRollCounter > 100) {
+			leftBarrelRollCounter = 0;
+			leftBarrelRollInitialized = false;
+		}
+		if (rightBarrelRollCounter > 100) {
+			rightBarrelRollCounter = 0;
+			rightBarrelRollInitialized = false;
+		}
+		if (performLeftBarrelRoll || performRightBarrelRoll) {
+			barrelRollTimeCounter++;
+		}
+		if (barrelRollTimeCounter > 100) {
+			performLeftBarrelRoll = false;
+			performRightBarrelRoll = false;
+		}
 	}
 
 	private void initializeBoss() {
@@ -377,6 +390,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
+		barrelRollChecker();
 		if (currentBossHealth == 0) {
 			levelUp();
 		}
@@ -537,6 +551,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		loopCounter++;
+		barrelRollChecker();
 		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 	}
 
@@ -751,6 +766,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			ship.setImage("barrelroll.png");
+			barrelRollTimeCounter++;
 		} else if (ship.getX() < (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_00flipped.png"); 
 			shipImageConstant = 0;
