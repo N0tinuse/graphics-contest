@@ -89,6 +89,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip neverDefeatMe = MediaTools.loadAudioClip("neverdefeat.wav");
 	AudioClip truePain = MediaTools.loadAudioClip("truepain.wav");
 	AudioClip foolish = MediaTools.loadAudioClip("foolish.wav");
+	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -315,25 +316,25 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		if (bossCounter == 2) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() < getWidth() / 2  - boss.getWidth() / 2) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("arwingfacingleft.png");
 			}
 			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
 				boss.setImage("arwingfacingright.png");
-			} 
+			}
 			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
 				boss.setImage("arwingfacingleft.png");
 			}
 		}
 		if (bossCounter == 4) {
-			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() < getWidth() / 2  - boss.getWidth() / 2) {
+			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("mehranfacingright.png");
 				if (boss.getX() > bossDestinationX) boss.setImage("mehranfacingleft.png");
-			}
+			} 
 			if (boss.getX() < getWidth() / 2 - boss.getWidth() / 2) {
 				boss.setImage("mehranfacingright.png");
-			} 
+			}
 			if (boss.getX() > getWidth() / 2 + boss.getWidth() / 2){
 				boss.setImage("mehranfacingleft.png");
 			}
@@ -972,6 +973,7 @@ public class GraphicsContest extends GraphicsProgram {
 				remove(ship);
 				add(bullets[bulletCounter]);
 				add(ship);
+				laser.play();
 				bulletCounter++;
 				if (bulletCounter == 100) bulletCounter = 0;
 				bulletsPresent = true;
