@@ -620,10 +620,18 @@ public class GraphicsContest extends GraphicsProgram {
 		lifeLost = true;
 		pause(1500);
 		remove(death);
-		pause(1500);
-		lifeLost = false;
+		pause(300);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 		add(ship);
+		pause(300);
+		remove(ship);
+		pause(300);
+		add(ship);
+		pause(300);
+		remove(ship);
+		pause(300);
+		add(ship);
+		lifeLost = false;
 		score -= 500;
 		if (score < 0) score = 0;
 	}
