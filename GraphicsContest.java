@@ -357,7 +357,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (bulletsPresent) {
+		if (bulletsPrese nt) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
 				if (bullets[i].getX() != 2000) {
@@ -607,7 +607,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnEnemy() {
 		int enemyDeterminant = rgen.nextInt(7);
-		GImage newEnemy = new GImage("placeholder.png");
+		GImage newEnemy = new GImage("placeholder.jpg");
 		switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
 				newEnemy.setSize(1.41, 1);
