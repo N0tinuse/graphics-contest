@@ -247,8 +247,8 @@ public class GraphicsContest extends GraphicsProgram {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
 				if (bullets[i].getX() != 2000) {
-					bullets[i].move(bulletVelocities[i], 0);
 					bullets[i].setSize(bullets[i].getWidth() - 0.5, bullets[i].getHeight() - 0.5);
+					bullets[i].move(bulletVelocities[i], 0);
 					if (bullets[i].getWidth() == 0) {
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
