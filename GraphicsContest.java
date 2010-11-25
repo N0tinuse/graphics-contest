@@ -49,7 +49,14 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private int enemyCounter;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-	private GRect[] enemies;
+	private GImage[] enemies;
+	private GImage enemy1 = new GImage("enemy01.png");
+	private GImage enemy2 = new GImage("enemy02.png");
+	private GImage enemy3 = new GImage("enemy03.png");
+	private GImage enemy4 = new GImage("enemy04.png");
+	private GImage enemy5 = new GImage("enemy05.png");
+	private GImage enemy6 = new GImage("enemy06.png");
+	private GImage enemy7 = new GImage("enemy07.png");
 	private boolean enemiesPresent = false;
 	private static final int ENEMY_INITIAL_SIZE = 1;
 	private GOval[] enemyBullets;
@@ -111,7 +118,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private void playGame() {
 		addKeyListeners();
 		setUpGame();
-		while(lives != -1) {
+		while(lives > -1) {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
@@ -369,7 +376,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 					}
-					if (bulletCollisionChecker(bullets[i]) instanceof GRect && 3 * bulletCollisionChecker(bullets[i]).getWidth() / 5 >= bullets[i].getWidth()) {
+					if ((bulletCollisionChecker(bullets[i]) == enemy1 || bulletCollisionChecker(bullets[i]) == enemy2 || bulletCollisionChecker(bullets[i]) == enemy3 || bulletCollisionChecker(bullets[i]) == enemy4 || bulletCollisionChecker(bullets[i]) == enemy5 || bulletCollisionChecker(bullets[i]) == enemy6 || bulletCollisionChecker(bullets[i]) == enemy7) && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
@@ -385,13 +392,33 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
-				enemies[i].setLocation(enemies[i].getX() - 0.05, enemies[i].getY() - 0.05);
-				enemies[i].setSize(enemies[i].getWidth() + 0.1, enemies[i].getHeight() + 0.1);
+				if (enemies[i] == enemy1) {
+					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy2) {
+					enemies[i].setLocation(enemies[i].getX() - 0.0775, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.155, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy3) {
+					enemies[i].setLocation(enemies[i].getX() - 0.0505, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.101, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy4) {
+					enemies[i].setLocation(enemies[i].getX() - 0.049, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.098, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy5) {
+					enemies[i].setLocation(enemies[i].getX() - 0.152, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.314, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy6) {
+					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
+				} else if (enemies[i] == enemy7) {
+					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
+					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
+				}
 				int bulletDeterminant = rgen.nextInt(5000);
-				if (bulletDeterminant >= 4970 - 10 * bossCounter && enemies[i].getWidth() < 20) {
+				if (bulletDeterminant >= 4970 - 10 * bossCounter && enemies[i].getHeight() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
 				}
-				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
+				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
 					enemies[i].setLocation(2500, 900);
 					for (int k = 0; k < enemies.length; k++) {
 						if (enemies[k] != null) {
@@ -400,7 +427,7 @@ public class GraphicsContest extends GraphicsProgram {
 					}
 					processDeath();
 				}
-				if (enemies[i].getWidth() >= 100) {
+				if (enemies[i].getHeight() >= 100) {
 					enemies[i].setLocation(2500,1500);
 					remove(enemies[i]);
 				}
@@ -472,7 +499,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bulletCounter = 0;
 		bullets = new GOval[100];
 		bulletVelocities = new double[100];
-		enemies = new GRect[100];
+		enemies = new GImage[100];
 		enemyBullets = new GOval[100];
 		enemyXBulletVelocities = new double[100];
 		enemyYBulletVelocities = new double[100];
@@ -530,15 +557,15 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 	
-	private GObject enemyCollisionChecker(GRect enemy) {
-		if (getElementAt (enemy.getX(), enemy.getY()) != null) {
-			return (getElementAt (enemy.getX(), enemy.getY()));
-		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()) != null) {
-			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()));
+	private GObject enemyCollisionChecker(GImage enemy) {
+		if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2));
+		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2));
 		} else {
 			return null;
 		}
@@ -571,8 +598,8 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
 	} 
 	
-	private void spawnEnemyBullet(GRect enemy, GImage ship) {
-		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 5, enemy.getY() + enemy.getHeight() / 5, 3 * enemy.getWidth() / 5, 3 * enemy.getHeight() / 5);
+	private void spawnEnemyBullet(GImage enemy, GImage ship) {
+		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight() / 2, 3 * enemy.getHeight() / 5, 3 * enemy.getHeight() / 5);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
@@ -585,9 +612,31 @@ public class GraphicsContest extends GraphicsProgram {
 	} 
 
 	private void spawnEnemy() {
-		GRect newEnemy = new GRect(800, 800, ENEMY_INITIAL_SIZE, ENEMY_INITIAL_SIZE);
-		newEnemy.setColor(Color.PINK);
-		newEnemy.setFilled(true);
+		int enemyDeterminant = rgen.nextInt(7);
+		GImage newEnemy = new GImage("enemy01.png");
+		switch(enemyDeterminant) {
+		case 0: newEnemy.setImage("enemy01.png");
+				newEnemy.setSize(1.41, 1);
+				break;
+		case 1: newEnemy.setImage("enemy02.png");
+				newEnemy.setSize(1.55, 1);
+				break;
+		case 2: newEnemy.setImage("enemy03.png");
+				newEnemy.setSize(1.01, 1);
+				break;
+		case 3: newEnemy.setImage("enemy04.png");
+				newEnemy.setSize(.98, 1);
+				break;
+		case 4: newEnemy.setImage("enemy05.png");
+				newEnemy.setSize(3.14, 1);
+				break;
+		case 5: newEnemy.setImage("enemy06.png");
+				newEnemy.setSize(.77, 1);
+				break;
+		case 6: newEnemy.setImage("enemy07.png");
+				newEnemy.setSize(.77, 1);
+				break;
+		}
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
 		enemies[enemyCounter] = newEnemy;
 		remove(ship);
