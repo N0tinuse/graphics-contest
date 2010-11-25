@@ -185,9 +185,19 @@ public class GraphicsContest extends GraphicsProgram {
 						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setLocation(3500,900);
 							lives--;
-							remove(lifeLabels[lives]);
-							remove(ship);
+							removeAll();
+							add(gameArea);
+							add(scoreLabel);
+							for (int j = 0; j < lifeLabels.length; j++) {
+								add(lifeLabels[j]);
+							}
+							GLabel death = new GLabel("You died!", 0, 0);
+							death.setColor(Color.RED);
+							death.setFont("Sans Serif-100");
+							death.setLocation(getWidth() / 2 - death.getWidth() / 2, getHeight() / 2 - death.getAscent() / 2);
+							add(death);
 							pause(2000);
+							remove(death);
 							ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 							add(ship);
 							score -= 500;
