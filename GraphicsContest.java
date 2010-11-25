@@ -50,6 +50,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private int enemyCounter;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	private GImage[] enemies;
+	private int[] enemyImageValues;
 	private boolean enemiesPresent = false;
 	private GOval[] enemyBullets;
 	private double[] enemyXBulletVelocities;
@@ -384,25 +385,25 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
-				if (enemies[i].getImage().equals("enemy01.png")) {
+				if (enemyImageValues[i] == 1) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy02.png")) {
+				} else if (enemyImageValues[i] == 2) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0775, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.155, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy03.png")) {
+				} else if (enemyImageValues[i] == 3) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0505, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.101, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy04.png")) {
+				} else if (enemyImageValues[i] == 4) {
 					enemies[i].setLocation(enemies[i].getX() - 0.049, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.098, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy05.png")) {
+				} else if (enemyImageValues[i] == 5) {
 					enemies[i].setLocation(enemies[i].getX() - 0.152, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.314, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy06.png")) {
+				} else if (enemyImageValues[i] == 6) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].getImage().equals("enemy07.png")) {
+				} else if (enemyImageValues[i] == 7) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				} 
@@ -495,6 +496,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyBullets = new GOval[100];
 		enemyXBulletVelocities = new double[100];
 		enemyYBulletVelocities = new double[100];
+		enemyImageValues = new int[100];
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
 		score = 0;
@@ -609,24 +611,31 @@ public class GraphicsContest extends GraphicsProgram {
 		switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
 				newEnemy.setSize(1.41, 1);
+				enemyImageValues[enemyCounter] = 1;
 				break;
 		case 1: newEnemy.setImage("enemy02.png");
 				newEnemy.setSize(1.55, 1);
+				enemyImageValues[enemyCounter] = 2;
 				break;
 		case 2: newEnemy.setImage("enemy03.png");
 				newEnemy.setSize(1.01, 1);
+				enemyImageValues[enemyCounter] = 3;
 				break;
 		case 3: newEnemy.setImage("enemy04.png");
 				newEnemy.setSize(.98, 1);
+				enemyImageValues[enemyCounter] = 4;
 				break;
 		case 4: newEnemy.setImage("enemy05.png");
 				newEnemy.setSize(3.14, 1);
+				enemyImageValues[enemyCounter] = 5;
 				break;
 		case 5: newEnemy.setImage("enemy06.png");
 				newEnemy.setSize(.77, 1);
+				enemyImageValues[enemyCounter] = 6;
 				break;
 		case 6: newEnemy.setImage("enemy07.png");
 				newEnemy.setSize(.77, 1);
+				enemyImageValues[enemyCounter] = 7;
 				break;
 		}
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
