@@ -472,9 +472,7 @@ public class GraphicsContest extends GraphicsProgram {
 			bulletVelocities[bulletCounter] = -.8;
 		}
 		bullets[bulletCounter] = newBullet;
-		remove(ship);
 		add(bullets[bulletCounter]);
-		add(ship);
 		bulletCounter++;
 		if (bulletCounter == 100) bulletCounter = 0;
 		bulletsPresent = true;
