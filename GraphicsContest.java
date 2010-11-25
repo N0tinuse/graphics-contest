@@ -468,7 +468,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void setUpGame() {
-		ship = new GImage("enemy01.png");
+		ship = new GImage("Ship_08.png");
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - 3 * ship.getHeight() / 7);
 		add(ship);
 		scoreLabel = new GLabel ("Score: " + score, 0, 0);
@@ -662,7 +662,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (ship.getX() < 8 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter++;
 		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
 		if (ship.getX() < (getWidth() - 236) / (double)17) {
-			ship.setImage("Ship_00flipped.png"); 
+			ship.setImage("enemy01.png"); 
 			shipImageConstant = 0;
 		} else if (ship.getX() < 2 * (getWidth() - 236) / (double)17 && ship.getX() > (getWidth() - 236) / (double)17 || shipResetCounter < -70 && shipResetCounter >= -80) {
 			ship.setImage("Ship_01flipped.png"); 
