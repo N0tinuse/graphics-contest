@@ -384,7 +384,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
-				/* if (enemies[i].getImage().equals("enemy01.png")) {
+				if (enemies[i].getImage().equals("enemy01.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
 				} else if (enemies[i].getImage().equals("enemy02.png")) {
@@ -405,9 +405,7 @@ public class GraphicsContest extends GraphicsProgram {
 				} else if (enemies[i].getImage().equals("enemy07.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
-				} */
-				enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
-				enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
+				} 
 				int bulletDeterminant = rgen.nextInt(5000);
 				if (bulletDeterminant >= 4970 - 10 * bossCounter && enemies[i].getHeight() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
