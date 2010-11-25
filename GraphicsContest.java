@@ -308,7 +308,7 @@ public class GraphicsContest extends GraphicsProgram {
 					}
 				}
 			}
-		]
+		}
 		int bulletDeterminant = rgen.nextInt(5000);
 		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
 			spawnBossBullet(boss, ship);
