@@ -612,7 +612,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		GImage death = new GImage("explosion.gif");
 		death.setLocation(ship.getX() - ship.getWidth() / 2,ship.getY() - ship.getHeight() / 2);
-		death.setSize(ship.getWidth(), ship.getHeight());
+		death.setSize(ship.getWidth(), 200 * ship.getWidth() / (double)142);
 		add(death);
 		lifeLost = true;
 		pause(2000);
