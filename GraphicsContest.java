@@ -66,7 +66,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private int loopCounter;
 	private boolean bossPresent = false;
 	private GImage boss;
-	private int[] bossHealth;
+	private int[] bossHealth = new int[5];
 	private int bossCounter;
 	private GLabel bossHealthLabel;
 	private GRect bossHealthBarOutside;
