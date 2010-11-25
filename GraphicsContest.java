@@ -10,6 +10,7 @@ import acm.graphics.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
+import java.applet.*;
 import acm.util.*;
 
 /* GImage credits:
@@ -83,6 +84,11 @@ public class GraphicsContest extends GraphicsProgram {
 	private boolean performLeftBarrelRoll = false;
 	private boolean performRightBarrelRoll = false;
 	private GImage barrelRollArrows = new GImage("barrelrollarrows.png");
+	
+	AudioClip doABarrelRoll = MediaTools.loadAudioClip("barrelroll.wav");
+	AudioClip neverDefeatMe = MediaTools.loadAudioClip("neverdefeat.wav");
+	AudioClip truePain = MediaTools.loadAudioClip("truepain.wav");
+	AudioClip foolish = MediaTools.loadAudioClip("foolish.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -871,6 +877,7 @@ public class GraphicsContest extends GraphicsProgram {
 								if (!leftBarrelRollInitialized) {
 									leftBarrelRollInitialized = true;
 								} else if (leftBarrelRollInitialized) {
+									doABarrelRoll.play();
 									performLeftBarrelRoll = true;
 									leftBarrelRollInitialized = false;
 									rightBarrelRollInitialized = false;
@@ -881,6 +888,7 @@ public class GraphicsContest extends GraphicsProgram {
 								if (!rightBarrelRollInitialized) {
 									rightBarrelRollInitialized = true;
 								} else if (rightBarrelRollInitialized){
+									doABarrelRoll.play();
 									performRightBarrelRoll = true;
 									leftBarrelRollInitialized = false;
 									rightBarrelRollInitialized = false;
