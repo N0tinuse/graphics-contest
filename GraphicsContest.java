@@ -20,7 +20,7 @@ import acm.util.*;
  * tie fighter image from http://sourwineblog.blogspot.com/2010_06_01_archive.html
  * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/
  * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
- * explosion gif from http://webtools.gieskes.nl/?info=explode-a-myspace-page.html
+ * explosion gif from http://djsmileyface.info/Photos.html
  * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm
  */
 
