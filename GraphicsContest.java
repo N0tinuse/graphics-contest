@@ -61,7 +61,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private double[] enemyYBulletVelocities;
 	private int enemyBulletCounter;
 	private boolean enemyBulletsPresent = false;
-	private GImage enemyExplosion = new GImage ("explosion.gif");
+	private GImage enemyExplosion = new GImage ("explosion.png");
 	private int explosionCounter;
 	
 	private int lives;
