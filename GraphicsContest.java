@@ -52,6 +52,8 @@ public class GraphicsContest extends GraphicsProgram {
 	private double[] enemyYBulletVelocities;
 	private int enemyBulletCounter;
 	private boolean enemyBulletsPresent = false;
+	private GOval[] enemyBulletTail1;
+	private GOval[] enemyBulletTail2;
 
 
 	private int score;
@@ -103,6 +105,8 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyBullets = new GOval[100];
 		enemyXBulletVelocities = new double[100];
 		enemyYBulletVelocities = new double[100];
+		enemyBulletTail1 = new GOval[100];
+		enemyBulletTail2 = new GOval[100];
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
 		score = 0;
@@ -207,6 +211,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyBullets[enemyBulletCounter] = newBullet;
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)120;
 		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)120;
+		
 		add(newBullet);
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
