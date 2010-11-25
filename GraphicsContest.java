@@ -153,8 +153,8 @@ public class GraphicsContest extends GraphicsProgram {
 		case 4: boss.setImage("mehran.jpg");
 				break;
 		}
-		bossDestinationX = rgen.nextDouble(0, getWidth() - boss.getWidth());
-		bossDestinationY = rgen.nextDouble(0, getHeight() - boss.getHeight());
+		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
+		bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		bossHealthLabel = new GLabel("BOSS: ", 0, 0);
 		bossHealthLabel.setColor(Color.RED);
 		bossHealthLabel.setFont("Sans Serif-36");
@@ -265,8 +265,8 @@ public class GraphicsContest extends GraphicsProgram {
 			} 
 		}
 		if (boss.getX() == bossDestinationX && boss.getY() == bossDestinationY) {
-			bossDestinationX = rgen.nextDouble(0, getWidth() - boss.getWidth());
-			bossDestinationY = rgen.nextDouble(0, getHeight() - boss.getHeight());
+			bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
+			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		int bulletDeterminant = rgen.nextInt(5000);
 		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
