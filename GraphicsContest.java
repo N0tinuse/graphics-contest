@@ -205,8 +205,8 @@ public class GraphicsContest extends GraphicsProgram {
 		newBullet.setColor(Color.blue);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
-		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + 3 * enemy.getWidth() / 5)) / (double)240;
-		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + 3 * enemy.getHeight() / 5)) / (double)240;
+		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + 3 * enemy.getWidth() / 5)) / (double)120;
+		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + 3 * enemy.getHeight() / 5)) / (double)120;
 		add(newBullet);
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
