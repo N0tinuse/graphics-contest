@@ -384,25 +384,25 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
-				if (enemies[i].equals("enemy01.png")) {
+				if (enemies[i].getImage().equals("enemy01.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy02.png")) {
+				} else if (enemies[i].getImage().equals("enemy02.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0775, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.155, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy03.png")) {
+				} else if (enemies[i].getImage().equals("enemy03.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0505, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.101, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy04.png")) {
+				} else if (enemies[i].getImage().equals("enemy04.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.049, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.098, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy05.png")) {
+				} else if (enemies[i].getImage().equals("enemy05.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.152, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.314, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy06.png")) {
+				} else if (enemies[i].getImage().equals("enemy06.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
-				} else if (enemies[i].equals("enemy07.png")) {
+				} else if (enemies[i].getImage().equals("enemy07.png")) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				}
@@ -662,7 +662,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (ship.getX() < 8 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter++;
 		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
 		if (ship.getX() < (getWidth() - 236) / (double)17) {
-			ship.setImage("enemy01.png"); 
+			ship.setImage("Ship_00flipped.png"); 
 			shipImageConstant = 0;
 		} else if (ship.getX() < 2 * (getWidth() - 236) / (double)17 && ship.getX() > (getWidth() - 236) / (double)17 || shipResetCounter < -70 && shipResetCounter >= -80) {
 			ship.setImage("Ship_01flipped.png"); 
