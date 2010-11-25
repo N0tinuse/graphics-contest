@@ -140,6 +140,16 @@ public class GraphicsContest extends GraphicsProgram {
 		loopCounter = 0;
 		bossPresent = true;
 		removeAll();
+		for (int k = 0; k < enemies.length; k++) {
+			if (enemies[k] != null) {
+				enemies[k].setLocation(2500, 900);
+			}
+		}
+		for (int k = 0; k < enemyBullets.length; k++) {
+			if (enemyBullets[k] != null) {
+				enemyBullets[k].setLocation(2200, 900);
+			}
+		}
 		currentBossHealth = bossHealth[bossCounter];
 		switch (bossCounter) {
 		case 0: boss = new GImage("tiefighter.jpg");
@@ -208,7 +218,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						score += 20;
 						currentBossHealth -= 1;
-						bossHealthBarInside.setSize(bossHealthBarInside.getWidth() * currentBossHealth / bossHealth[bossCounter], bossHealthBarInside.getHeight());
+						bossHealthBarInside.setSize(298 * currentBossHealth / bossHealth[bossCounter], bossHealthBarInside.getHeight());
 						if (bossHealthBarInside.getWidth() <= 2 * 298 / (double)3 && bossHealthBarInside.getWidth() > 298 / (double)3) bossHealthBarInside.setColor(Color.YELLOW);
 						if (bossHealthBarInside.getWidth() <= 298 / (double)3) bossHealthBarInside.setColor(Color.RED);
 					}
@@ -318,6 +328,16 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void levelUp() {
 		removeAll();
+		for (int k = 0; k < enemies.length; k++) {
+			if (enemies[k] != null) {
+				enemies[k].setLocation(2500, 900);
+			}
+		}
+		for (int k = 0; k < enemyBullets.length; k++) {
+			if (enemyBullets[k] != null) {
+				enemyBullets[k].setLocation(2200, 900);
+			}
+		}
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
