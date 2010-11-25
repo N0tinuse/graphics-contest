@@ -55,6 +55,7 @@ public class GraphicsContest extends GraphicsProgram {
 	
 	private int lives;
 	private GImage[] lifeLabels;
+	private GLabel livesLabel;
 
 
 	private int score;
@@ -99,7 +100,7 @@ public class GraphicsContest extends GraphicsProgram {
 		scoreLabel.setFont("Sans Serif-36");
 		scoreLabel.setLocation(20, scoreLabel.getAscent());
 		add(scoreLabel);
-		GLabel livesLabel = new GLabel("Lives: ", 0, 0);
+		livesLabel = new GLabel("Lives: ", 0, 0);
 		livesLabel.setColor(Color.WHITE);
 		livesLabel.setFont("Sans Serif-36");
 		livesLabel.setLocation(getWidth() - livesLabel.getWidth() - 180, livesLabel.getAscent());
@@ -184,11 +185,15 @@ public class GraphicsContest extends GraphicsProgram {
 						}
 						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setLocation(3500,900);
+							for (int j = 0; j < lives; j++) {
+								remove(lifeLabels[j]);
+							}
 							lives--;
 							removeAll();
 							add(gameArea);
 							add(scoreLabel);
-							for (int j = 0; j < lifeLabels.length; j++) {
+							add(livesLabel);
+							for (int j = 0; j < lives; j++) {
 								add(lifeLabels[j]);
 							}
 							GLabel death = new GLabel("You died!", 0, 0);
