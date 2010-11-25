@@ -502,28 +502,28 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	private GObject enemyCollisionChecker(GRect enemy) {
-		if (getElementAt (enemy.getX(), enemy.getY()) != null) {
-			return (getElementAt (enemy.getX(), enemy.getY()));
-		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()) != null) {
-			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()));
+		if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()));
+		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2));
 		} else {
 			return null;
 		}
 	}
 
 	private GObject bulletCollisionChecker(GOval bullet) {
-		if (getElementAt (bullet.getX(), bullet.getY()) != null) {
-			return (getElementAt (bullet.getX(), bullet.getY()));
-		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()) != null) {
-			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()));
+		if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()));
+		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2) != null) {
+			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2));
+		} else if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()));
+		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2));
 		} else {
 			return null;
 		}
