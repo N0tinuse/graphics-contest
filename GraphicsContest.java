@@ -151,7 +151,10 @@ public class GraphicsContest extends GraphicsProgram {
 			pause(5);
 			if (explosionCounter > 0) {
 				explosionCounter++;
-				if (explosionCounter > 50) enemyExplosion.setLocation(5000, 2000);
+				if (explosionCounter > 50) {
+					enemyExplosion.setLocation(5000, 2000);
+					explosionCounter = 0;
+				}
 			}
 		}
 		removeAll();
