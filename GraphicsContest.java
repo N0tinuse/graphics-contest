@@ -618,6 +618,9 @@ public class GraphicsContest extends GraphicsProgram {
 		add(death);
 		explosion.play();
 		lifeLost = true;
+		score -= 500;
+		if (score < 0) score = 0;
+		if (lives > -1) {
 		pause(1500);
 		remove(death);
 		pause(300);
@@ -635,8 +638,7 @@ public class GraphicsContest extends GraphicsProgram {
 		shipMovementX = 0;
 		shipMovementY = 0; 
 		lifeLost = false;
-		score -= 500;
-		if (score < 0) score = 0;
+		}
 	}
 	
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
