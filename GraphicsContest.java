@@ -157,7 +157,7 @@ public class GraphicsContest extends GraphicsProgram {
 					if (enemyBullets[i] == null) break;
 					if (enemyBullets[i].getX() != 2200) {
 						enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
-						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.5, enemyBullets[i].getHeight() + 0.5);
+						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.1, enemyBullets[i].getHeight() + 0.1);
 						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 							enemyBullets[i].setLocation(3500,900);
 							score -= 500;
@@ -209,8 +209,8 @@ public class GraphicsContest extends GraphicsProgram {
 		newBullet.setColor(Color.blue);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
-		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)120;
-		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)120;
+		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)600;
+		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)600;
 		
 		add(newBullet);
 		enemyBulletCounter++;
