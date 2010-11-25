@@ -961,55 +961,55 @@ public class GraphicsContest extends GraphicsProgram {
 				newBullet.setFilled(true);
 				if (shipImageConstant == 0) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .8;
+					bulletVelocities[bulletCounter] = 1.2;
 				} else if (shipImageConstant == 1) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .7;
+					bulletVelocities[bulletCounter] = 1.05;
 				} else if (shipImageConstant == 2) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .6;
+					bulletVelocities[bulletCounter] = .9;
 				} else if (shipImageConstant == 3) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .5;
+					bulletVelocities[bulletCounter] = .75;
 				} else if (shipImageConstant == 4) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .4;
+					bulletVelocities[bulletCounter] = .6;
 				} else if (shipImageConstant == 5) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .3;
+					bulletVelocities[bulletCounter] = .45;
 				} else if (shipImageConstant == 6) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .2;
+					bulletVelocities[bulletCounter] = .3;
 				} else if (shipImageConstant == 7) {
 					newBullet.setLocation(ship.getX() + 4 * ship.getWidth() / 5, ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = .1;
+					bulletVelocities[bulletCounter] = .15;
 				} else if (shipImageConstant == 8) {
 					newBullet.setLocation(ship.getX() + ship.getWidth() / 2, ship.getY() + ship.getHeight() / 3);
 					bulletVelocities[bulletCounter] = 0;
 				} else if (shipImageConstant == 9) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.1;
+					bulletVelocities[bulletCounter] = -.15;
 				} else if (shipImageConstant == 10) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.2;
+					bulletVelocities[bulletCounter] = -.3;
 				} else if (shipImageConstant == 11) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.3;
+					bulletVelocities[bulletCounter] = -.45;
 				} else if (shipImageConstant == 12) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.4;
+					bulletVelocities[bulletCounter] = -.6;
 				} else if (shipImageConstant == 13) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.5;
+					bulletVelocities[bulletCounter] = -.75;
 				} else if (shipImageConstant == 14) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.6;
+					bulletVelocities[bulletCounter] = -.9;
 				} else if (shipImageConstant == 15) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.7;
+					bulletVelocities[bulletCounter] = -1.05;
 				} else if (shipImageConstant == 16) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
-					bulletVelocities[bulletCounter] = -.8;
+					bulletVelocities[bulletCounter] = -1.2;
 				}
 				bullets[bulletCounter] = newBullet;
 				remove(ship);
