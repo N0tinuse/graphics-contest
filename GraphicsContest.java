@@ -868,8 +868,7 @@ public class GraphicsContest extends GraphicsProgram {
 		case KeyEvent.VK_LEFT: shipMovingLeft = true;
 								if (!leftBarrelRollInitialized) {
 									leftBarrelRollInitialized = true;
-								}
-								if (leftBarrelRollInitialized) {
+								} else if (leftBarrelRollInitialized) {
 									performLeftBarrelRoll = true;
 									leftBarrelRollInitialized = false;
 									rightBarrelRollInitialized = false;
@@ -878,8 +877,7 @@ public class GraphicsContest extends GraphicsProgram {
 		case KeyEvent.VK_RIGHT: shipMovingRight = true; 
 								if (!rightBarrelRollInitialized) {
 									rightBarrelRollInitialized = true;
-								}
-								if (rightBarrelRollInitialized){
+								} else if (rightBarrelRollInitialized){
 									performRightBarrelRoll = true;
 									leftBarrelRollInitialized = false;
 									rightBarrelRollInitialized = false;
