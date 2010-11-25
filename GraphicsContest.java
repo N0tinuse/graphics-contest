@@ -368,7 +368,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
 					}
-					if ((bulletCollisionChecker(bullets[i]).equals("enemy01.png") || bulletCollisionChecker(bullets[i]).equals("enemy02.png") || bulletCollisionChecker(bullets[i]).equals("enemy03.png") || bulletCollisionChecker(bullets[i]).equals("enemy04.png") || bulletCollisionChecker(bullets[i]).equals("enemy05.png") || bulletCollisionChecker(bullets[i]).equals("enemy06.png") || bulletCollisionChecker(bullets[i]).equals("enemy07.png")) && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
+					if ((bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
 						bullets[i].setLocation(2000,900);
 						bulletVelocities[i] = 0;
