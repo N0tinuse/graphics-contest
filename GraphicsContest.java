@@ -154,10 +154,15 @@ public class GraphicsContest extends GraphicsProgram {
 					if (enemyBullets[i].getX() != 2200) {
 						enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
 						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.5, enemyBullets[i].getHeight() + 0.5);
-						if (enemyBullets[i].getWidth() >= 60) {
+						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 60) {
+							enemyBullets[i].setLocation(3500,900);
+							score -= 500;
+						}
+						if (enemyBullets[i].getWidth() > 60) {
 							remove(enemyBullets[i]);
 							enemyBullets[i].setLocation(2200,1200);
 						}
+						
 					}
 				}
 			} 
@@ -165,6 +170,20 @@ public class GraphicsContest extends GraphicsProgram {
 			pause(5);
 		}
 
+	}
+	
+	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
+		if (getElementAt (enemyBullet.getX(), enemyBullet.getY()) != null) {
+			return (getElementAt (enemyBullet.getX(), enemyBullet.getY()));
+		} else if (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
+			return (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()));
+		} else {
+			return null;
+		}
 	}
 
 	private GObject bulletCollisionChecker(GOval bullet) {
