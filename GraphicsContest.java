@@ -165,13 +165,14 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			barrelRollTimeCounter++;
+			if (barrelRollTimeCounter > 50) {
+				performLeftBarrelRoll = false;
+				performRightBarrelRoll = false;
+				leftBarrelRollInitialized = false;
+				rightBarrelRollInitialized = false;
+			}
 		}
-		if (barrelRollTimeCounter > 50) {
-			performLeftBarrelRoll = false;
-			performRightBarrelRoll = false;
-			leftBarrelRollInitialized = false;
-			rightBarrelRollInitialized = false;
-		}
+		
 	}
 
 	private void initializeBoss() {
