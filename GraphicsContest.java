@@ -100,8 +100,35 @@ public class GraphicsContest extends GraphicsProgram {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
+			if (loopCounter == 12000) {
+				removeAll();
+				add(gameArea);
+				add(scoreLabel);
+				add(livesLabel);
+				for (int j = 0; j < lives; j++) {
+					add(lifeLabels[j]);
+				}
+				add(ship);
+				GLabel warning = new GLabel("WARNING!", 0, 0);
+				warning.setFont("Sans Serif-100");
+				warning.setColor(Color.RED);
+				warning.setLocation(getWidth() / 2 - warning.getWidth() / 2, getHeight() / 2 - warning.getAscent() / 2);
+				add(warning);
+				pause(500);
+				remove(warning);
+				pause(500);
+				add(warning);
+				pause(500);
+				remove(warning);
+				pause(500);
+				add(warning);
+				pause(500);
+				remove(warning);
+			}
 			if (!bossPresent) {
 				normalGameProcedure(); 
+			} else if (bossPresent) {
+				bossProcedure();
 			}
 			scoreLabel.setLabel("Score: " + score);
 			remove(ship);
