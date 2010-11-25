@@ -43,7 +43,6 @@ public class GraphicsContest extends GraphicsProgram {
 	private int shipMovementY;
 	private static final int shipMovementValue = 5;
 	private int shipImageConstant;
-	private int shipResetCounter;
 
 	private GOval[] bullets;
 	private double[] bulletVelocities;
@@ -802,8 +801,6 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void checkforShipChange() {
-		if (ship.getX() < 8 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter++;
-		if (ship.getX() > 9 * (getWidth() - 236) && shipImageConstant != 8) shipResetCounter--;
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			remove(barrelRollArrows);
 			barrelRollArrows.setLocation(ship.getX() + ship.getWidth() / 2 - 133, ship.getY() + ship.getHeight() / 2 - 134.5);
@@ -812,52 +809,52 @@ public class GraphicsContest extends GraphicsProgram {
 		} else if (ship.getX() < (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_00flipped.png"); 
 			shipImageConstant = 0;
-		} else if (ship.getX() < 2 * (getWidth() - 236) / (double)17 && ship.getX() > (getWidth() - 236) / (double)17 || shipResetCounter < -70 && shipResetCounter >= -80) {
+		} else if (ship.getX() < 2 * (getWidth() - 236) / (double)17 && ship.getX() > (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_01flipped.png"); 
 			shipImageConstant = 1;
-		} else if (ship.getX() < 3 * (getWidth() - 236) / (double)17 && ship.getX() > 2 * (getWidth() - 236) / (double)17 || shipResetCounter < -60 && shipResetCounter >= -70) { 
+		} else if (ship.getX() < 3 * (getWidth() - 236) / (double)17 && ship.getX() > 2 * (getWidth() - 236) / (double)17) { 
 			ship.setImage("Ship_02flipped.png"); 
 			shipImageConstant = 2;
-		} else if (ship.getX() < 4 * (getWidth() - 236) / (double)17 && ship.getX() > 3 * (getWidth() - 236) / (double)17 || shipResetCounter < -50 && shipResetCounter >= -60) {
+		} else if (ship.getX() < 4 * (getWidth() - 236) / (double)17 && ship.getX() > 3 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_03flipped.png"); 
 			shipImageConstant = 3;
-		} else if (ship.getX() < 5 * (getWidth() - 236) / (double)17 && ship.getX() > 4 * (getWidth() - 236) / (double)17 || shipResetCounter < -40 && shipResetCounter >= -50) {
+		} else if (ship.getX() < 5 * (getWidth() - 236) / (double)17 && ship.getX() > 4 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_04flipped.png"); 
 			shipImageConstant = 4;
-		} else if (ship.getX() < 6 * (getWidth() - 236) / (double)17 && ship.getX() > 5 * (getWidth() - 236) / (double)17 || shipResetCounter < -30 && shipResetCounter >= -40) {
+		} else if (ship.getX() < 6 * (getWidth() - 236) / (double)17 && ship.getX() > 5 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_05flipped.png"); 
 			shipImageConstant = 5;
-		} else if (ship.getX() < 7 * (getWidth() - 236) / (double)17 && ship.getX() > 6 * (getWidth() - 236) / (double)17 || shipResetCounter < -20 && shipResetCounter >= -30) {
+		} else if (ship.getX() < 7 * (getWidth() - 236) / (double)17 && ship.getX() > 6 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_06flipped.png"); 
 			shipImageConstant = 6;
-		} else if (ship.getX() < 8 * (getWidth() - 236) / (double)17 && ship.getX() > 7 * (getWidth() - 236) / (double)17 || shipResetCounter < -10 && shipResetCounter >= -20) {
+		} else if (ship.getX() < 8 * (getWidth() - 236) / (double)17 && ship.getX() > 7 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_07flipped.png"); 
 			shipImageConstant = 7;
 		} else if (ship.getX() < 9 * (getWidth() - 236) / (double)17 && ship.getX() > 8 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_08.png"); 
 			shipImageConstant = 8;
-		} else if (ship.getX() < 10 * (getWidth() - 236) / (double)17 && ship.getX() > 9 * (getWidth() - 236) / (double)17 || shipResetCounter <= 10 && shipResetCounter > 0) {
+		} else if (ship.getX() < 10 * (getWidth() - 236) / (double)17 && ship.getX() > 9 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_07.png"); 
 			shipImageConstant = 9;
-		} else if (ship.getX() < 11 * (getWidth() - 236) / (double)17 && ship.getX() > 10 * (getWidth() - 236) / (double)17 || shipResetCounter <= 20 && shipResetCounter > 10) {
+		} else if (ship.getX() < 11 * (getWidth() - 236) / (double)17 && ship.getX() > 10 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_06.png"); 
 			shipImageConstant = 10;
-		} else if (ship.getX() < 12 * (getWidth() - 236) / (double)17 && ship.getX() > 11 * (getWidth() - 236) / (double)17 || shipResetCounter <= 30 && shipResetCounter > 20) {
+		} else if (ship.getX() < 12 * (getWidth() - 236) / (double)17 && ship.getX() > 11 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_05.png"); 
 			shipImageConstant = 11;
-		} else if (ship.getX() < 13 * (getWidth() - 236) / (double)17 && ship.getX() > 12 * (getWidth() - 236) / (double)17 || shipResetCounter <= 40 && shipResetCounter > 30) {
+		} else if (ship.getX() < 13 * (getWidth() - 236) / (double)17 && ship.getX() > 12 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_04.png"); 
 			shipImageConstant = 12;
-		} else if (ship.getX() < 14 * (getWidth() - 236) / (double)17 && ship.getX() > 13 * (getWidth() - 236) / (double)17 || shipResetCounter <= 50 && shipResetCounter > 40) {
+		} else if (ship.getX() < 14 * (getWidth() - 236) / (double)17 && ship.getX() > 13 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_03.png"); 
 			shipImageConstant = 13;
-		} else if (ship.getX() < 15 * (getWidth() - 236) / (double)17 && ship.getX() > 14 * (getWidth() - 236) / (double)17 || shipResetCounter <= 60 && shipResetCounter > 50) {
+		} else if (ship.getX() < 15 * (getWidth() - 236) / (double)17 && ship.getX() > 14 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_02.png"); 
 			shipImageConstant = 14;
-		} else if (ship.getX() < 16 * (getWidth() - 236) / (double)17 && ship.getX() > 15 * (getWidth() - 236) / (double)17 || shipResetCounter <= 70 && shipResetCounter > 60) { 
+		} else if (ship.getX() < 16 * (getWidth() - 236) / (double)17 && ship.getX() > 15 * (getWidth() - 236) / (double)17) { 
 			ship.setImage("Ship_01.png"); 
 			shipImageConstant = 15;
-		} else if (ship.getX() > 16 * (getWidth() - 236) / (double)17 || shipResetCounter <= 80 && shipResetCounter > 70) {
+		} else if (ship.getX() > 16 * (getWidth() - 236) / (double)17) {
 			ship.setImage("Ship_00.png"); 
 			shipImageConstant = 16;
 		}
