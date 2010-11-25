@@ -149,13 +149,6 @@ public class GraphicsContest extends GraphicsProgram {
 			remove(ship);
 			add(ship);
 			pause(5);
-			if (explosionCounter > 0) {
-				explosionCounter++;
-				if (explosionCounter > 50) {
-					enemyExplosion.setLocation(5000, 2000);
-					explosionCounter = 0;
-				}
-			}
 		}
 		removeAll();
 		GLabel gameOver = new GLabel("Game Over", 0, 0);
@@ -570,6 +563,13 @@ public class GraphicsContest extends GraphicsProgram {
 		loopCounter++;
 		barrelRollChecker();
 		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
+		if (explosionCounter > 0) {
+			explosionCounter++;
+			if (explosionCounter > 50) {
+				enemyExplosion.setLocation(5000, 2000);
+				explosionCounter = 0;
+			}
+		}
 	}
 
 	private void setUpGame() {
