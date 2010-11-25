@@ -58,7 +58,9 @@ public class GraphicsContest extends GraphicsProgram {
 	private GLabel livesLabel;
 	private boolean lifeLost = false;
 
-
+	private int loopCounter;
+	private boolean bossPresent = false;
+	
 	private int score;
 	private GLabel scoreLabel;
 
@@ -93,6 +95,107 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void playGame() {
 		addKeyListeners();
+		setUpGame();
+		while(lives != -1) {
+			checkforShipCollisions();
+			moveShip();
+			checkforShipChange(); 
+			if (bulletsPresent) {
+				for (int i = 0; i < bullets.length; i++) {
+					if (bullets[i] == null) break;
+					if (bullets[i].getX() != 2000) {
+						bullets[i].move(bulletVelocities[i], 0);
+						bullets[i].setSize(bullets[i].getWidth() - 0.5, bullets[i].getHeight() - 0.5);
+						if (bullets[i].getWidth() == 0) {
+							remove(bullets[i]);
+							bullets[i].setLocation(2000,900);
+						}
+						if (bulletCollisionChecker(bullets[i]) instanceof GRect && 3 * bulletCollisionChecker(bullets[i]).getWidth() / 5 >= bullets[i].getWidth()) {
+							bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
+							bullets[i].setLocation(2000,900);
+							score += 50;
+						} 
+					}
+				}
+			}
+			if (!bossPresent) {
+				int monsterDeterminant = rgen.nextInt(5000);
+				if (monsterDeterminant >= 4990) {
+					spawnEnemy();
+				}
+				if (enemiesPresent) {
+					for (int i = 0; i < enemies.length; i++) {
+						if (enemies[i] == null) break;
+						enemies[i].setLocation(enemies[i].getX() - 0.05, enemies[i].getY() - 0.05);
+						enemies[i].setSize(enemies[i].getWidth() + 0.1, enemies[i].getHeight() + 0.1);
+						int bulletDeterminant = rgen.nextInt(5000);
+						if (bulletDeterminant >= 4970 && enemies[i].getWidth() < 20) {
+							spawnEnemyBullet(enemies[i], ship);
+						}
+						if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
+							for (int k = 0; k < enemies.length; k++) {
+								if (enemies[k] != null) {
+									enemies[k].setLocation(2500, 900);
+								}
+							}
+							processDeath();
+						}
+						if (enemies[i].getWidth() >= 100) {
+							enemies[i].setLocation(2500,1500);
+							remove(enemies[i]);
+						}
+					}
+				}
+				if (enemyBulletsPresent) {
+					for (int i = 0; i < enemyBullets.length; i++) {
+						if (enemyBullets[i] == null) break;
+						if (enemyBullets[i].getX() != 2200) {
+							enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
+							enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.2, enemyBullets[i].getHeight() + 0.2);
+							if (enemyBullets[i].getWidth() >= 16 && enemyBullets[i].getWidth() < 24) {
+								enemyBullets[i].setColor(Color.CYAN);
+							}
+							if (enemyBullets[i].getWidth() >= 24 && enemyBullets[i].getWidth() < 32) {
+								enemyBullets[i].setColor(Color.YELLOW);
+							}
+							if (enemyBullets[i].getWidth() >= 32 && enemyBullets[i].getWidth() < 40) {
+								enemyBullets[i].setColor(Color.ORANGE);
+							}
+							if (enemyBullets[i].getWidth() >= 40) {
+								enemyBullets[i].setColor(Color.RED);
+							}
+							if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
+								for (int k = 0; k < enemyBullets.length; k++) {
+									if (enemyBullets[k] != null) {
+										enemyBullets[k].setLocation(2200, 900);
+									}
+								}
+								processDeath();
+							}
+							if (enemyBullets[i].getWidth() > 60) {
+								remove(enemyBullets[i]);
+								enemyBullets[i].setLocation(2200,1200);
+							}
+
+						}
+					}
+				} 
+			}
+			scoreLabel.setLabel("Score: " + score);
+			remove(ship);
+			add(ship);
+			loopCounter++;
+			pause(5);
+		}
+		removeAll();
+		GLabel gameOver = new GLabel("Game Over", 0, 0);
+		gameOver.setFont("Sans Serif-100");
+		gameOver.setColor(Color.RED);
+		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
+		add(gameOver);
+	}
+
+	private void setUpGame() {
 		ship = new GImage("Ship_08.png");
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - 3 * ship.getHeight() / 7);
 		add(ship);
@@ -124,101 +227,8 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		shipResetCounter = 0;
+		loopCounter = 0;
 		lives = 3;
-		while(lives != -1) {
-			checkforShipCollisions();
-			moveShip();
-			checkforShipChange();
-			if (bulletsPresent) {
-				for (int i = 0; i < bullets.length; i++) {
-					if (bullets[i] == null) break;
-					if (bullets[i].getX() != 2000) {
-						bullets[i].move(bulletVelocities[i], 0);
-						bullets[i].setSize(bullets[i].getWidth() - 0.5, bullets[i].getHeight() - 0.5);
-						if (bullets[i].getWidth() == 0) {
-							remove(bullets[i]);
-							bullets[i].setLocation(2000,900);
-						}
-						if (bulletCollisionChecker(bullets[i]) instanceof GRect && 3 * bulletCollisionChecker(bullets[i]).getWidth() / 5 >= bullets[i].getWidth()) {
-							bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
-							bullets[i].setLocation(2000,900);
-							score += 50;
-						} 
-					}
-				}
-			}
-			int monsterDeterminant = rgen.nextInt(5000);
-			if (monsterDeterminant >= 4990) {
-				spawnEnemy();
-			}
-			if (enemiesPresent) {
-				for (int i = 0; i < enemies.length; i++) {
-					if (enemies[i] == null) break;
-					enemies[i].setLocation(enemies[i].getX() - 0.05, enemies[i].getY() - 0.05);
-					enemies[i].setSize(enemies[i].getWidth() + 0.1, enemies[i].getHeight() + 0.1);
-					int bulletDeterminant = rgen.nextInt(5000);
-					if (bulletDeterminant >= 4970 && enemies[i].getWidth() < 20) {
-						spawnEnemyBullet(enemies[i], ship);
-					}
-					if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
-						for (int k = 0; k < enemies.length; k++) {
-							if (enemies[k] != null) {
-								enemies[k].setLocation(2500, 900);
-							}
-						}
-						processDeath();
-					}
-					if (enemies[i].getWidth() >= 100) {
-						enemies[i].setLocation(2500,1500);
-						remove(enemies[i]);
-					}
-				}
-			}
-			if (enemyBulletsPresent) {
-				for (int i = 0; i < enemyBullets.length; i++) {
-					if (enemyBullets[i] == null) break;
-					if (enemyBullets[i].getX() != 2200) {
-						enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
-						enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.2, enemyBullets[i].getHeight() + 0.2);
-						if (enemyBullets[i].getWidth() >= 16 && enemyBullets[i].getWidth() < 24) {
-							enemyBullets[i].setColor(Color.CYAN);
-						}
-						if (enemyBullets[i].getWidth() >= 24 && enemyBullets[i].getWidth() < 32) {
-							enemyBullets[i].setColor(Color.YELLOW);
-						}
-						if (enemyBullets[i].getWidth() >= 32 && enemyBullets[i].getWidth() < 40) {
-							enemyBullets[i].setColor(Color.ORANGE);
-						}
-						if (enemyBullets[i].getWidth() >= 40) {
-							enemyBullets[i].setColor(Color.RED);
-						}
-						if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
-							for (int k = 0; k < enemyBullets.length; k++) {
-								if (enemyBullets[k] != null) {
-									enemyBullets[k].setLocation(2200, 900);
-								}
-							}
-							processDeath();
-						}
-						if (enemyBullets[i].getWidth() > 60) {
-							remove(enemyBullets[i]);
-							enemyBullets[i].setLocation(2200,1200);
-						}
-						
-					}
-				}
-			} 
-			scoreLabel.setLabel("Score: " + score);
-			remove(ship);
-			add(ship);
-			pause(5);
-		}
-		removeAll();
-		GLabel gameOver = new GLabel("Game Over", 0, 0);
-		gameOver.setFont("Sans Serif-100");
-		gameOver.setColor(Color.RED);
-		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
-		add(gameOver);
 	}
 
 	private void processDeath() {
