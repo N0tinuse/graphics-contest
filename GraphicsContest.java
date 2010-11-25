@@ -978,13 +978,13 @@ public class GraphicsContest extends GraphicsProgram {
 					newBullet.setLocation(ship.getX() + ship.getWidth() - 30, ship.getY() + ship.getHeight() / 2 - 30);
 					bulletVelocities[bulletCounter] = .45;
 				} else if (shipImageConstant == 6) {
-					newBullet.setLocation(ship.getX() + ship.getWidth() / 2 - 22, ship.getY() + ship.getHeight() / 2 - 30);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 30, ship.getY() + ship.getHeight() / 2 - 30);
 					bulletVelocities[bulletCounter] = .3;
 				} else if (shipImageConstant == 7) {
-					newBullet.setLocation(ship.getX() + ship.getWidth() / 2 - 26, ship.getY() + ship.getHeight() / 2 - 30);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 30, ship.getY() + ship.getHeight() / 2 - 30);
 					bulletVelocities[bulletCounter] = .15;
 				} else if (shipImageConstant == 8) {
-					newBullet.setLocation(ship.getX() + ship.getWidth() / 2 - 30, ship.getY() + ship.getHeight() / 2 - 30);
+					newBullet.setLocation(ship.getX() + ship.getWidth() - 30, ship.getY() + ship.getHeight() / 2 - 30);
 					bulletVelocities[bulletCounter] = 0;
 				} else if (shipImageConstant == 9) {
 					newBullet.setLocation(ship.getX(), ship.getY() + ship.getHeight() / 3);
