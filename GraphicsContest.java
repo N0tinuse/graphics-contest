@@ -154,6 +154,7 @@ public class GraphicsContest extends GraphicsProgram {
 				performRightBarrelRoll = false;
 				leftBarrelRollInitialized = false;
 				rightBarrelRollInitialized = false;
+				barrelRollTimeCounter = 0;
 			}
 		}
 		
