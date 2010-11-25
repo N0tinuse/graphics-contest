@@ -631,6 +631,8 @@ public class GraphicsContest extends GraphicsProgram {
 		remove(ship);
 		pause(300);
 		add(ship);
+		shipMovementX = 0;
+		shipMovementY = 0; 
 		lifeLost = false;
 		score -= 500;
 		if (score < 0) score = 0;
