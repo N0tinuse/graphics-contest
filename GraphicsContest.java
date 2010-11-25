@@ -216,7 +216,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
-		if (boss.getX() > bossDestinationX) {
+		if ((int)boss.getX() > bossDestinationX) {
 			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
 				boss.move(-1, 0);
 			} else if (bossCounter == 1) {
@@ -228,7 +228,7 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getX() > bossDestinationX) boss.move(-1, 0);
 			} 
 		}
-		if (boss.getX() < bossDestinationX) {
+		if ((int)boss.getX() < bossDestinationX) {
 			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
 				boss.move(1, 0);
 			} else if (bossCounter == 1) {
@@ -240,7 +240,7 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getX() < bossDestinationX) boss.move(1, 0);
 			} 
 		}
-		if (boss.getY() > bossDestinationY) {
+		if ((int)boss.getY() > bossDestinationY) {
 			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
 				boss.move(0, -1);
 			} else if (bossCounter == 1) {
@@ -252,7 +252,7 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getY() > bossDestinationY) boss.move(0, -1);
 			} 
 		}
-		if (boss.getY() < bossDestinationY) {
+		if ((int)boss.getY() < bossDestinationY) {
 			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
 				boss.move(0, 1);
 			} else if (bossCounter == 1) {
@@ -264,7 +264,7 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getY() < bossDestinationY) boss.move(0, 1);
 			} 
 		}
-		if (boss.getX() == bossDestinationX && boss.getY() == bossDestinationY) {
+		if ((int)boss.getX() == bossDestinationX && (int)boss.getY() == bossDestinationY) {
 			bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
