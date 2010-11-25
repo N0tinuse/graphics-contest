@@ -356,7 +356,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		int enemyDeterminant = rgen.nextInt(5000);
-		if (enemyDeterminant >= 4990) {
+		if (enemyDeterminant >= 4990 - 10 * bossCounter) {
 			spawnEnemy();
 		}
 		if (enemiesPresent) {
@@ -365,7 +365,7 @@ public class GraphicsContest extends GraphicsProgram {
 				enemies[i].setLocation(enemies[i].getX() - 0.05, enemies[i].getY() - 0.05);
 				enemies[i].setSize(enemies[i].getWidth() + 0.1, enemies[i].getHeight() + 0.1);
 				int bulletDeterminant = rgen.nextInt(5000);
-				if (bulletDeterminant >= 4970 && enemies[i].getWidth() < 20) {
+				if (bulletDeterminant >= 4970 - 10 * bossCounter && enemies[i].getWidth() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getWidth() >= 80) {
@@ -488,42 +488,42 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
-		if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()) != null) {
-			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()));
-		} else if (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight() / 2) != null) {
-			return (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight() / 2));
-		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY() + enemyBullet.getHeight()) != null) {
-			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY() + enemyBullet.getHeight()));
-		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight() / 2) != null) {
-			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight() / 2));
+		if (getElementAt (enemyBullet.getX(), enemyBullet.getY()) != null) {
+			return (getElementAt (enemyBullet.getX(), enemyBullet.getY()));
+		} else if (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
+			return (getElementAt (enemyBullet.getX(), enemyBullet.getY() + enemyBullet.getHeight()));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY()));
+		} else if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()) != null) {
+			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth(), enemyBullet.getY() + enemyBullet.getHeight()));
 		} else {
 			return null;
 		}
 	}
 	
 	private GObject enemyCollisionChecker(GRect enemy) {
-		if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY()));
-		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2) != null) {
-			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight() / 2));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight()));
-		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2) != null) {
-			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight() / 2));
+		if (getElementAt (enemy.getX(), enemy.getY()) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY()));
+		} else if (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX(), enemy.getY() + enemy.getHeight()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY()));
+		} else if (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()) != null) {
+			return (getElementAt (enemy.getX() + enemy.getWidth(), enemy.getY() + enemy.getHeight()));
 		} else {
 			return null;
 		}
 	}
 
 	private GObject bulletCollisionChecker(GOval bullet) {
-		if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()));
-		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2) != null) {
-			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2));
+		if (getElementAt (bullet.getX(), bullet.getY()) != null) {
+			return (getElementAt (bullet.getX(), bullet.getY()));
+		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()) != null) {
+			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()));
+		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()));
+		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()));
 		} else {
 			return null;
 		}
