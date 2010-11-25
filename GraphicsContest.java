@@ -395,7 +395,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (loopCounter == 6000) add(bossApproachLabel);
+		if (loopCounter == 10000) add(bossApproachLabel);
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
@@ -575,7 +575,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
-		if (loopCounter >= 6000) add(bossApproachLabel);
+		if (loopCounter >= 10000) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -591,6 +591,7 @@ public class GraphicsContest extends GraphicsProgram {
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 		add(ship);
 		score -= 500;
+		if (score < 0) score = 0;
 	}
 	
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
