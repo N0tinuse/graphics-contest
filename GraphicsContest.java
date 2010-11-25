@@ -74,6 +74,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private double bossDestinationX;
 	private double bossDestinationY;
 	private int currentBossHealth;
+	private boolean bossFacingLeft = true;
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -157,10 +158,12 @@ public class GraphicsContest extends GraphicsProgram {
 		case 1: boss.setImage("millenniumfalcon.png");
 				break;
 		case 2: boss.setImage("arwingfacingleft.png");
+				bossFacingLeft = true;
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
 		case 4: boss.setImage("mehranfacingleft.png");
+				bossFacingLeft = true;
 				break;
 		}
 		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
@@ -279,19 +282,29 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
 		if (bossCounter == 2) {
-			if (boss.getX() < getWidth() / 2) {
-				boss.setImage("arwingfacingright.png");
-			} 
-			if (boss.getX() > getWidth() / 2) {
-				boss.setImage("arwingfacingleft.png");
+			if (bossFacingLeft) {
+				if (boss.getX() < getWidth() / 2) {
+					boss.setImage("arwingfacingright.png");
+					bossFacingLeft = false;
+				} 
+			if (!bossFacingLeft) {
+				if( boss.getX() > getWidth() / 2) {
+					boss.setImage("arwingfacingleft.png");
+					bossFacingLeft = true;
+				}
 			}
 		}
 		if (bossCounter == 4) {
-			if (boss.getX() < getWidth() / 2) {
-				boss.setImage("mehranfacingright.png");
-			} 
-			if (boss.getX() > getWidth() / 2) {
-				boss.setImage("mehranfacingleft.png");
+			if (bossFacingLeft) {
+				if (boss.getX() < getWidth() / 2) {
+					boss.setImage("mehranfacingright.png");
+					bossFacingLeft = false;
+				} 
+			if (!bossFacingLeft) {
+				if( boss.getX() > getWidth() / 2) {
+					boss.setImage("mehranfacingleft.png");
+					bossFacingLeft = true;
+				}
 			}
 		}
 		int bulletDeterminant = rgen.nextInt(5000);
