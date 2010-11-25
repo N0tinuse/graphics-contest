@@ -165,11 +165,11 @@ public class GraphicsContest extends GraphicsProgram {
 		bossHealthBarInside = new GRect(getWidth() / 2 + 1, 1, 298, 48);
 		bossHealthBarInside.setColor(Color.GREEN);
 		bossHealthBarInside.setFilled(true);
-		add(bossHealthBarOutside);
-		add(bossHealthBarInside);
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		add(bossHealthBarOutside);
+		add(bossHealthBarInside);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -212,9 +212,7 @@ public class GraphicsContest extends GraphicsProgram {
 						if (bossHealthBarInside.getWidth() <= 2 * 298 / (double)3 && bossHealthBarInside.getWidth() > 298 / (double)3) bossHealthBarInside.setColor(Color.YELLOW);
 						if (bossHealthBarInside.getWidth() <= 298 / (double)3) bossHealthBarInside.setColor(Color.RED);
 					}
-					if (currentBossHealth == 0) {
-						levelUp();
-					}
+					
 				}
 			}
 		}
@@ -266,6 +264,10 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getY() < bossDestinationY) boss.move(0, 1);
 			} 
 		}
+		if (boss.getX() == bossDestinationX && boss.getY() == bossDestinationY) {
+			bossDestinationX = rgen.nextDouble(0, getWidth() - boss.getWidth());
+			bossDestinationY = rgen.nextDouble(0, getHeight() - boss.getHeight());
+		}
 		int bulletDeterminant = rgen.nextInt(5000);
 		if (bulletDeterminant >= 5000 - 30 * (bossCounter+1)) {
 			spawnBossBullet(boss, ship);
@@ -304,7 +306,9 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
-		
+		if (currentBossHealth == 0) {
+			levelUp();
+		}
 	}
 
 	private void levelUp() {
@@ -319,7 +323,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bossPresent = false;
 		boss.setLocation(4000, 1500);
 		bossCounter++;
-		GLabel newLevel = new GLabel("LEVEL " + bossCounter+1, 0, 0);
+		GLabel newLevel = new GLabel("LEVEL " + (bossCounter+1), 0, 0);
 		newLevel.setFont("Sans Serif-100");
 		newLevel.setColor(Color.RED);
 		newLevel.setLocation(getWidth() / 2 - newLevel.getWidth() / 2, getHeight() / 2 - newLevel.getAscent() / 2);
