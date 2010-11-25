@@ -410,7 +410,6 @@ public class GraphicsContest extends GraphicsProgram {
 		GImage bossExplosion = new GImage("explosion.gif");
 		bossExplosion.setSize(boss.getWidth(), 200 * boss.getWidth() / (double)142);
 		bossExplosion.setLocation(boss.getX() + boss.getWidth() / 2 - bossExplosion.getWidth() / 2, boss.getY() + boss.getHeight() / 2 - bossExplosion.getHeight() / 2);
-		add(bossExplosion);
 		explosion.play();
 		add(gameArea);
 		add(scoreLabel);
@@ -418,7 +417,7 @@ public class GraphicsContest extends GraphicsProgram {
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
-		add(ship);
+		add(bossExplosion);
 		bossPresent = false;
 		boss.setLocation(4000, 1500);
 		bossCounter++;
@@ -428,6 +427,7 @@ public class GraphicsContest extends GraphicsProgram {
 		newLevel.setLocation(getWidth() / 2 - newLevel.getWidth() / 2, getHeight() / 2 - newLevel.getAscent() / 2);
 		add(newLevel);
 		pause(2000);
+		add(ship);
 		remove(bossExplosion);
 		remove(newLevel);
 	}
