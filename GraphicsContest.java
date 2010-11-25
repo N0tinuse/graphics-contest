@@ -648,6 +648,7 @@ public class GraphicsContest extends GraphicsProgram {
 		pause(1500);
 		remove(death);
 		if (lives > -1) {
+		explosionCounter = 0;
 		pause(300);
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - ship.getHeight() / 2);
 		ship.setImage("Ship_08.png");
