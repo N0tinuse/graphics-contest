@@ -93,6 +93,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
 	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.wav");
+	AudioClip warningClip = MediaTools.loadAudioClip("warningClip.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -225,6 +226,7 @@ public class GraphicsContest extends GraphicsProgram {
 		warning.setColor(Color.RED);
 		warning.setLocation(getWidth() / 2 - warning.getWidth() / 2, getHeight() / 2 - warning.getAscent() / 2);
 		add(warning);
+		warningClip.play();
 		pause(500);
 		remove(warning);
 		pause(500);
@@ -235,6 +237,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(warning);
 		pause(500);
 		remove(warning);
+		warningClip.stop();
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
 		add(boss);
 	}
