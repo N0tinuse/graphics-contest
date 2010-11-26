@@ -760,7 +760,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyLaser.play();
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
-		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
+		if (enemyBulletCounter == 50) enemyBulletCounter = 0;
 	} 
 	
 	private void spawnEnemyBullet(GImage enemy, GImage ship) {
@@ -775,7 +775,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyLaser.play();
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
-		if (enemyBulletCounter == 100) enemyBulletCounter = 0;
+		if (enemyBulletCounter == 50) enemyBulletCounter = 0;
 	} 
 
 	private void spawnEnemy() {
@@ -818,7 +818,7 @@ public class GraphicsContest extends GraphicsProgram {
 			add(ship);
 			enemyCounter++;
 			enemiesPresent = true;
-			if (enemyCounter == 100) enemyCounter = 0;
+			if (enemyCounter == 50) enemyCounter = 0;
 	}
 
 	private void checkforShipCollisions() {
@@ -1054,7 +1054,7 @@ public class GraphicsContest extends GraphicsProgram {
 				add(ship);
 				laser.play();
 				bulletCounter++;
-				if (bulletCounter == 100) bulletCounter = 0;
+				if (bulletCounter == 50) bulletCounter = 0;
 				bulletsPresent = true;
 			}
 		}
