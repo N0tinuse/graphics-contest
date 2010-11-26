@@ -24,7 +24,8 @@ import acm.io.*;
  * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
  * explosion gif from http://djsmileyface.info/Photos.html
  * explosion sound from http://soundbible.com/456-Explosion-2.html
- * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm
+ * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm - originally from Starfox 64
+ * corneria theme from http://www.themesongshut.com/Super-Smash-Bros-Melee-Planet-Corneria-Theme-Song.html - originally from Super Smash Bros. Melee
  */
 
 public class GraphicsContest extends GraphicsProgram {
@@ -91,6 +92,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
+	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.mp3");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -110,6 +112,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	public void run() {
 		makeInitialLabels();
+		corneriaTheme.loop();
 		playGame();
 	}
 
