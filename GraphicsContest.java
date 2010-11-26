@@ -479,9 +479,10 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (loopCounter == 8000) {
+		if (loopCounter == 8600) {
 			add(bossApproachLabel);
 			bossApproachLabel.setLabel("ANOMALY DETECTED!");
+			bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getY());
 		}
 		if (loopCounter >= 9000) bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 		if (bulletsPresent) {
