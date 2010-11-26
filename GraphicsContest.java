@@ -112,12 +112,12 @@ public class GraphicsContest extends GraphicsProgram {
 
 	public void run() {
 		makeInitialLabels();
-		corneriaTheme.loop();
 		playGame();
 	}
 
 	private void playGame() {
 		addKeyListeners();
+		corneriaTheme.loop();
 		setUpGame();
 		while(lives > -1) {
 			checkforShipCollisions();
