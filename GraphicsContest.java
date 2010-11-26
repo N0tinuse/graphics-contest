@@ -197,7 +197,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss.setImage("mehranfacingleft.png");
+		case 4: boss = new GImage("mehranfacingleft.png");
 				break;
 		}
 		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
@@ -666,7 +666,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		loopCounter = 0;
-		bossCounter = 3;
+		bossCounter = 4;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
