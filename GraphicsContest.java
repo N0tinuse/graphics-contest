@@ -495,9 +495,7 @@ public class GraphicsContest extends GraphicsProgram {
 					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows  && bulletCollisionChecker(bullets[i]) != enemyExplosion && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
 						enemyExplosion.setSize(bulletCollisionChecker(bullets[i]).getWidth(), 200 * bulletCollisionChecker(bullets[i]).getWidth() / (double)142);
 						enemyExplosion.setLocation((bulletCollisionChecker(bullets[i]).getX() + bulletCollisionChecker(bullets[i]).getWidth() / 2 - enemyExplosion.getWidth() / 2), bulletCollisionChecker(bullets[i]).getY() + bulletCollisionChecker(bullets[i]).getHeight() / 2 - enemyExplosion.getHeight() / 2);
-						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
-						remove(bulletCollisionChecker(bullets[i]));
-						if (bulletCollisionChecker(bullets[i]) == gameArea) add(gameArea);						
+						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);						
 						explosionCounter = 1;
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
