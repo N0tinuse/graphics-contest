@@ -666,7 +666,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		loopCounter = 0;
-		bossCounter = 4;
+		bossCounter = 3;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
