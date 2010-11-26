@@ -471,9 +471,9 @@ public class GraphicsContest extends GraphicsProgram {
 		newLevel.setFont("Sans Serif-100");
 		newLevel.setColor(Color.RED);
 		newLevel.setLocation(getWidth() / 2 - newLevel.getWidth() / 2, getHeight() / 2 - newLevel.getAscent() / 2);
+		add(ship);
 		add(newLevel);
 		pause(2000);
-		add(ship);
 		remove(bossExplosion);
 		remove(newLevel);
 	}
