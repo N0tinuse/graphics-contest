@@ -124,7 +124,7 @@ public class GraphicsContest extends GraphicsProgram {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
-			if (loopCounter == 2000) {
+			if (loopCounter == 12000) {
 				initializeBoss();
 			}
 			if (!bossPresent) {
@@ -750,33 +750,11 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
-		if (bossCounter == 1) {
-			newBullet.setLocation(boss.getX() + 380, boss.getY() + 160);
-		}
-		if (bossCounter == 1) {
-			newBullet.setLocation(boss.getX() + 380, boss.getY() + 160);
-		}
-		if (bossCounter == 2) {
-			if (boss.getImage().equals("arwingfacingright.jpg")) {
-				newBullet.setLocation(boss.getX() + 270, boss.getY() + 180);
-			} else newBullet.setLocation(boss.getX() + 130, boss.getY() + 180);
-		}
-		if (bossCounter == 3) {
-			int gunDeterminer = rgen.nextInt(2);
-			if (gunDeterminer == 0) newBullet.setLocation(boss.getX() + 330, boss.getY() + 200);
-			if (gunDeterminer == 1) newBullet.setLocation(boss.getX() + 680, boss.getY() + 200);
-		}
-		if (bossCounter == 4) {
-			if (boss.getImage().equals("mehranfacingright.jpg")) {
-				newBullet.setLocation(boss.getX() + 265, boss.getY() + 395);
-			} else newBullet.setLocation(boss.getX() + 135, boss.getY() + 395);
-		}
-			
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
-		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (newBullet.getX() - 30) / (double)480);
-		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (newBullet.getY() - 30) / (double)480);
+		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)480;
+		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)480;
 		add(enemyBullets[enemyBulletCounter]);
 		enemyLaser.play();
 		enemyBulletCounter++;
