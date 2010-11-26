@@ -552,6 +552,7 @@ public class GraphicsContest extends GraphicsProgram {
 							enemies[k].setLocation(2500, 900);
 						}
 					}
+					remove(ship);
 					processDeath();
 				}
 				if (enemies[i].getHeight() >= 100) {
