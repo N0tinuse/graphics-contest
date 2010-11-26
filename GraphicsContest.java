@@ -432,6 +432,8 @@ public class GraphicsContest extends GraphicsProgram {
 				youWin.setLocation(getWidth() / 2 - youWin.getWidth() / 2, getHeight() / 2 - youWin.getAscent() / 2);
 				add(youWin);
 				pause(2000);
+				removeAll();
+				lives = -1;
 				processGameOver();
 			} else levelUp();
 		}
@@ -664,13 +666,13 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		loopCounter = 0;
-		bossCounter = 0;
+		bossCounter = 4;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
 		bossHealth[2] = 80;
 		bossHealth[3] = 150;
-		bossHealth[4] = 400;
+		bossHealth[4] = 20;
 		lives = 3;
 	}
 
