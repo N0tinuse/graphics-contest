@@ -12,6 +12,8 @@ import java.awt.*;
 import java.util.*;
 import java.applet.*;
 import acm.util.*;
+import java.io.*;
+import acm.io.*;
 
 /* GImage credits:
  * star background found at a1star.com
@@ -89,15 +91,14 @@ public class GraphicsContest extends GraphicsProgram {
 	private GImage barrelRollArrows = new GImage("barrelrollarrows.png");
 	
 	AudioClip doABarrelRoll = MediaTools.loadAudioClip("barrelroll.wav");
-	AudioClip neverDefeatMe = MediaTools.loadAudioClip("neverdefeat.wav");
-	AudioClip truePain = MediaTools.loadAudioClip("truepain.wav");
-	AudioClip foolish = MediaTools.loadAudioClip("foolish.wav");
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
+	private int[] highScores;
+	private String[] highScoreNames;
 	
 
 	public void init() {
@@ -106,7 +107,9 @@ public class GraphicsContest extends GraphicsProgram {
 		gameArea.setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		add(gameArea);
 		/* addMouseListeners(); */
-
+		highScoreNames = new String[10];
+		highScores = new int[10];
+		highScoreReader();
 	}
 
 	public void run() {
@@ -150,11 +153,20 @@ public class GraphicsContest extends GraphicsProgram {
 			pause(5);
 		}
 		removeAll();
-		GLabel gameOver = new GLabel("Game Over", 0, 0);
-		gameOver.setFont("Sans Serif-100");
-		gameOver.setColor(Color.RED);
-		gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
-		add(gameOver);
+		processGameOver();
+		
+	}
+
+	private void processGameOver() {
+		if (score > highScores[9]) setHighScore();
+		else {
+			add(gameArea);
+			GLabel gameOver = new GLabel("Game Over", 0, 0);
+			gameOver.setFont("Sans Serif-100");
+			gameOver.setColor(Color.RED);
+			gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
+			add(gameOver);
+		}
 	}
 
 	private void barrelRollChecker() {
@@ -390,7 +402,34 @@ public class GraphicsContest extends GraphicsProgram {
 		barrelRollChecker();
 		if (currentBossHealth == 0) {
 			if (bossCounter == 4) {
-				gameWin();
+				removeAll();
+				for (int k = 0; k < enemies.length; k++) {
+					if (enemies[k] != null) {
+						enemies[k].setLocation(2500, 900);
+					}
+				}
+				for (int k = 0; k < enemyBullets.length; k++) {
+					if (enemyBullets[k] != null) {
+						enemyBullets[k].setLocation(2200, 900);
+						enemyXBulletVelocities[k] = 0;
+						enemyYBulletVelocities[k] = 0;
+					}
+				}
+				GImage bossExplosion = new GImage("explosion.gif");
+				bossExplosion.setSize(boss.getWidth(), 200 * boss.getWidth() / (double)142);
+				bossExplosion.setLocation(boss.getX() + boss.getWidth() / 2 - bossExplosion.getWidth() / 2, boss.getY() + boss.getHeight() / 2 - bossExplosion.getHeight() / 2);
+				explosion.play();
+				add(gameArea);
+				add(scoreLabel);
+				add(livesLabel);
+				add(bossExplosion);
+				GLabel youWin = new GLabel("YOU WIN!", 0, 0);
+				youWin.setFont("Sans Serif-100");
+				youWin.setColor(Color.RED);
+				youWin.setLocation(getWidth() / 2 - youWin.getWidth() / 2, getHeight() / 2 - youWin.getAscent() / 2);
+				add(youWin);
+				pause(2000);
+				processGameOver();
 			} else levelUp();
 		}
 	}
@@ -771,7 +810,6 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		}
 		newEnemy.setLocation(rgen.nextInt(236, getWidth() - 236), rgen.nextInt(100, getHeight() - 100));
-		if (getElementAt (newEnemy.getX(), newEnemy.getY()) != gameArea && getElementAt (newEnemy.getX(), newEnemy.getY()) != ship) {
 			enemies[enemyCounter] = (newEnemy);
 			remove(ship);
 			add(enemies[enemyCounter]);
@@ -779,7 +817,6 @@ public class GraphicsContest extends GraphicsProgram {
 			enemyCounter++;
 			enemiesPresent = true;
 			if (enemyCounter == 100) enemyCounter = 0;
-		}
 	}
 
 	private void checkforShipCollisions() {
@@ -1021,14 +1058,77 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 	
-	private void gameWin() {
+	private void setHighScore() {
 		removeAll();
 		add(gameArea);
 		addHighScoreTable();
 	}
 	
 	private void addHighScoreTable() {
-		removeAll();
+		highScoreModification();
+		highScoreRewrite();
+		highScoreDisplay();
+	}
+	
+	private void highScoreReader() {
+		try {
+			BufferedReader rd = new BufferedReader(new FileReader("HighScores.txt"));
+			int lineNumber = 0;
+			while(true) {
+				String line = rd.readLine();
+				if (line == null) break;
+				int stringBreakPoint = line.indexOf(":");
+				highScoreNames[lineNumber] = line.substring(0, stringBreakPoint);
+				highScores[lineNumber] = Integer.parseInt(line.substring(stringBreakPoint+1));
+				lineNumber++;
+			}
+			rd.close();
+		} catch (IOException ex) {
+			throw new ErrorException(ex);
+		}
+	}
+
+	//reassigns high scores if the user gets one
+	private void highScoreModification() {
+		IODialog dialog = new IODialog();
+		String highScore = dialog.readLine("High Score! Enter your initials:");
+		if (score >= highScores[9]){
+			for (int i = 0; i < 10; i++) {
+				if (score >= highScores[i]) {
+					for (int j = 9; j > i; j--) {
+						highScoreNames[j] = highScoreNames[j-1];
+						highScores[j] = highScores[j-1];
+					}
+					highScoreNames[i] = highScore;
+					highScores[i] = score;
+					break;
+				}
+			}
+		}
+		highScoreRewrite();
+	}
+	
+	// writes high scores to the high score text file
+	private void highScoreRewrite() {
+		try {
+			PrintWriter wr = new PrintWriter(new FileWriter("HighScores.txt"));
+			for (int lineNumber = 0; lineNumber < 10; lineNumber++) {
+				wr.println(highScoreNames[lineNumber] + ":" + highScores[lineNumber]);
+			}
+			wr.close();
+		} catch (IOException ex) {
+			throw new ErrorException(ex);
+		}
+	}
+	
+	private void highScoreDisplay() {
+		for (int i = 0; i < 10; i++) {
+			GLabel highScoreLabel = new GLabel((i+1) + "." + highScoreNames[i] + "    " + highScores[i]);
+			highScoreLabel.setColor(Color.WHITE);
+			highScoreLabel.setFont("Serif-36");
+			highScoreLabel.setLocation(getWidth() / 2 - 100, getHeight() / 4 + i * 50);
+			add(highScoreLabel);
+		}
 	}
 
 	/* private void makeInitialLabels() {
