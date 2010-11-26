@@ -124,7 +124,7 @@ public class GraphicsContest extends GraphicsProgram {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
-			if (loopCounter == 12000) {
+			if (loopCounter == 2000) {
 				initializeBoss();
 			}
 			if (!bossPresent) {
