@@ -647,7 +647,7 @@ public class GraphicsContest extends GraphicsProgram {
 		bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getAscent());
 		lifeLabels = new GImage[3];
 		for (int i = 0; i < lifeLabels.length; i++) {
-			lifeLabels[i] = new GImage("placeholder.jpg");
+			lifeLabels[i] = new GImage("placeholder.png");
 			lifeLabels[i].setLocation(getWidth() - 180 + i * 60, 0);
 			lifeLabels[i].setSize(60, 60);
 			add(lifeLabels[i]);
@@ -786,7 +786,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnEnemy() {
 		int enemyDeterminant = rgen.nextInt(7);
-		GImage newEnemy = new GImage("placeholder.jpg");
+		GImage newEnemy = new GImage("placeholder.png");
 		switch(enemyDeterminant) {
 		case 0: newEnemy.setImage("enemy01.png");
 				newEnemy.setSize(1.41, 1);
