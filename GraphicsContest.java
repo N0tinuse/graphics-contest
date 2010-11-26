@@ -92,7 +92,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
-	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.mp3");
+	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.wav");
 	
 	private int score;
 	private GLabel scoreLabel;
@@ -117,7 +117,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void playGame() {
 		addKeyListeners();
-		corneriaTheme.play();
+		corneriaTheme.loop();
 		setUpGame();
 		while(lives > -1) {
 			checkforShipCollisions();
