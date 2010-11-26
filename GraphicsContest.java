@@ -124,7 +124,7 @@ public class GraphicsContest extends GraphicsProgram {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
-			if (loopCounter == 1000) {
+			if (loopCounter == 12000) {
 				initializeBoss();
 			}
 			if (!bossPresent) {
@@ -197,7 +197,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss = new GImage("mehranfacingleft.png");
+		case 4: boss.setImage("mehranfacingleft.png");
 				break;
 		}
 		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
@@ -663,15 +663,15 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyImageValues = new int[50];
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
-		score = 50000;
+		score = 0;
 		loopCounter = 0;
-		bossCounter = 4;
+		bossCounter = 0;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
 		bossHealth[2] = 80;
 		bossHealth[3] = 150;
-		bossHealth[4] = 20;
+		bossHealth[4] = 400;
 		lives = 3;
 	}
 
