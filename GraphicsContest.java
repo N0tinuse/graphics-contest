@@ -535,7 +535,7 @@ public class GraphicsContest extends GraphicsProgram {
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				} 
 				int bulletDeterminant = rgen.nextInt(500);
-				if (bulletDeterminant >= 497 - 1 * bossCounter && enemies[i].getHeight() < 20) {
+				if (bulletDeterminant >= 499 - 1 * bossCounter && enemies[i].getHeight() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
@@ -668,9 +668,6 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void processDeath() {
-		for (int j = 0; j < lives; j++) {
-			remove(lifeLabels[j]);
-		}
 		lives--;
 		removeAll();
 		add(gameArea);
@@ -1129,13 +1126,13 @@ public class GraphicsContest extends GraphicsProgram {
 		GLabel highScoreTitle = new GLabel("High Scores");
 		highScoreTitle.setColor(Color.WHITE);
 		highScoreTitle.setFont("Serif-36");
-		highScoreTitle.setLocation(getWidth() / 2 - highScoreTitle.getWidth() / 2, getHeight() / 4 - highScoreTitle.getAscent());
+		highScoreTitle.setLocation(getWidth() / 2 - highScoreTitle.getWidth() / 2, getHeight() / 4 - highScoreTitle.getAscent() * 2);
 		add(highScoreTitle);
 		for (int i = 0; i < 10; i++) {
 			GLabel highScoreLabel = new GLabel((i+1) + "." + highScoreNames[i] + "    " + highScores[i]);
 			highScoreLabel.setColor(Color.WHITE);
 			highScoreLabel.setFont("Serif-36");
-			highScoreLabel.setLocation(getWidth() / 2 - 100, getHeight() / 4 + i * 50);
+			highScoreLabel.setLocation(getWidth() / 2 - highScoreLabel.getWidth() / 2, getHeight() / 4 + i * 50);
 			add(highScoreLabel);
 		}
 	}
