@@ -214,9 +214,6 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
-		add(bossHealthLabel);
-		add(bossHealthBarOutside);
-		add(bossHealthBarInside);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
@@ -250,6 +247,9 @@ public class GraphicsContest extends GraphicsProgram {
 		pause(200);
 		remove(warning);
 		warningClip.stop();
+		add(bossHealthLabel);
+		add(bossHealthBarOutside);
+		add(bossHealthBarInside);
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
 		add(boss);
 	}
