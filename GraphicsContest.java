@@ -247,9 +247,8 @@ public class GraphicsContest extends GraphicsProgram {
 		remove(warning);
 		pause(250);
 		add(warning);
-		pause(250);
+		pause(240);
 		remove(warning);
-		pause(100);
 		warningClip.stop();
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
 		add(boss);
