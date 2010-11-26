@@ -92,7 +92,7 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
 	AudioClip explosion = MediaTools.loadAudioClip("explosion.wav");
-	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.wav");
+	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.mp3");
 	
 	private int score;
 	private GLabel scoreLabel;
