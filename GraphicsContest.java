@@ -434,7 +434,6 @@ public class GraphicsContest extends GraphicsProgram {
 				pause(2000);
 				removeAll();
 				lives = -1;
-				processGameOver();
 			} else levelUp();
 		}
 	}
