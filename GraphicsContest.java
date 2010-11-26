@@ -1122,6 +1122,11 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	private void highScoreDisplay() {
+		GLabel highScoreTitle = new GLabel("High Scores");
+		highScoreTitle.setColor(Color.WHITE);
+		highScoreTitle.setFont("Serif-36");
+		highScoreTitle.setLocation(getWidth() / 2 - highScoreTitle.getWidth() / 2, getHeight() / 4 - highScoreTitle.getAscent());
+		add(highScoreTitle);
 		for (int i = 0; i < 10; i++) {
 			GLabel highScoreLabel = new GLabel((i+1) + "." + highScoreNames[i] + "    " + highScores[i]);
 			highScoreLabel.setColor(Color.WHITE);
