@@ -1165,11 +1165,11 @@ public class GraphicsContest extends GraphicsProgram {
 		instructions3.setFont("Serif-30");
 		instructions4.setFont("Serif-30");
 		instructions5.setFont("Serif-30");
-		instructions1.setLocation(getWidth() / 2 - instructions1.getWidth() / 2, getHeight() / 5 + 200);
-		instructions2.setLocation(getWidth() / 2 - instructions2.getWidth() / 2, getHeight() / 5 + 250);
-		instructions3.setLocation(getWidth() / 2 - instructions3.getWidth() / 2, getHeight() / 5 + 300);
-		instructions4.setLocation(getWidth() / 2 - instructions4.getWidth() / 2, getHeight() / 5 + 350);
-		instructions5.setLocation(getWidth() / 2 - instructions5.getWidth() / 2, getHeight() / 5 + 400);
+		instructions1.setLocation(getWidth() / 2 - instructions1.getWidth() / 2, getHeight() / 5 + 100);
+		instructions2.setLocation(getWidth() / 2 - instructions2.getWidth() / 2, getHeight() / 5 + 150);
+		instructions3.setLocation(getWidth() / 2 - instructions3.getWidth() / 2, getHeight() / 5 + 200);
+		instructions4.setLocation(getWidth() / 2 - instructions4.getWidth() / 2, getHeight() / 5 + 250);
+		instructions5.setLocation(getWidth() / 2 - instructions5.getWidth() / 2, getHeight() / 5 + 300);
 		add(instructions1);
 		add(instructions2);
 		add(instructions3);
