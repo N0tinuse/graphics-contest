@@ -647,13 +647,13 @@ public class GraphicsContest extends GraphicsProgram {
 			add(lifeLabels[i]);
 		}
 		bulletCounter = 0;
-		bullets = new GOval[100];
-		bulletVelocities = new double[100];
-		enemies = new GImage[100];
-		enemyBullets = new GOval[100];
-		enemyXBulletVelocities = new double[100];
-		enemyYBulletVelocities = new double[100];
-		enemyImageValues = new int[100];
+		bullets = new GOval[50];
+		bulletVelocities = new double[50];
+		enemies = new GImage[50];
+		enemyBullets = new GOval[50];
+		enemyXBulletVelocities = new double[50];
+		enemyYBulletVelocities = new double[50];
+		enemyImageValues = new int[50];
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
 		score = 0;
