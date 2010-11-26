@@ -649,6 +649,7 @@ public class GraphicsContest extends GraphicsProgram {
 		for (int i = 0; i < lifeLabels.length; i++) {
 			lifeLabels[i] = new GImage("placeholder.png");
 			lifeLabels[i].setLocation(getWidth() - 180 + i * 60, 0);
+			lifeLabels[i].setSize(100, 60);
 			add(lifeLabels[i]);
 		}
 		bulletCounter = 0;
