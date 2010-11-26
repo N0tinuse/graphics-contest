@@ -32,9 +32,6 @@ public class GraphicsContest extends GraphicsProgram {
 	private static final int PROGRAM_WIDTH = 1600;
 	private static final int PROGRAM_HEIGHT = 800;
 	private GImage gameArea;
-	private GLabel gameTitle;
-	private GLabel highScoreButton;
-	private GLabel playGameButton;
 	private GImage ship;
 
 	private boolean shipMovingUp;
@@ -1136,21 +1133,23 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void makeInitialLabels() {
-		gameTitle = new GLabel("STARFIGHTER 106A", 0, 0);
+		GLabel gameTitle = new GLabel("STARFIGHTER 106A", 0, 0);
 		gameTitle.setColor(Color.RED);
 		gameTitle.setFont("Lucida-Bold-72");
 		gameTitle.setLocation(getWidth() / 2 - gameTitle.getWidth() / 2, getHeight() / 5);
 		add(gameTitle);
-		playGameButton = new GLabel("Play Game", 0, 0);
-		playGameButton.setColor(Color.WHITE);
-		playGameButton.setFont("Sans Serif-36");
-		playGameButton.setLocation(getWidth() / 2 - playGameButton.getWidth() / 2, getHeight() / 2 + playGameButton.getAscent()/2);
-		add(playGameButton);
-		highScoreButton = new GLabel ("High Scores", 0, 0);
-		highScoreButton.setColor(Color.WHITE);
-		highScoreButton.setFont("Sans Serif-36");
-		highScoreButton.setLocation(getWidth() / 2 - highScoreButton.getWidth() / 2, 3 * getHeight() / 4);
-		add(highScoreButton);
+		GLabel startingLabel = new GLabel("STARTS IN 3", 0, 0);
+		startingLabel.setColor(Color.RED);
+		startingLabel.setFont("Lucida-Bold-72");
+		startingLabel.setLocation(getWidth() / 2 - startingLabel.getWidth() / 2, 4 * getHeight() / 5);
+		add(startingLabel);
+		pause(1000);
+		startingLabel.setLabel("STARTS IN 2");
+		pause(1000);
+		startingLabel.setLabel("STARTS IN 1");
+		pause(1000);
+		remove(startingLabel);
+		remove(gameTitle);
 	} 
 
 
