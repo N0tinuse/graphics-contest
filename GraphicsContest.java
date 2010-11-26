@@ -118,7 +118,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void playGame() {
 		addKeyListeners();
-		corneriaTheme.play();
+		corneriaTheme.loop();
 		setUpGame();
 		while(lives > -1) {
 			checkforShipCollisions();
@@ -227,15 +227,27 @@ public class GraphicsContest extends GraphicsProgram {
 		warning.setLocation(getWidth() / 2 - warning.getWidth() / 2, getHeight() / 2 - warning.getAscent() / 2);
 		add(warning);
 		warningClip.play();
-		pause(500);
+		pause(250);
 		remove(warning);
-		pause(500);
+		pause(250);
 		add(warning);
-		pause(500);
+		pause(250);
 		remove(warning);
-		pause(500);
+		pause(250);
 		add(warning);
-		pause(500);
+		pause(250);
+		remove(warning);
+		pause(250);
+		add(warning);
+		pause(250);
+		remove(warning);
+		pause(250);
+		add(warning);
+		pause(250);
+		remove(warning);
+		pause(250);
+		add(warning);
+		pause(250);
 		remove(warning);
 		warningClip.stop();
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
