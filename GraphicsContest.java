@@ -103,7 +103,6 @@ public class GraphicsContest extends GraphicsProgram {
 		gameArea = new GImage("starfield.gif");
 		gameArea.setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		add(gameArea);
-		/* addMouseListeners(); */
 		highScoreNames = new String[10];
 		highScores = new int[10];
 		highScoreReader();
