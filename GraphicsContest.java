@@ -1155,11 +1155,11 @@ public class GraphicsContest extends GraphicsProgram {
 		GLabel instructions3 = new GLabel("Arrow Keys = Move");
 		GLabel instructions4 = new GLabel("Shift = Hold Ship Stationary");
 		GLabel instructions5 = new GLabel("Double tap left or right to do a barrel roll!");
-		instructions1.setColor(Color.BLUE);
-		instructions2.setColor(Color.BLUE);
-		instructions3.setColor(Color.BLUE);
-		instructions4.setColor(Color.BLUE);
-		instructions5.setColor(Color.BLUE);
+		instructions1.setColor(Color.GREEN);
+		instructions2.setColor(Color.GREEN);
+		instructions3.setColor(Color.GREEN);
+		instructions4.setColor(Color.GREEN);
+		instructions5.setColor(Color.GREEN);
 		instructions1.setFont("Serif-30");
 		instructions2.setFont("Serif-30");
 		instructions3.setFont("Serif-30");
