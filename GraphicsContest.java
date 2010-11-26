@@ -664,7 +664,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyImageValues = new int[50];
 		enemyBulletCounter = 0;
 		enemyCounter = 0;
-		score = 0;
+		score = 50000;
 		loopCounter = 0;
 		bossCounter = 4;
 		explosionCounter = 0;
