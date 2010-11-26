@@ -117,7 +117,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void playGame() {
 		addKeyListeners();
-		corneriaTheme.loop();
+		corneriaTheme.play();
 		setUpGame();
 		while(lives > -1) {
 			checkforShipCollisions();
