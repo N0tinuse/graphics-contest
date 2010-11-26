@@ -124,7 +124,7 @@ public class GraphicsContest extends GraphicsProgram {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
-			if (loopCounter == 2000) {
+			if (loopCounter == 12000) {
 				initializeBoss();
 			}
 			if (!bossPresent) {
@@ -479,7 +479,11 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void normalGameProcedure() {
-		if (loopCounter == 9000) add(bossApproachLabel);
+		if (loopCounter == 8000) {
+			add(bossApproachLabel);
+			bossApproachLabel.setLabel("ANOMALY DETECTED!");
+		}
+		if (loopCounter >= 9000) bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
@@ -606,7 +610,6 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		loopCounter++;
 		barrelRollChecker();
-		bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 		if (explosionCounter > 0) {
 			explosionCounter++;
 			if (explosionCounter > 40) {
