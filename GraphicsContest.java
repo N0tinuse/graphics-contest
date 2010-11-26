@@ -484,7 +484,10 @@ public class GraphicsContest extends GraphicsProgram {
 			bossApproachLabel.setLabel("ANOMALY DETECTED!");
 			bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getY());
 		}
-		if (loopCounter >= 9000) bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
+		if (loopCounter >= 9000) { 
+			bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
+			bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getY());
+		}
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
