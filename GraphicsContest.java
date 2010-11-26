@@ -190,11 +190,13 @@ public class GraphicsContest extends GraphicsProgram {
 		removeAll();
 		for (int k = 0; k < enemies.length; k++) {
 			if (enemies[k] != null) {
+				remove(enemies[k]);
 				enemies[k].setLocation(2500, 900);
 			}
 		}
 		for (int k = 0; k < enemyBullets.length; k++) {
 			if (enemyBullets[k] != null) {
+				remove(enemyBullets[k]);
 				enemyBullets[k].setLocation(2200, 900);
 				enemyXBulletVelocities[k] = 0;
 				enemyYBulletVelocities[k] = 0;
@@ -375,6 +377,7 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyBullets[i].setLocation(2200, 900);
 						for (int k = 0; k < enemyBullets.length; k++) {
 							if (enemyBullets[k] != null) {
+								remove(enemyBullets[k]);
 								enemyBullets[k].setLocation(2200, 900);
 								enemyXBulletVelocities[k] = 0;
 								enemyYBulletVelocities[k] = 0;
@@ -382,6 +385,7 @@ public class GraphicsContest extends GraphicsProgram {
 						}
 						for (int k = 0; k < enemies.length; k++) {
 							if (enemies[k] != null) {
+								remove(enemies[k]);
 								enemies[k].setLocation(2500, 900);
 							}
 						}
@@ -492,7 +496,6 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyExplosion.setSize(bulletCollisionChecker(bullets[i]).getWidth(), 200 * bulletCollisionChecker(bullets[i]).getWidth() / (double)142);
 						enemyExplosion.setLocation((bulletCollisionChecker(bullets[i]).getX() + bulletCollisionChecker(bullets[i]).getWidth() / 2 - enemyExplosion.getWidth() / 2), bulletCollisionChecker(bullets[i]).getY() + bulletCollisionChecker(bullets[i]).getHeight() / 2 - enemyExplosion.getHeight() / 2);
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);
-						remove(bulletCollisionChecker(bullets[i]));
 						explosionCounter = 1;
 						remove(bullets[i]);
 						bullets[i].setLocation(2000,900);
