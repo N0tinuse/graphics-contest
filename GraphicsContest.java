@@ -114,18 +114,6 @@ public class GraphicsContest extends GraphicsProgram {
 		playGame();
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		GObject clickedLabel = getElementAt(e.getX(), e.getY());
-		if (clickedLabel == playGameButton) {
-			removeAll();
-			playGameButton.setLocation(900,900);
-			gameTitle.setLocation(900,900);
-			highScoreButton.setLocation(900,900);
-			add(gameArea);
-			playGame();
-		}
-	}
-
 	private void playGame() {
 		addKeyListeners();
 		setUpGame();
