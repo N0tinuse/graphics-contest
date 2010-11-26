@@ -750,8 +750,8 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
-		if (bossCounter == 0) {
-			newBullet.setLocation(boss.getX() + 221, boss.getY() + 143);
+		if (bossCounter == 1) {
+			newBullet.setLocation(boss.getX() + 380, boss.getY() + 160);
 		}
 		if (bossCounter == 1) {
 			newBullet.setLocation(boss.getX() + 380, boss.getY() + 160);
@@ -777,7 +777,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyBullets[enemyBulletCounter] = newBullet;
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (newBullet.getX() - 30) / (double)480);
 		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (newBullet.getY() - 30) / (double)480);
-		add(newBullet);
+		add(enemyBullets[enemyBulletCounter]);
 		enemyLaser.play();
 		enemyBulletCounter++;
 		enemyBulletsPresent = true;
