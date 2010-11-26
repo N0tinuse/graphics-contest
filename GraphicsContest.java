@@ -113,10 +113,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	public void run() {
-		/* makeInitialLabels();
-		shipMovementX = 5;
-		shipMovementY = 5;
-		 */
+		makeInitialLabels();
 		playGame();
 	}
 
@@ -1138,7 +1135,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
-	/* private void makeInitialLabels() {
+	private void makeInitialLabels() {
 		gameTitle = new GLabel("STARFIGHTER 106A", 0, 0);
 		gameTitle.setColor(Color.RED);
 		gameTitle.setFont("Lucida-Bold-72");
@@ -1154,7 +1151,7 @@ public class GraphicsContest extends GraphicsProgram {
 		highScoreButton.setFont("Sans Serif-36");
 		highScoreButton.setLocation(getWidth() / 2 - highScoreButton.getWidth() / 2, 3 * getHeight() / 4);
 		add(highScoreButton);
-	} */
+	} 
 
 
 
