@@ -197,7 +197,6 @@ public class GraphicsContest extends GraphicsProgram {
 		loopCounter = 0;
 		bossPresent = true;
 		removeAll();
-		
 		removeEnemiesandEnemyBullets();
 		currentBossHealth = bossHealth[bossCounter];
 		switch (bossCounter) {
@@ -212,6 +211,7 @@ public class GraphicsContest extends GraphicsProgram {
 		case 4: boss.setImage("mehranfacingleft.png");
 				break;
 		}
+		//controls boss movement - picks a random coordinate on the screen to move to
 		bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
 		bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		bossHealthLabel = new GLabel("BOSS: ", 0, 0);
@@ -230,6 +230,7 @@ public class GraphicsContest extends GraphicsProgram {
 			add(lifeLabels[j]);
 		}
 		add(ship);
+		//flashes multiple times - thus the repeated pauses below
 		GLabel warning = new GLabel("WARNING!", 0, 0);
 		warning.setFont("Sans Serif-100");
 		warning.setColor(Color.RED);
@@ -265,18 +266,19 @@ public class GraphicsContest extends GraphicsProgram {
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
 		add(boss);
 	}
-
+	
+	//gets rid of enemies/bullets by removing them from the canvas and setting their location far offscreen so they don't collide with anything.
 	private void removeEnemiesandEnemyBullets() {
 		for (int k = 0; k < enemies.length; k++) {
 			if (enemies[k] != null) {
 				remove(enemies[k]);
-				enemies[k].setLocation(2500, 900);
+				enemies[k].setLocation(2500, 3000);
 			}
 		}
 		for (int k = 0; k < enemyBullets.length; k++) {
 			if (enemyBullets[k] != null) {
 				remove(enemyBullets[k]);
-				enemyBullets[k].setLocation(2200, 900);
+				enemyBullets[k].setLocation(2200, 3000);
 				enemyXBulletVelocities[k] = 0;
 				enemyYBulletVelocities[k] = 0;
 			}
@@ -359,6 +361,7 @@ public class GraphicsContest extends GraphicsProgram {
 			bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
 		}
+		//flips images of arwing/mehran as they move around the screen
 		if (bossCounter == 2) {
 			if (boss.getX() < getWidth() / 2 + boss.getWidth() / 2 && boss.getX() > getWidth() / 2  - boss.getWidth() / 2) {
 				if (boss.getX() < bossDestinationX) boss.setImage("arwingfacingright.png");
@@ -420,6 +423,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		barrelRollChecker();
 		if (currentBossHealth == 0) {
+			//last boss - game over
 			if (bossCounter == 4) {
 				removeAll();
 				removeEnemiesandEnemyBullets();
@@ -654,6 +658,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(scoreLabel);
 		add(livesLabel);
 		explosionCounter = 0;
+		enemyExplosion.setLocation(5000, 900);
 		add(enemyExplosion);
 		if (loopCounter >= 8600) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
