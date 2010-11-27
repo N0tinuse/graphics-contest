@@ -168,7 +168,7 @@ public class GraphicsContest extends GraphicsProgram {
 			gameOver.setColor(Color.RED);
 			gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
 			add(gameOver);
-			pause(5000);
+			pause(3000);
 			remove(gameOver);
 			highScoreDisplay();
 		}
@@ -748,8 +748,8 @@ public class GraphicsContest extends GraphicsProgram {
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
-		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)480;
-		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)480;
+		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (enemy.getX() + enemy.getWidth() / 2)) / (double)360;
+		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (enemy.getY() + enemy.getHeight() / 2)) / (double)360;
 		add(newBullet);
 		enemyLaser.play();
 		enemyBulletCounter++;
