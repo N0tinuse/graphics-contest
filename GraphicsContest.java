@@ -309,6 +309,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
+		//controls boss movement speed
 		if ((int)boss.getX() > bossDestinationX) {
 			if (bossCounter == 0 || bossCounter == 3 || bossCounter == 4) {
 				boss.move(-1, 0);
@@ -447,6 +448,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
+	//removes everything, initiates explosion, flashes a level up label for a while, then resumes normal gameplay
 	private void levelUp() {
 		removeAll();
 		removeEnemiesandEnemyBullets();
@@ -476,7 +478,8 @@ public class GraphicsContest extends GraphicsProgram {
 		remove(bossExplosion);
 		remove(newLevel);
 	}
-
+	
+	//how the game is played normally - i.e. when boss is not present
 	private void normalGameProcedure() {
 		if (loopCounter == 8600) {
 			add(bossApproachLabel);
@@ -518,6 +521,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemiesPresent) {
 			for (int i = 0; i < enemies.length; i++) {
 				if (enemies[i] == null) break;
+				//resizes enemy image based on image file
 				if (enemyImageValues[i] == 1) {
 					enemies[i].setLocation(enemies[i].getX() - 0.0705, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.141, enemies[i].getHeight() + 0.1);
@@ -560,6 +564,7 @@ public class GraphicsContest extends GraphicsProgram {
 			for (int i = 0; i < enemyBullets.length; i++) {
 				if (enemyBullets[i] == null) break;
 				if (enemyBullets[i].getX() != 2200) {
+					//resizes and changes color - only red bullets can hit the ship
 					enemyBullets[i].move(enemyXBulletVelocities[i], enemyYBulletVelocities[i]);
 					enemyBullets[i].setSize(enemyBullets[i].getWidth() + 0.2, enemyBullets[i].getHeight() + 0.2);
 					if (enemyBullets[i].getWidth() >= 16 && enemyBullets[i].getWidth() < 24) {
@@ -591,6 +596,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		loopCounter++;
 		barrelRollChecker();
+		//times how long an enemy explosion remains onscreen
 		if (explosionCounter > 0) {
 			explosionCounter++;
 			if (explosionCounter > 40) {
@@ -599,7 +605,8 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 	}
-
+	
+	//initiates game by adding images, initializing arrays, etc.
 	private void setUpGame() {
 		ship = new GImage("Ship_08.png");
 		ship.setLocation(getWidth() / 2 - ship.getWidth() / 2, getHeight() / 2 - 3 * ship.getHeight() / 7);
@@ -630,6 +637,7 @@ public class GraphicsContest extends GraphicsProgram {
 			add(lifeLabels[i]);
 		}
 		bulletCounter = 0;
+		//there are never 50 of these objects on screen at once, hopefully, although it gets close in level 5.
 		bullets = new GOval[50];
 		bulletVelocities = new double[50];
 		enemies = new GImage[50];
@@ -650,7 +658,8 @@ public class GraphicsContest extends GraphicsProgram {
 		bossHealth[4] = 400;
 		lives = 3;
 	}
-
+	
+	//procedure followed when ship collides with a bullet/enemy.
 	private void processDeath() {
 		lives--;
 		removeAll();
@@ -691,6 +700,9 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 	
+	/* these next methods are collision checkers similar to the one used for the ball in breakout; they don't work perfectly
+	 * but work most of the time.
+	 */
 	private GObject enemyBulletCollisionChecker(GOval enemyBullet) {
 		if (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()) != null) {
 			return (getElementAt (enemyBullet.getX() + enemyBullet.getWidth() / 2, enemyBullet.getY()));
@@ -748,7 +760,8 @@ public class GraphicsContest extends GraphicsProgram {
 			return null;
 		}
 	}
-
+	
+	//same code as the enemy bullet except boss bullets start at the middle of the boss image...
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
 		newBullet.setColor(Color.BLUE);
@@ -778,6 +791,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemyBulletCounter == 50) enemyBulletCounter = 0;
 	} 
 
+	//randomly sets enemy image/location on screen
 	private void spawnEnemy() {
 		int enemyDeterminant = rgen.nextInt(7);
 		GImage newEnemy = new GImage("placeholder.png");
@@ -821,6 +835,7 @@ public class GraphicsContest extends GraphicsProgram {
 			if (enemyCounter == 50) enemyCounter = 0;
 	}
 
+	//stops the ship from moving past the game's boundaries.
 	private void checkforShipCollisions() {
 		if (ship.getX() - shipMovementX < 0) {
 			ship.setLocation(0, ship.getY());
@@ -840,6 +855,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
+	//sets the image of the ship based on where it is on screen/whether a barrel roll is being performed.
 	private void checkforShipChange() {
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			remove(barrelRollArrows);
@@ -899,7 +915,8 @@ public class GraphicsContest extends GraphicsProgram {
 			shipImageConstant = 16;
 		}
 	}
-
+	
+	//actually moves the ship around.
 	private void moveShip() {
 		if (performLeftBarrelRoll) {
 			shipMovementX = -shipMovementValue * 2;
@@ -940,7 +957,8 @@ public class GraphicsContest extends GraphicsProgram {
 		} 
 		ship.move(shipMovementX, shipMovementY);
 	}
-
+	
+	//control ship movements.
 	public void keyPressed(KeyEvent e) {
 		if (!lifeLost) {
 			switch (e.getKeyCode()) {
@@ -980,7 +998,8 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 	}
-
+	
+	//resets boolean corresponding to key press
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: shipMovingUp = false; break;
@@ -990,6 +1009,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
+	//controls shooting bullets from the ship, also sets velocity of bullet based on ship position
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			if (!lifeLost) {
@@ -1060,6 +1080,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 	
+	//these methods set up the high score table
 	private void setHighScore() {
 		removeAll();
 		add(gameArea);
@@ -1072,6 +1093,7 @@ public class GraphicsContest extends GraphicsProgram {
 		highScoreDisplay();
 	}
 	
+	//reads high scores from file
 	private void highScoreReader() {
 		try {
 			BufferedReader rd = new BufferedReader(new FileReader("HighScores.txt"));
@@ -1123,6 +1145,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 	
+	//displays high scores in table on screen
 	private void highScoreDisplay() {
 		GLabel highScoreTitle = new GLabel("High Scores");
 		highScoreTitle.setColor(Color.WHITE);
@@ -1138,6 +1161,7 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 	}
 
+	//makes labels displayed at program's start
 	private void makeInitialLabels() {
 		GLabel gameTitle = new GLabel("STARFAUX 106A", 0, 0);
 		gameTitle.setColor(Color.RED);
