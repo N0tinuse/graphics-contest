@@ -30,11 +30,15 @@ import acm.io.*;
 
 public class GraphicsContest extends GraphicsProgram {
 
+	//specify width and height of program.
 	private static final int PROGRAM_WIDTH = 1600;
 	private static final int PROGRAM_HEIGHT = 800;
+	
+	//gameArea = background; ship = the ship in the foreground.
 	private GImage gameArea;
 	private GImage ship;
 
+	//instance variables used for ship movement, determining image, etc.
 	private boolean shipMovingUp;
 	private boolean shipMovingDown;
 	private boolean shipMovingRight;
@@ -44,12 +48,14 @@ public class GraphicsContest extends GraphicsProgram {
 	private static final int shipMovementValue = 5;
 	private int shipImageConstant;
 
+	//instance variables used for bullets fired from the ship.
 	private GOval[] bullets;
 	private double[] bulletVelocities;
 	private static final int BULLET_INITIAL_SIZE = 60;
 	private int bulletCounter;
 	private boolean bulletsPresent = false;
 
+	//instance variables used for enemies/their bullets and graphics. also I stuck the rgen in here for some reason.
 	private int enemyCounter;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	private GImage[] enemies;
@@ -63,12 +69,14 @@ public class GraphicsContest extends GraphicsProgram {
 	private GImage enemyExplosion = new GImage ("explosion.png");
 	private int explosionCounter;
 	
+	//ivars for lives and their labels.
 	private int lives;
 	private GImage[] lifeLabels;
 	private GLabel livesLabel;
 	private boolean lifeLost = false;
+	
+	//ivars for bosses
 	private GLabel bossApproachLabel;
-
 	private int loopCounter;
 	private boolean bossPresent = false;
 	private GImage boss;
@@ -81,6 +89,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private double bossDestinationY;
 	private int currentBossHealth;
 	
+	//ivars for barrel roll.
 	private boolean leftBarrelRollInitialized = false;
 	private boolean rightBarrelRollInitialized = false;
 	private int barrelRollTimeCounter;
@@ -88,6 +97,7 @@ public class GraphicsContest extends GraphicsProgram {
 	private boolean performRightBarrelRoll = false;
 	private GImage barrelRollArrows = new GImage("barrelrollarrows.png");
 	
+	//audio clips.
 	AudioClip doABarrelRoll = MediaTools.loadAudioClip("barrelroll.wav");
 	AudioClip laser = MediaTools.loadAudioClip("laser.wav");
 	AudioClip enemyLaser = MediaTools.loadAudioClip("enemylaser.wav");
@@ -95,12 +105,14 @@ public class GraphicsContest extends GraphicsProgram {
 	AudioClip corneriaTheme = MediaTools.loadAudioClip("corneriatheme.wav");
 	AudioClip warningClip = MediaTools.loadAudioClip("warning.wav");
 	
+	//ivars for scores/high scores
 	private int score;
 	private GLabel scoreLabel;
 	private int[] highScores;
 	private String[] highScoreNames;
 	
 
+	//sets the size of the program at 1600, 800. Also adds background and reads in high scores from a file.
 	public void init() {
 		setSize(PROGRAM_WIDTH, PROGRAM_HEIGHT);
 		gameArea = new GImage("starfield.gif");
@@ -120,23 +132,28 @@ public class GraphicsContest extends GraphicsProgram {
 		addKeyListeners();
 		corneriaTheme.loop();
 		setUpGame();
+		//this loop actually plays the game. 
 		while(lives > -1) {
 			checkforShipCollisions();
 			moveShip();
 			checkforShipChange();
+			//initializes boss after a minute spent in each level
 			if (loopCounter == 12000) {
 				initializeBoss();
 			}
+			//determines which type of gameplay to execute
 			if (!bossPresent) {
 				normalGameProcedure(); 
 			} else if (bossPresent) {
 				bossProcedure();
 			}
 			scoreLabel.setLabel("Score: " + score);
+			//makes sure ship is always in the foreground
 			remove(ship);
 			add(ship);
 			pause(5);
 		}
+		//only executed when loop breaks
 		removeAll();
 		processGameOver();
 		
@@ -151,9 +168,15 @@ public class GraphicsContest extends GraphicsProgram {
 			gameOver.setColor(Color.RED);
 			gameOver.setLocation(getWidth() / 2 - gameOver.getWidth() / 2, getHeight() / 2 - gameOver.getAscent() / 2);
 			add(gameOver);
+			pause(5000);
+			remove(gameOver);
+			highScoreDisplay();
 		}
 	}
-
+	
+	/* checks to see if barrel roll is currently being performed - if it is, it counts to a certain number, 
+	 * then resets all variables relating to barrel rolls
+	 */
 	private void barrelRollChecker() {
 		if (performLeftBarrelRoll || performRightBarrelRoll) {
 			barrelRollTimeCounter++;
@@ -169,24 +192,13 @@ public class GraphicsContest extends GraphicsProgram {
 		
 	}
 
+	//switches from normal game procedure to boss procedure
 	private void initializeBoss() {
 		loopCounter = 0;
 		bossPresent = true;
 		removeAll();
-		for (int k = 0; k < enemies.length; k++) {
-			if (enemies[k] != null) {
-				remove(enemies[k]);
-				enemies[k].setLocation(2500, 900);
-			}
-		}
-		for (int k = 0; k < enemyBullets.length; k++) {
-			if (enemyBullets[k] != null) {
-				remove(enemyBullets[k]);
-				enemyBullets[k].setLocation(2200, 900);
-				enemyXBulletVelocities[k] = 0;
-				enemyYBulletVelocities[k] = 0;
-			}
-		}
+		
+		removeEnemiesandEnemyBullets();
 		currentBossHealth = bossHealth[bossCounter];
 		switch (bossCounter) {
 		case 0: boss = new GImage("tiefighter.png");
@@ -252,6 +264,23 @@ public class GraphicsContest extends GraphicsProgram {
 		add(bossHealthBarInside);
 		boss.setLocation(getWidth() / 2 - boss.getWidth() / 2, getHeight() / 2 - boss.getHeight() / 2);
 		add(boss);
+	}
+
+	private void removeEnemiesandEnemyBullets() {
+		for (int k = 0; k < enemies.length; k++) {
+			if (enemies[k] != null) {
+				remove(enemies[k]);
+				enemies[k].setLocation(2500, 900);
+			}
+		}
+		for (int k = 0; k < enemyBullets.length; k++) {
+			if (enemyBullets[k] != null) {
+				remove(enemyBullets[k]);
+				enemyBullets[k].setLocation(2200, 900);
+				enemyXBulletVelocities[k] = 0;
+				enemyYBulletVelocities[k] = 0;
+			}
+		}
 	}
 	
 	private void bossProcedure() {
@@ -374,20 +403,7 @@ public class GraphicsContest extends GraphicsProgram {
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 						enemyBullets[i].setLocation(2200, 900);
-						for (int k = 0; k < enemyBullets.length; k++) {
-							if (enemyBullets[k] != null) {
-								remove(enemyBullets[k]);
-								enemyBullets[k].setLocation(2200, 900);
-								enemyXBulletVelocities[k] = 0;
-								enemyYBulletVelocities[k] = 0;
-							}
-						}
-						for (int k = 0; k < enemies.length; k++) {
-							if (enemies[k] != null) {
-								remove(enemies[k]);
-								enemies[k].setLocation(2500, 900);
-							}
-						}
+						removeEnemiesandEnemyBullets();
 						processDeath();
 						add(boss);
 						add(bossHealthLabel);
@@ -406,18 +422,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (currentBossHealth == 0) {
 			if (bossCounter == 4) {
 				removeAll();
-				for (int k = 0; k < enemies.length; k++) {
-					if (enemies[k] != null) {
-						enemies[k].setLocation(2500, 900);
-					}
-				}
-				for (int k = 0; k < enemyBullets.length; k++) {
-					if (enemyBullets[k] != null) {
-						enemyBullets[k].setLocation(2200, 900);
-						enemyXBulletVelocities[k] = 0;
-						enemyYBulletVelocities[k] = 0;
-					}
-				}
+				removeEnemiesandEnemyBullets();
 				GImage bossExplosion = new GImage("explosion.gif");
 				bossExplosion.setSize(boss.getWidth(), 200 * boss.getWidth() / (double)142);
 				bossExplosion.setLocation(boss.getX() + boss.getWidth() / 2 - bossExplosion.getWidth() / 2, boss.getY() + boss.getHeight() / 2 - bossExplosion.getHeight() / 2);
@@ -440,18 +445,7 @@ public class GraphicsContest extends GraphicsProgram {
 
 	private void levelUp() {
 		removeAll();
-		for (int k = 0; k < enemies.length; k++) {
-			if (enemies[k] != null) {
-				enemies[k].setLocation(2500, 900);
-			}
-		}
-		for (int k = 0; k < enemyBullets.length; k++) {
-			if (enemyBullets[k] != null) {
-				enemyBullets[k].setLocation(2200, 900);
-				enemyXBulletVelocities[k] = 0;
-				enemyYBulletVelocities[k] = 0;
-			}
-		}
+		removeEnemiesandEnemyBullets();
 		GImage bossExplosion = new GImage("explosion.gif");
 		bossExplosion.setSize(boss.getWidth(), 200 * boss.getWidth() / (double)142);
 		bossExplosion.setLocation(boss.getX() + boss.getWidth() / 2 - bossExplosion.getWidth() / 2, boss.getY() + boss.getHeight() / 2 - bossExplosion.getHeight() / 2);
@@ -548,18 +542,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
 					enemies[i].setLocation(2500, 900);
-					for (int k = 0; k < enemyBullets.length; k++) {
-						if (enemyBullets[k] != null) {
-							enemyBullets[k].setLocation(2200, 900);
-							enemyXBulletVelocities[k] = 0;
-							enemyYBulletVelocities[k] = 0;
-						}
-					}
-					for (int k = 0; k < enemies.length; k++) {
-						if (enemies[k] != null) {
-							enemies[k].setLocation(2500, 900);
-						}
-					}
+					removeEnemiesandEnemyBullets();
 					remove(ship);
 					processDeath();
 				}
@@ -589,18 +572,7 @@ public class GraphicsContest extends GraphicsProgram {
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
 						enemyBullets[i].setLocation(2200, 900);
-						for (int k = 0; k < enemyBullets.length; k++) {
-							if (enemyBullets[k] != null) {
-								enemyBullets[k].setLocation(2200, 900);
-								enemyXBulletVelocities[k] = 0;
-								enemyYBulletVelocities[k] = 0;
-							}
-						}
-						for (int k = 0; k < enemies.length; k++) {
-							if (enemies[k] != null) {
-								enemies[k].setLocation(2500, 900);
-							}
-						}
+						removeEnemiesandEnemyBullets();
 						processDeath();
 					}
 					if (enemyBullets[i].getWidth() > 60) {
@@ -683,7 +655,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(livesLabel);
 		explosionCounter = 0;
 		add(enemyExplosion);
-		if (loopCounter >= 9000) add(bossApproachLabel);
+		if (loopCounter >= 8600) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
 		}
