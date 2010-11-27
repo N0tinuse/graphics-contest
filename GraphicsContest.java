@@ -1146,7 +1146,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private void makeInitialLabels() {
-		GLabel gameTitle = new GLabel("STARFIGHTER 106A", 0, 0);
+		GLabel gameTitle = new GLabel("STARFAUX 106A", 0, 0);
 		gameTitle.setColor(Color.RED);
 		gameTitle.setFont("Lucida-Bold-72");
 		gameTitle.setLocation(getWidth() / 2 - gameTitle.getWidth() / 2, getHeight() / 5);
