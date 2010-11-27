@@ -731,20 +731,12 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	private GObject bulletCollisionChecker(GOval bullet) {
-		if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth() / 2, bullet.getY() + bullet.getHeight()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight() / 2));
-		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2) != null) {
-			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight() / 2));
-		} else if (getElementAt (bullet.getX(), bullet.getY()) != null) {
+		if (getElementAt (bullet.getX(), bullet.getY()) != null) {
 			return (getElementAt (bullet.getX(), bullet.getY()));
-		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()) != null) {
-			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()));
 		} else if (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()) != null) {
 			return (getElementAt (bullet.getX(), bullet.getY() + bullet.getHeight()));
+		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()) != null) {
+			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY()));
 		} else if (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()) != null) {
 			return (getElementAt (bullet.getX() + bullet.getWidth(), bullet.getY() + bullet.getHeight()));
 		} else {
