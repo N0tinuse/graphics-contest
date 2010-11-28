@@ -166,6 +166,7 @@ public class GraphicsContest extends GraphicsProgram {
 		
 	}
 
+	//either sets a new high score or displays the table.
 	private void processGameOver() {
 		if (score > highScores[9]) setHighScore();
 		else {
@@ -200,6 +201,9 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 
 	//switches from normal game procedure to boss procedure
+	/* removes all bullets from screen, sets boss image, chooses first boss destination,
+	 * makes labels relating to boss, flashes warning screen, then adds the boss.
+	 */
 	private void initializeBoss() {
 		loopCounter = 0;
 		bossPresent = true;
@@ -293,6 +297,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	private void bossProcedure() {
+		//same code here as normal - checks to see if the bullets collide with anything. takes away boss health bar if they do.
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
@@ -365,6 +370,7 @@ public class GraphicsContest extends GraphicsProgram {
 				if (boss.getY() < bossDestinationY) boss.move(0, 1);
 			} 
 		}
+		//chooses new random destination when the boss hits a certain coordinate
 		if ((int)boss.getX() == bossDestinationX && (int)boss.getY() == bossDestinationY) {
 			bossDestinationX = rgen.nextInt(0, (int)getWidth() - (int)boss.getWidth());
 			bossDestinationY = rgen.nextInt(0, (int)getHeight() - (int)boss.getHeight());
@@ -390,6 +396,7 @@ public class GraphicsContest extends GraphicsProgram {
 				boss.setImage("mehranfacingleft.png");
 			}
 		}
+		//similar stretch of code here to normal procedure - randomly spawns bullets and moves the ones already present.
 		int bulletDeterminant = rgen.nextInt(500);
 		if (bulletDeterminant >= 500 - 2 * (bossCounter+1)) {
 			spawnBossBullet(boss, ship);
@@ -430,6 +437,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		barrelRollChecker();
+		//processes boss death with an explosion
 		if (currentBossHealth == 0) {
 			//last boss - game over
 			if (bossCounter == 4) {
@@ -489,6 +497,7 @@ public class GraphicsContest extends GraphicsProgram {
 	
 	//how the game is played normally - i.e. when boss is not present
 	private void normalGameProcedure() {
+		//adds label when boss is approaching
 		if (loopCounter == 8600) {
 			add(bossApproachLabel);
 			bossApproachLabel.setLabel("ANOMALY DETECTED!");
@@ -498,6 +507,7 @@ public class GraphicsContest extends GraphicsProgram {
 			bossApproachLabel.setLabel("DISTANCE TO ANOMALY: " + (72000 - loopCounter * 6));
 			bossApproachLabel.setLocation(getWidth() / 2 - bossApproachLabel.getWidth() / 2, bossApproachLabel.getY());
 		}
+		//checks for bullet collisions and removes ones that collide/are too small
 		if (bulletsPresent) {
 			for (int i = 0; i < bullets.length; i++) {
 				if (bullets[i] == null) break;
@@ -522,6 +532,7 @@ public class GraphicsContest extends GraphicsProgram {
 				}
 			}
 		}
+		//randomly spawns enemy
 		int enemyDeterminant = rgen.nextInt(500);
 		if (enemyDeterminant >= 499 - 1 * bossCounter) {
 			spawnEnemy();
@@ -552,6 +563,7 @@ public class GraphicsContest extends GraphicsProgram {
 					enemies[i].setLocation(enemies[i].getX() - 0.0385, enemies[i].getY() - 0.05);
 					enemies[i].setSize(enemies[i].getWidth() + 0.077, enemies[i].getHeight() + 0.1);
 				} 
+				//spawns enemy bullets randomly
 				int bulletDeterminant = rgen.nextInt(500);
 				if (bulletDeterminant >= 499 - 1 * bossCounter && enemies[i].getHeight() < 20) {
 					spawnEnemyBullet(enemies[i], ship);
@@ -669,6 +681,9 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	//procedure followed when ship collides with a bullet/enemy.
+	/* removes everything on screen, readds essentials, relocates ship to center of screen and flashes
+	 * then resumes normal gameplay
+	 */
 	private void processDeath() {
 		lives--;
 		removeAll();
@@ -771,6 +786,7 @@ public class GraphicsContest extends GraphicsProgram {
 	}
 	
 	//same code as the enemy bullet except boss bullets start at the middle of the boss image...
+	//unless it's the enterprise, where bullets spawn from the two guns, or mehran, where they come from his mouth
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
 		if (bossCounter == 3) {
@@ -799,6 +815,7 @@ public class GraphicsContest extends GraphicsProgram {
 		if (enemyBulletCounter == 50) enemyBulletCounter = 0;
 	} 
 	
+	//makes new enemy bullet and sets its velocity based on relative position to the ship
 	private void spawnEnemyBullet(GImage enemy, GImage ship) {
 		GOval newBullet = new GOval(enemy.getX() + enemy.getWidth() / 2, enemy.getY() + enemy.getHeight() / 2, 3 * enemy.getHeight() / 5, 3 * enemy.getHeight() / 5);
 		newBullet.setLocation(enemy.getX() + enemy.getWidth() / 2 - newBullet.getWidth() / 2, enemy.getY() + enemy.getHeight() / 2 - newBullet.getHeight() / 2);
