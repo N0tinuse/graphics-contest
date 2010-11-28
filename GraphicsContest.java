@@ -769,7 +769,11 @@ public class GraphicsContest extends GraphicsProgram {
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
 		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)320;
-		enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)320;
+		if (bossCounter != 4) {
+			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)320;
+		} else {
+			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 390)) / (double)320;
+		}
 		add(enemyBullets[enemyBulletCounter]);
 		enemyLaser.play();
 		enemyBulletCounter++;
