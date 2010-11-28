@@ -775,8 +775,8 @@ public class GraphicsContest extends GraphicsProgram {
 			if (gunDeterminer == 0) newBullet.setLocation(boss.getX() + 325, boss.getY() + 200);
 			if (gunDeterminer == 1) newBullet.setLocation(boss.getX() + 675, boss.getY() + 200);
 		}
-		if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) newBullet.setLocation(boss.getX() + 135, boss.getY() + 395);
-		if (bossCounter == 4 && boss.equals("mehranfacingright.png")) newBullet.setLocation(boss.getX() + 265, boss.getY() + 395);
+		if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) newBullet.setLocation(boss.getX() + 135, boss.getY() + 505);
+		if (bossCounter == 4 && boss.equals("mehranfacingright.png")) newBullet.setLocation(boss.getX() + 265, boss.getY() + 505);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
@@ -789,7 +789,7 @@ public class GraphicsContest extends GraphicsProgram {
 		} else if (bossCounter == 4 && boss.equals("mehranfacingright.png")) {
 			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + 265)) / (double)320;
 			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 395)) / (double)320;
-		} else if (bossCounter == 3 ) {
+		} else if (bossCounter == 3) {
 			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - newBullet.getX()) / (double)320;
 			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - newBullet.getY()) / (double)320;
 		}
@@ -1108,6 +1108,9 @@ public class GraphicsContest extends GraphicsProgram {
 				loopCounter = 12000;
 				bossSkipCounter = 0;
 			}
+		}
+		if (e.getKeyChar() == KeyEvent.VK_3) {
+			bossCounter = 4;
 		}
 	}
 	
