@@ -1091,7 +1091,10 @@ public class GraphicsContest extends GraphicsProgram {
 		}
 		if (e.getKeyChar() == KeyEvent.VK_1) {
 			bossSkipCounter++;
-			if (bossSkipCounter == 9) loopCounter = 12000;
+			if (bossSkipCounter == 9) {
+				loopCounter = 12000;
+				bossSkipCounter = 0;
+			}
 		}
 	}
 	
