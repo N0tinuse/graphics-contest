@@ -1106,7 +1106,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		if (e.getKeyChar() == KeyEvent.VK_3) {
-			bossCounter = 3;
+			bossCounter = 3;1
 		}
 	}
 	
