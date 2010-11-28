@@ -90,6 +90,9 @@ public class GraphicsContest extends GraphicsProgram {
 	private double bossDestinationY;
 	private int currentBossHealth;
 	
+	//activate cheat to skip to boss
+	private int bossSkipCounter;
+	
 	//ivars for barrel roll.
 	private boolean leftBarrelRollInitialized = false;
 	private boolean rightBarrelRollInitialized = false;
@@ -653,6 +656,7 @@ public class GraphicsContest extends GraphicsProgram {
 		loopCounter = 0;
 		bossCounter = 0;
 		explosionCounter = 0;
+		bossSkipCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
 		bossHealth[2] = 80;
@@ -1084,6 +1088,10 @@ public class GraphicsContest extends GraphicsProgram {
 				if (bulletCounter == 50) bulletCounter = 0;
 				bulletsPresent = true;
 			}
+		}
+		if (e.getKeyChar() == KeyEvent.VK_1) {
+			bossSkipCounter++;
+			if (bossSkipCounter == 9) loopCounter = 12000;
 		}
 	}
 	
