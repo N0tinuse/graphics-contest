@@ -138,7 +138,7 @@ public class GraphicsContest extends GraphicsProgram {
 			moveShip();
 			checkforShipChange();
 			//initializes boss after a minute spent in each level
-			if (loopCounter == 12000) {
+			if (loopCounter == 1000) {
 				initializeBoss();
 			}
 			//determines which type of gameplay to execute
@@ -208,7 +208,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss.setImage("mehranfacingleft.png");
+		case 4: boss = new GImage("mehranfacingleft.png");
 				break;
 		}
 		//controls boss movement - picks a random coordinate on the screen to move to
@@ -649,7 +649,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		loopCounter = 0;
-		bossCounter = 0;
+		bossCounter = 4;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
@@ -764,6 +764,7 @@ public class GraphicsContest extends GraphicsProgram {
 	//same code as the enemy bullet except boss bullets start at the middle of the boss image...
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
+		if (bossCounter == 4) newBullet.setLocation(boss.getX() + boss.getWidth() / 2, boss.getY() + 390);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
