@@ -770,15 +770,28 @@ public class GraphicsContest extends GraphicsProgram {
 	//same code as the enemy bullet except boss bullets start at the middle of the boss image...
 	private void spawnBossBullet(GImage boss, GImage ship) {
 		GOval newBullet = new GOval(boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 1, 1);
-		if (bossCounter == 4) newBullet.setLocation(boss.getX() + boss.getWidth() / 2, boss.getY() + 390);
+		if (bossCounter == 3) {
+			int gunDeterminer = rgen.nextInt(2);
+			if (gunDeterminer == 0) newBullet.setLocation(boss.getX() + 325, boss.getY() + 200);
+			if (gunDeterminer == 1) newBullet.setLocation(boss.getX() + 675, boss.getY() + 200);
+		}
+		if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) newBullet.setLocation(boss.getX() + 135, boss.getY() + 395);
+		if (bossCounter == 4 && boss.equals("mehranfacingright.png")) newBullet.setLocation(boss.getX() + 265, boss.getY() + 395);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
-		enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)320;
-		if (bossCounter != 4) {
+		if (bossCounter != 3 && bossCounter != 4) {
+			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)320;
 			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)320;
-		} else {
-			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 390)) / (double)320;
+		} else if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) {
+			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + 135)) / (double)320;
+			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 395)) / (double)320;
+		} else if (bossCounter == 4 && boss.equals("mehranfacingright.png")) {
+			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + 265)) / (double)320;
+			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 395)) / (double)320;
+		} else if (bossCounter == 3 ) {
+			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - newBullet.getX()) / (double)320;
+			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - newBullet.getY()) / (double)320;
 		}
 		add(enemyBullets[enemyBulletCounter]);
 		enemyLaser.play();
