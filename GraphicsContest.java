@@ -212,7 +212,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss = new GImage("mehranfacingleft.png");
+		case 4: boss.setImage("mehranfacingleft.png");
 				break;
 		}
 		//controls boss movement - picks a random coordinate on the screen to move to
@@ -775,19 +775,15 @@ public class GraphicsContest extends GraphicsProgram {
 			if (gunDeterminer == 0) newBullet.setLocation(boss.getX() + 325, boss.getY() + 200);
 			if (gunDeterminer == 1) newBullet.setLocation(boss.getX() + 675, boss.getY() + 200);
 		}
-		if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) newBullet.setLocation(boss.getX() + 135, boss.getY() + 505);
-		if (bossCounter == 4 && boss.equals("mehranfacingright.png")) newBullet.setLocation(boss.getX() + 265, boss.getY() + 505);
+		if (bossCounter == 4) newBullet.setLocation(boss.getX() + boss.getWidth() / 2, boss.getY() + 395);
 		newBullet.setColor(Color.BLUE);
 		newBullet.setFilled(true);
 		enemyBullets[enemyBulletCounter] = newBullet;
 		if (bossCounter != 3 && bossCounter != 4) {
 			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)320;
 			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + boss.getHeight() / 2)) / (double)320;
-		} else if (bossCounter == 4 && boss.equals("mehranfacingleft.png")) {
-			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + 135)) / (double)320;
-			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 395)) / (double)320;
-		} else if (bossCounter == 4 && boss.equals("mehranfacingright.png")) {
-			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + 265)) / (double)320;
+		} else if (bossCounter == 4) {
+			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - (boss.getX() + boss.getWidth() / 2)) / (double)320;
 			enemyYBulletVelocities[enemyBulletCounter] = ((ship.getY() + ship.getHeight() / 2 - 30) - (boss.getY() + 395)) / (double)320;
 		} else if (bossCounter == 3) {
 			enemyXBulletVelocities[enemyBulletCounter] = ((ship.getX() + ship.getWidth() / 2 - 30) - newBullet.getX()) / (double)320;
@@ -1110,7 +1106,7 @@ public class GraphicsContest extends GraphicsProgram {
 			}
 		}
 		if (e.getKeyChar() == KeyEvent.VK_3) {
-			bossCounter = 4;
+			bossCounter = 3;
 		}
 	}
 	
