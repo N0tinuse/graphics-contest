@@ -2,10 +2,11 @@
  * File: GraphicsContest.java
  * --------------------------
  * Name: Will Meyer
+ * Section Leader: Will Monroe
+ * Entry: Starfaux 106A
  */
 
 import java.awt.Color;
-
 import acm.program.*;
 import acm.graphics.*;
 import java.awt.event.*;
@@ -90,7 +91,9 @@ public class GraphicsContest extends GraphicsProgram {
 	private double bossDestinationY;
 	private int currentBossHealth;
 	
-	//activate cheat to skip to boss
+	/* activate cheat to skip to boss. useful if you're like me and want to skip the level to play the end...
+	 * hammer on the 1 key to skip to the boss.
+	 */
 	private int bossSkipCounter;
 	
 	//ivars for barrel roll.
