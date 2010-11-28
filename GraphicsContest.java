@@ -138,7 +138,7 @@ public class GraphicsContest extends GraphicsProgram {
 			moveShip();
 			checkforShipChange();
 			//initializes boss after a minute spent in each level
-			if (loopCounter == 1000) {
+			if (loopCounter == 12000) {
 				initializeBoss();
 			}
 			//determines which type of gameplay to execute
@@ -208,7 +208,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss = new GImage("mehranfacingleft.png");
+		case 4: boss.setImage("mehranfacingleft.png");
 				break;
 		}
 		//controls boss movement - picks a random coordinate on the screen to move to
@@ -459,6 +459,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(gameArea);
 		add(scoreLabel);
 		add(livesLabel);
+		enemyExplosion.setLocation(5000,1600);
 		add(enemyExplosion);
 		for (int j = 0; j < lives; j++) {
 			add(lifeLabels[j]);
@@ -649,7 +650,7 @@ public class GraphicsContest extends GraphicsProgram {
 		enemyCounter = 0;
 		score = 0;
 		loopCounter = 0;
-		bossCounter = 4;
+		bossCounter = 0;
 		explosionCounter = 0;
 		bossHealth[0] = 40;
 		bossHealth[1] = 60;
