@@ -1,6 +1,7 @@
 /*
  * File: GraphicsContest.java
  * --------------------------
+ * Name: Will Meyer
  */
 
 import java.awt.Color;
@@ -15,17 +16,19 @@ import acm.util.*;
 import java.io.*;
 import acm.io.*;
 
-/* GImage credits:
- * star background found at a1star.com
- * arwing image from http://s14.zetaboards.com/Nintendo_Rp_and_more/topic/90827/1/
- * millennium falcon image from http://www.scifiscoop.com/news/star-wars-limited-edition-only-500-of-these-millennium-falcons/
- * tie fighter image from http://sourwineblog.blogspot.com/2010_06_01_archive.html
- * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/
+/* credits:
+ * star background found at http://www.digitalbusstop.com/cool-animated-gifs/
+ * arwing image from http://s14.zetaboards.com/Nintendo_Rp_and_more/topic/90827/1/ - originally from Starfox 64
+ * millennium falcon image from http://www.scifiscoop.com/news/star-wars-limited-edition-only-500-of-these-millennium-falcons/ - originally from Star Wars
+ * tie fighter image from http://sourwineblog.blogspot.com/2010_06_01_archive.html - originally from Star Wars
+ * starship enterprise image from http://www.startrek-wallpapers.com/Star-Trek-TNG/Starship-Enterprise-NCC-1701-D-Background/ - originally from Star Trek
  * mehran's head from http://robotics.stanford.edu/~sahami/bio.html
  * explosion gif from http://djsmileyface.info/Photos.html
  * explosion sound from http://soundbible.com/456-Explosion-2.html
  * starfox sounds from http://www.starfox64.baldninja.com/sf64snds.htm - originally from Starfox 64
  * corneria theme from http://www.themesongshut.com/Super-Smash-Bros-Melee-Planet-Corneria-Theme-Song.html - originally from Super Smash Bros. Melee
+ * warning siren from http://policeinterceptor.com/navysounds.htm
+ * everything else: images = toys from my toy cabinet/ sounds = sound files I had on my computer
  */
 
 public class GraphicsContest extends GraphicsProgram {
@@ -294,11 +297,11 @@ public class GraphicsContest extends GraphicsProgram {
 					bullets[i].move(bulletVelocities[i], 0);
 					if (bullets[i].getWidth() == 0) {
 						remove(bullets[i]);
-						bullets[i].setLocation(2000,900);
+						bullets[i].setLocation(2000,3000);
 					}
 					if (bulletCollisionChecker(bullets[i]) == boss && bullets[i].getWidth() <= 20) {
 						remove(bullets[i]);
-						bullets[i].setLocation(2000,900);
+						bullets[i].setLocation(2000,3000);
 						score += 20;
 						currentBossHealth -= 1;
 						bossHealthBarInside.setSize(298 * currentBossHealth / bossHealth[bossCounter], bossHealthBarInside.getHeight());
@@ -406,7 +409,7 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyBullets[i].setColor(Color.RED);
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
-						enemyBullets[i].setLocation(2200, 900);
+						enemyBullets[i].setLocation(2200, 3000);
 						removeEnemiesandEnemyBullets();
 						processDeath();
 						add(boss);
@@ -499,7 +502,7 @@ public class GraphicsContest extends GraphicsProgram {
 					bullets[i].setSize(bullets[i].getWidth() - 0.5, bullets[i].getHeight() - 0.5);
 					if (bullets[i].getWidth() == 0) {
 						remove(bullets[i]);
-						bullets[i].setLocation(2000,900);
+						bullets[i].setLocation(2000,3000);
 						bulletVelocities[i] = 0;
 					}
 					if (bulletCollisionChecker(bullets[i]) instanceof GImage && bulletCollisionChecker(bullets[i]) != ship && bulletCollisionChecker(bullets[i]) != gameArea && bulletCollisionChecker(bullets[i]) != barrelRollArrows  && bulletCollisionChecker(bullets[i]) != enemyExplosion && 3 * bulletCollisionChecker(bullets[i]).getHeight() / 5 >= bullets[i].getWidth()) {
@@ -508,7 +511,7 @@ public class GraphicsContest extends GraphicsProgram {
 						bulletCollisionChecker(bullets[i]).setLocation(2500, 1500);						
 						explosionCounter = 1;
 						remove(bullets[i]);
-						bullets[i].setLocation(2000,900);
+						bullets[i].setLocation(2000,3000);
 						bulletVelocities[i] = 0;
 						score += 50;
 					} 
@@ -550,7 +553,7 @@ public class GraphicsContest extends GraphicsProgram {
 					spawnEnemyBullet(enemies[i], ship);
 				}
 				if (enemyCollisionChecker(enemies[i]) == ship && enemies[i].getHeight() >= 80) {
-					enemies[i].setLocation(2500, 900);
+					enemies[i].setLocation(2500, 3000);
 					removeEnemiesandEnemyBullets();
 					remove(ship);
 					processDeath();
@@ -581,7 +584,7 @@ public class GraphicsContest extends GraphicsProgram {
 						enemyBullets[i].setColor(Color.RED);
 					}
 					if (enemyBulletCollisionChecker(enemyBullets[i]) == ship && enemyBullets[i].getWidth() >= 40) {
-						enemyBullets[i].setLocation(2200, 900);
+						enemyBullets[i].setLocation(2200, 3000);
 						removeEnemiesandEnemyBullets();
 						processDeath();
 					}
@@ -668,7 +671,7 @@ public class GraphicsContest extends GraphicsProgram {
 		add(scoreLabel);
 		add(livesLabel);
 		explosionCounter = 0;
-		enemyExplosion.setLocation(5000, 900);
+		enemyExplosion.setLocation(5000, 4000);
 		add(enemyExplosion);
 		if (loopCounter >= 8600) add(bossApproachLabel);
 		for (int j = 0; j < lives; j++) {
