@@ -1105,9 +1105,6 @@ public class GraphicsContest extends GraphicsProgram {
 				bossSkipCounter = 0;
 			}
 		}
-		if (e.getKeyChar() == KeyEvent.VK_3) {
-			bossCounter = 3;
-		}
 	}
 	
 	//these methods set up the high score table
