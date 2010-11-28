@@ -9,8 +9,6 @@ import java.awt.Color;
 import acm.program.*;
 import acm.graphics.*;
 import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
 import java.applet.*;
 import acm.util.*;
 import java.io.*;
