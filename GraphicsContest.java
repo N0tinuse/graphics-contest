@@ -212,7 +212,7 @@ public class GraphicsContest extends GraphicsProgram {
 				break;
 		case 3: boss.setImage("enterprise.png");
 				break;
-		case 4: boss.setImage("mehranfacingleft.png");
+		case 4: boss = new GImage("mehranfacingleft.png");
 				break;
 		}
 		//controls boss movement - picks a random coordinate on the screen to move to
